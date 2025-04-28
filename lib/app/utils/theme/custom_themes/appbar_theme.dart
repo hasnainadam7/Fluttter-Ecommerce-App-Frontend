@@ -13,7 +13,11 @@ class CAppBarTheme {
     surfaceTintColor: Colors.transparent,
     iconTheme: IconThemeData(color: CColors.black, size: CSizes.iconsMd),
     actionsIconTheme: IconThemeData(color: CColors.black, size: CSizes.iconsMd),
-    titleTextStyle: TextStyle(fontSize: 18.0, fontWeight: FontWeight.w600, color: CColors.black),
+    titleTextStyle: TextStyle(
+      fontSize: CSizes.appBarIconSize,
+      fontWeight: FontWeight.w600,
+      color: CColors.black,
+    ),
   );
   static const darkAppBarTheme = AppBarTheme(
     elevation: 0,
@@ -23,6 +27,10 @@ class CAppBarTheme {
     surfaceTintColor: Colors.transparent,
     iconTheme: IconThemeData(color: CColors.black, size: CSizes.iconsMd),
     actionsIconTheme: IconThemeData(color: CColors.white, size: CSizes.iconsMd),
-    titleTextStyle: TextStyle(fontSize: 18.0, fontWeight: FontWeight.w600, color: CColors.white),
+    titleTextStyle: TextStyle(
+      fontSize: CSizes.appBarIconSize,
+      fontWeight: FontWeight.w600,
+      color: CColors.white,
+    ),
   );
 }

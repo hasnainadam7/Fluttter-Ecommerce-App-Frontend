@@ -18,7 +18,7 @@ class LoginHeader extends StatelessWidget {
           dark ? CImages.lightAppLogo : CImages.darkAppLogo,
         ),
         Text(CTexts.loginTitle, style: Theme.of(context).textTheme.headlineMedium),
-        SizedBox(height: CSizes.sm),
+        const SizedBox(height: CSizes.sm),
         Text(CTexts.loginSubTitle, style: Theme.of(context).textTheme.bodyMedium),
       ],
     );

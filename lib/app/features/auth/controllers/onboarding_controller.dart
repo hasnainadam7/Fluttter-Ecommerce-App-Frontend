@@ -13,19 +13,19 @@ class OnboardingController extends GetxController {
     currentPageIndex.value = index;
     pageController.animateToPage(
       index,
-      duration: Duration(milliseconds: 300),
+      duration: const Duration(milliseconds: 300),
       curve: Curves.easeInOut,
     );
   }
 
   void nextPage() {
     if (currentPageIndex.value == 2) {
-      Get.offAll(LoginScreen());
+      Get.offAll(const LoginScreen());
     } else {
       currentPageIndex.value = currentPageIndex.value + 1;
       pageController.animateToPage(
         currentPageIndex.value,
-        duration: Duration(milliseconds: 300),
+        duration: const Duration(milliseconds: 300),
         curve: Curves.easeInOut,
       );
     }

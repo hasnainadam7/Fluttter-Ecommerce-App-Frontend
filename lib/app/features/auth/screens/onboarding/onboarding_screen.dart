@@ -23,10 +23,10 @@ class OnboardingScreen extends StatelessWidget {
           PageView(
             onPageChanged: onBoardingController.updatePageIndicator,
             controller: onBoardingController.pageController,
-            children: [
-              const OnBoardingPage(imgPath: CImages.onBoardingImage1, mainTitle: CTexts.onBoardingTitle1, subTitle: CTexts.onBoardingSubTitle1),
-              const OnBoardingPage(imgPath: CImages.onBoardingImage2, mainTitle: CTexts.onBoardingTitle2, subTitle: CTexts.onBoardingSubTitle1),
-              const OnBoardingPage(imgPath: CImages.onBoardingImage3, mainTitle: CTexts.onBoardingTitle3, subTitle: CTexts.onBoardingSubTitle1),
+            children: const [
+              OnBoardingPage(imgPath: CImages.onBoardingImage1, mainTitle: CTexts.onBoardingTitle1, subTitle: CTexts.onBoardingSubTitle1),
+              OnBoardingPage(imgPath: CImages.onBoardingImage2, mainTitle: CTexts.onBoardingTitle2, subTitle: CTexts.onBoardingSubTitle1),
+              OnBoardingPage(imgPath: CImages.onBoardingImage3, mainTitle: CTexts.onBoardingTitle3, subTitle: CTexts.onBoardingSubTitle1),
             ],
           ),
           //skip button

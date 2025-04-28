@@ -3,16 +3,16 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../../utils/constants/colors.dart';
-import '../../../utils/constants/texts.dart';
 
 class FormDivider extends StatelessWidget {
-  const FormDivider({super.key, required this.dark});
+  const FormDivider({super.key, required this.dark, required this.text});
 
   final bool dark;
+  final String text;
 
   @override
   Widget build(BuildContext context) {
-    return Row(
+    return  Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         Flexible(
@@ -23,7 +23,7 @@ class FormDivider extends StatelessWidget {
             endIndent: 5,
           ),
         ),
-        Text(CTexts.orSignInWith.capitalize!, style: Theme.of(context).textTheme.labelMedium),
+        Text(text.capitalize!, style: Theme.of(context).textTheme.labelMedium),
         Flexible(
           child: Divider(
             color: dark ? CColors.darkGrey : CColors.grey,

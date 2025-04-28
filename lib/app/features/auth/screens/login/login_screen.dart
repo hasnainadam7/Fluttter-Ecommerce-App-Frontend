@@ -1,6 +1,7 @@
 import 'package:ecommerceapp/app/features/auth/screens/login/widgets/login_form.dart';
 import 'package:ecommerceapp/app/features/auth/screens/login/widgets/login_header.dart';
 import 'package:ecommerceapp/app/utils/constants/sizes.dart';
+import 'package:ecommerceapp/app/utils/constants/texts.dart';
 import 'package:flutter/material.dart';
 import '../../../../common/styles/spacing_styles.dart';
 import '../../../../common/widgets/login_signup/form_divider.dart';
@@ -24,11 +25,11 @@ class LoginScreen extends StatelessWidget {
               //header
               LoginHeader(dark: dark),
               //Form
-              LoginForm(),
+              const LoginForm(),
               // divider
-              FormDivider(dark: dark),
+              FormDivider(dark: dark, text: CTexts.orSignInWith,),
               //social icons
-              SocialButtons(),
+              const SocialButtons(),
             ],
           ),
         ),

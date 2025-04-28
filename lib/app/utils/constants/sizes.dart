@@ -65,4 +65,8 @@ class CSizes {
   static const double loadingIndicatorSize = 36;
 
   static const double gridViewSpacing = 16;
+
+  static const double appBarIconSize = 16;
+
+  static const double navigationBarHeight = 80;
 }

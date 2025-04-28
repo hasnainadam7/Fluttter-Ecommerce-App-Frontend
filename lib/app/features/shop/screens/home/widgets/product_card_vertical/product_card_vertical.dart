@@ -1,0 +1,67 @@
+import 'package:ecommerceapp/app/common/styles/shadow_styles.dart';
+import 'package:ecommerceapp/app/common/widgets/custom_shapes/containers/rounded_container.dart';
+import 'package:ecommerceapp/app/features/shop/screens/home/widgets/product_card_vertical/product_price_and_counts.dart';
+import 'package:ecommerceapp/app/features/shop/screens/home/widgets/product_card_vertical/product_sub_title.dart';
+import 'package:ecommerceapp/app/features/shop/screens/home/widgets/product_card_vertical/product_title.dart';
+import 'package:ecommerceapp/app/utils/constants/colors.dart';
+import 'package:ecommerceapp/app/utils/constants/images_string.dart';
+import 'package:ecommerceapp/app/utils/constants/sizes.dart';
+
+import 'package:flutter/material.dart';
+import 'package:iconsax/iconsax.dart';
+import 'package:get/get.dart';
+import '../../../../../../common/widgets/images/rounded_images.dart';
+import 'circular_icon.dart';
+import 'discounted_label.dart';
+
+class ProductCardVertical extends StatelessWidget {
+  const ProductCardVertical({super.key, required this.isDark});
+  final bool isDark;
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      // width: 180,
+      width: Get.width * 0.4,
+      decoration: BoxDecoration(
+        boxShadow: CShadowStyles.verticalProductShadow,
+        borderRadius: BorderRadius.circular(CSizes.productImgRadius),
+        color: isDark ? CColors.darkerGrey : CColors.white,
+      ),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          //thumbnail wishlist and discountedTag
+          CRoundedContainer(
+
+            // padding: EdgeInsets.all(CSizes.sm),
+            backgroundColor: isDark ? CColors.darkerGrey : CColors.light,
+            child: Stack(
+              children: [
+                CRoundedImages(
+
+                  imgUrl: CImages.productImage1,
+                ),
+                DiscountedLabelWidget(discount: 25),
+                Positioned(right: 2, top: 2, child: CircularIcon(isDark: isDark)),
+              ],
+            ),
+          ),
+          Padding(
+            padding: EdgeInsets.all(CSizes.sm),
+            child: Column(
+              // spacing: CSizes.spaceBtwItems / 2,
+              mainAxisAlignment: MainAxisAlignment.end,
+              crossAxisAlignment: CrossAxisAlignment.start,
+
+              children: [
+                ProductTitle(title: "Green Nike Air Shoes"),
+                ProductSubTitle(title: "Nike"),
+                ProductPriceAndCounts(price: '35.5'),
+              ],
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}

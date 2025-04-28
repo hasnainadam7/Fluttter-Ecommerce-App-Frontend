@@ -15,7 +15,7 @@ class OnBoardingSkipButton extends StatelessWidget {
       right: CSizes.defaultSpace,
       child: TextButton(
         onPressed: instanceOfOnboardingController.skipPage,
-        child: Text(CTexts.skip),
+        child: const Text(CTexts.skip),
       ),
     );
   }
