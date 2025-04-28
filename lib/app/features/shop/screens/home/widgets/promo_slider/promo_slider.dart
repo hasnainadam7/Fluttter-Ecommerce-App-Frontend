@@ -6,8 +6,8 @@ import 'carousel_slider.dart';
 import 'carousel_slider_dots.dart';
 
 class PromoSlider extends StatelessWidget {
-  const PromoSlider({super.key});
-
+  const PromoSlider({super.key, required this.dark});
+final bool dark;
   @override
   Widget build(BuildContext context) {
     final controller = Get.put(HomeController());
@@ -16,8 +16,8 @@ class PromoSlider extends StatelessWidget {
       child: Column(
         spacing: CSizes.spaceBtwItems,
         children: [
-          CCarouselSlider(controller: controller),
-          CCarouselSliderDots(controller: controller),
+          CCarouselSlider(controller: controller,dark:dark),
+          CCarouselSliderDots(controller: controller,dark:dark),
         ],
       ),
     );

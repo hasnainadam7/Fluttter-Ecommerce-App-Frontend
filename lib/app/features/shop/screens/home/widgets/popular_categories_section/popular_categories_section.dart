@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../../../../../utils/constants/sizes.dart';
 import '../../../../../../utils/constants/texts.dart';
-import '../section_heading.dart';
+import '../../../../../../common/widgets/headings/section_heading.dart';
 import 'vertical_images_and_texts.dart';
 
 class PopularCategoriesSection extends StatelessWidget {

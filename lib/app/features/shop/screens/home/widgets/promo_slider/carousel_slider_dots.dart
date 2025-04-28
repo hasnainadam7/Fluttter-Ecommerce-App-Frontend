@@ -10,9 +10,9 @@ import '../../../../controllers/home_controller.dart';
 class CCarouselSliderDots extends StatelessWidget {
   const CCarouselSliderDots({
     super.key,
-    required this.controller,
+    required this.controller, required this.dark,
   });
-
+  final bool dark;
   final HomeController controller;
 
   @override

@@ -3,13 +3,14 @@ import 'package:iconsax/iconsax.dart';
 
 import '../../../utils/constants/colors.dart';
 import '../../../utils/constants/sizes.dart';
+import '../../../utils/constants/texts.dart';
 import '../../../utils/device/device_utility.dart';
 
-class HomeSearchBar extends StatelessWidget {
-  const HomeSearchBar({
+class CSearchBar extends StatelessWidget {
+  const CSearchBar({
     super.key,
     required this.text,
-    this.icon =Iconsax.search_normal,
+    this.icon = Iconsax.search_normal,
     this.showBackground = true,
     this.showBorder = true,
     required this.isDark,
@@ -44,7 +45,7 @@ class HomeSearchBar extends StatelessWidget {
             spacing: CSizes.spaceBtwItems,
             children: [
               Icon(icon, color: CColors.darkerGrey),
-              Text("Search in Store", style: Theme.of(context).textTheme.bodySmall),
+              Text(text, style: Theme.of(context).textTheme.bodySmall),
             ],
           ),
         ),

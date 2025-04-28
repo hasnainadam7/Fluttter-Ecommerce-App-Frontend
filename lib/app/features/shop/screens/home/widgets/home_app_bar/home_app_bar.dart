@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../../../../../common/widgets/appBar/app_bar.dart';
-import 'counter_icon.dart';
+import '../../../../../auth/screens/app_bar/counter_icon.dart';
 import 'home_app_bar_title.dart';
 
 class HomeAppBar extends StatelessWidget {

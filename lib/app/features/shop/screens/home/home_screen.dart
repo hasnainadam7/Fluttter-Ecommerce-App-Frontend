@@ -2,7 +2,7 @@
 
 import 'package:flutter/material.dart';
 
-import '../../../../common/widgets/search_bar/home_search_bar.dart';
+import '../../../../common/widgets/search_bar/search_bar.dart';
 import '../../../../utils/constants/sizes.dart';
 import '../../../../utils/constants/texts.dart';
 import '../../../../utils/helpers/helper_functions.dart';
@@ -28,7 +28,7 @@ class HomeScreen extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 const HomeAppBar(),
-                HomeSearchBar(text: CTexts.searchBarTitleHome, isDark: dark),
+                CSearchBar(text: CTexts.searchBarTitleHome, isDark: dark),
 
                 const PopularCategoriesSection(),
               ],
@@ -38,7 +38,7 @@ class HomeScreen extends StatelessWidget {
             child: SingleChildScrollView(
               child: Column(
                 children: [
-                  PromoSlider(),
+                  PromoSlider(dark: dark),
                   HomeGrid(dark: dark),
                 ],
               ),

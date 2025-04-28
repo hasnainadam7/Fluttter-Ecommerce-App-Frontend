@@ -72,4 +72,6 @@ class CTexts {
   static const String homeAppbarTitle = "Good day for shopping";
   static const String homeAppbarSubTitle = "Hasnain Adam";
 
+  // -- Shop
+  static const String featureBrands = "Featured Brands";
 }

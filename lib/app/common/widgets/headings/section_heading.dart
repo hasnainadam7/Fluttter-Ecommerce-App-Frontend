@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../../../../../utils/constants/colors.dart';
-import '../../../../../utils/constants/sizes.dart';
+import '../../../utils/constants/colors.dart';
+import '../../../utils/constants/sizes.dart';
 
 class SectionHeading extends StatelessWidget {
   const SectionHeading({
@@ -11,17 +11,19 @@ class SectionHeading extends StatelessWidget {
     this.textColor = CColors.white,
     this.showActionButton = true,
     this.onPressed,
+    this.padding = const EdgeInsets.symmetric(horizontal: CSizes.defaultSpace),
   });
 
   final String buttonTitle, title;
   final Color textColor;
   final bool showActionButton;
   final void Function()? onPressed;
+  final EdgeInsetsGeometry padding;
 
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: CSizes.defaultSpace),
+      padding: padding,
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
