@@ -12,7 +12,7 @@ class CSearchBar extends StatelessWidget {
     this.icon = Iconsax.search_normal,
     this.showBackground = true,
     this.showBorder = true,
-    required this.isDark,
+    required this.dark,
     this.onTap,
     this.padding = const EdgeInsets.symmetric(horizontal: CSizes.defaultSpace),
   });
@@ -21,7 +21,7 @@ class CSearchBar extends StatelessWidget {
   final String text;
   final IconData icon;
   final bool showBackground, showBorder;
-  final bool isDark;
+  final bool dark;
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -33,7 +33,7 @@ class CSearchBar extends StatelessWidget {
           decoration: BoxDecoration(
             color:
                 showBackground
-                    ? isDark
+                    ? dark
                         ? CColors.dark
                         : CColors.light
                     : CColors.transparent,

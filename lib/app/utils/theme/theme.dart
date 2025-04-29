@@ -6,6 +6,7 @@ import 'package:ecommerceapp/app/utils/theme/custom_themes/elevated_button_theme
 import 'package:ecommerceapp/app/utils/theme/custom_themes/text_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import '../constants/colors.dart';
 import 'custom_themes/outlined_button_theme.dart';
 import 'custom_themes/text_form_field_theme.dart';
 
@@ -17,7 +18,7 @@ class CThemeApp {
     brightness: Brightness.light,
     primaryColor: Colors.blue,
     textTheme: CTextTheme.lightTextTheme,
-    scaffoldBackgroundColor: Colors.white,
+    scaffoldBackgroundColor: CColors.white,
     appBarTheme: CAppBarTheme.lightAppBarTheme,
     checkboxTheme: CCheckBoxTheme.lightCheckboxThemeData,
     outlinedButtonTheme: COutlinedButtonThemeData.lightOutlinedButtonTheme,
@@ -30,7 +31,7 @@ class CThemeApp {
     useMaterial3: true,
     fontFamily: GoogleFonts.poppinsTextTheme().labelSmall!.fontFamily,
     brightness: Brightness.dark,
-    scaffoldBackgroundColor: Colors.black,
+    scaffoldBackgroundColor: CColors.black,
     elevatedButtonTheme: CElevatedButtonTheme.darkElevatedButtonTheme,
     textTheme: CTextTheme.darkTextTheme,
     primaryColor: Colors.blue,

@@ -14,11 +14,11 @@ import 'widgets/primary_header_container.dart';
 import 'widgets/promo_slider/promo_slider.dart';
 
 class HomeScreen extends StatelessWidget {
-  const HomeScreen({super.key});
+  const HomeScreen({super.key,});
 
   @override
   Widget build(BuildContext context) {
-    final dark = CHelperFunctions.isDarkMode(context);
+    final bool dark= CHelperFunctions.isDarkMode(context);
     return Scaffold(
       body: Column(
         children: [
@@ -27,8 +27,8 @@ class HomeScreen extends StatelessWidget {
               spacing: CSizes.spacesBtwSections,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const HomeAppBar(),
-                CSearchBar(text: CTexts.searchBarTitleHome, isDark: dark),
+                 HomeAppBar(dark: dark,),
+                CSearchBar(text: CTexts.searchBarTitleHome, dark: dark),
 
                 const PopularCategoriesSection(),
               ],

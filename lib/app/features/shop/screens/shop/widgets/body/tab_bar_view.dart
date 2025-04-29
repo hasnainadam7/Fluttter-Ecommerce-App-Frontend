@@ -7,10 +7,10 @@ import '../../../home/widgets/product_card_vertical/product_card_vertical.dart';
 import 'brand_show_case.dart';
 
 class CTabBarView extends StatelessWidget {
-  const CTabBarView({super.key, required this.tabs, required this.isDark});
+  const CTabBarView({super.key, required this.tabs, required this.dark});
 
   final List<String> tabs;
-  final bool isDark;
+  final bool dark;
 
   @override
   Widget build(BuildContext context) {
@@ -29,7 +29,7 @@ class CTabBarView extends StatelessWidget {
                   child: Column(
                     children: [
                       BrandShowCase(
-                        isDark: isDark,
+                        dark: dark,
                         images: const [
                           CImages.productImage1,
                           CImages.productImage2,
@@ -39,15 +39,15 @@ class CTabBarView extends StatelessWidget {
                       CSectionHeading(
                         padding: EdgeInsets.zero,
                         title: "You might like",
-                        dark: isDark,
+                        dark: dark,
                       ),
                       CGridLayout(
                         mainAxisExtent: 250,
                         padding: EdgeInsets.zero,
-                        dark: isDark,
+                        dark: dark,
                         itemCount: 4,
                         itemBuilder: (_, index) {
-                          return ProductCardVertical(isDark: isDark);
+                          return ProductCardVertical(dark: dark);
                         },
                       ),
                     ],

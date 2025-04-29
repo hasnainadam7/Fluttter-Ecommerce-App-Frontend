@@ -1,4 +1,7 @@
+import 'package:ecommerceapp/app/features/shop/screens/favourite/favourite_screen.dart';
+import 'package:ecommerceapp/app/utils/constants/colors.dart';
 import 'package:ecommerceapp/app/utils/constants/sizes.dart';
+import 'package:ecommerceapp/app/utils/helpers/helper_functions.dart';
 import 'package:flutter/material.dart'
     show
         BuildContext,
@@ -10,7 +13,7 @@ import 'package:flutter/material.dart'
         Scaffold,
         StatelessWidget,
         Widget;
-import 'package:get/get.dart' show Get, GetBuilder, GetxController, Inst, IntExtension, Rx;
+import 'package:get/get.dart' show Get, GetBuilder, GetxController, Inst, IntExtension, Obx, Rx;
 import 'package:iconsax/iconsax.dart' show Iconsax;
 
 import 'features/shop/screens/home/home_screen.dart';
@@ -19,7 +22,7 @@ import 'features/shop/screens/shop/shop_screen.dart' show ShopScreen;
 class NavigationMenu extends StatelessWidget {
   NavigationMenu({super.key});
 
-  final List<Map<String, dynamic>> navigations = [
+  final List<Map<String, dynamic>> navigation = [
     {'title': 'Home', 'icon': Iconsax.home, 'onTap': () {}},
     {'title': 'Store', 'icon': Iconsax.shop, 'onTap': () {}},
     {'title': 'Wishlist', 'icon': Iconsax.heart, 'onTap': () {}},
@@ -30,37 +33,36 @@ class NavigationMenu extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GetBuilder<NavigationController>(
-      builder: (controller2) {
-        return Scaffold(
-          backgroundColor: Colors.white,
-          bottomNavigationBar: NavigationBar(
-            height: CSizes.navigationBarHeight,
+    bool dark = CHelperFunctions.isDarkMode(context);
+    return Obx(()=>Scaffold(
+      backgroundColor: Colors.white,
+      bottomNavigationBar: NavigationBar(
+        height: CSizes.navigationBarHeight,
 
-            elevation: 2,
-            // backgroundColor: Colors.white,
-            selectedIndex: controller2.selectedIndex.value,
-            onDestinationSelected: controller2.changeIndex,
-            destinations:
-                navigations.map((item) {
-                  return NavigationDestination(icon: Icon(item['icon']), label: item['title']);
-                }).toList(),
-          ),
-          body: controller2.screens[controller2.selectedIndex.value],
-        );
-      },
-    );
+        elevation: 2,
+        backgroundColor:dark ? CColors.black : CColors.white,
+
+        selectedIndex: controller.selectedIndex.value,
+        onDestinationSelected: controller.changeIndex,
+        destinations:
+        navigation.map((item) {
+          return NavigationDestination(icon: Icon(item['icon']), label: item['title']);
+        }).toList(),
+      ),
+      body: controller.screens[controller.selectedIndex.value],
+    ));
+
+
   }
 }
 
 class NavigationController extends GetxController {
-  // get NavigationController;
-  // final int selectedIndex= 0;
+
   Rx<int> selectedIndex = 0.obs;
   final List<Widget> screens = [
     const HomeScreen(),
     ShopScreen(),
-    Container(color: Colors.yellow),
+    FavouriteScreen(),
     Container(color: Colors.blue),
   ];
 

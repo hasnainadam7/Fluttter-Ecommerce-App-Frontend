@@ -12,13 +12,14 @@ class ShopScreen extends StatelessWidget {
   final List<String> tabs = ['Sports', 'Furniture', 'Electronics', 'Clothes', 'Cosmetics'];
   @override
   Widget build(BuildContext context) {
-    bool isDark = CHelperFunctions.isDarkMode(context);
+    bool dark = CHelperFunctions.isDarkMode(context);
     return DefaultTabController(
       length: tabs.length,
       child: Scaffold(
         appBar: CAppBar(
           title: Text("Store", style: Theme.of(context).textTheme.headlineMedium),
-          actions: const [CounterIcon()],
+          actions: [CounterIcon(dark: dark)],
+          dark: dark,
         ),
         body: NestedScrollView(
           headerSliverBuilder: (_, innerBoxIsScrolled) {
@@ -27,25 +28,17 @@ class ShopScreen extends StatelessWidget {
                 automaticallyImplyLeading: false,
                 pinned: true,
                 floating: true, // Set this to false to avoid stacking issue
-                // backgroundColor: isDark ? CColors.black : Colors.red.withValues(alpha: 0.2),
+
                 expandedHeight: Get.height * 0.42,
                 // expandedHeight: 440,
-                flexibleSpace: ShopFlexibleSpaceWidget(isDark: isDark),
-                bottom: CTabBar(isDark: isDark, tabs: tabs),
-
+                flexibleSpace: ShopFlexibleSpaceWidget(dark: dark),
+                bottom: CTabBar(dark: dark, tabs: tabs),
               ),
             ];
           },
-          body: CTabBarView(tabs: tabs, isDark: isDark),
+          body: CTabBarView(tabs: tabs, dark: dark),
         ),
       ),
     );
   }
 }
-
-
-
-
-
-
-

@@ -7,25 +7,30 @@ import '../../../../../../utils/constants/colors.dart';
 import '../../../../../../utils/constants/sizes.dart';
 
 class BrandShowCase extends StatelessWidget {
-  const BrandShowCase({super.key, required this.isDark, required this.images});
+  const BrandShowCase({super.key, required this.dark, required this.images});
 
-  final bool isDark;
+  final bool dark;
   final List<String> images;
 
   @override
   Widget build(BuildContext context) {
     return CRoundedContainer(
       showBorder: true,
-      backgroundColor:isDark ?  CColors.black : CColors.white ,
+      backgroundColor:dark ?  CColors.black : CColors.white ,
       borderColor: CColors.darkerGrey,
       // height: CSizes.md,
-      padding: const EdgeInsets.all(CSizes.sm),
+      padding: const EdgeInsets.all(CSizes.spaceBtwItems/2),
       child: Column(
         spacing: CSizes.spaceBtwItems,
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           const CBrandedCard(showBorder: false),
           Row(
             mainAxisSize: MainAxisSize.min,
+            spacing: CSizes.sm,
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
             // children: List.generate(3,
             children:
             images.map((index) {
@@ -44,9 +49,11 @@ class BrandShowCase extends StatelessWidget {
     return Expanded(
       child: CRoundedContainer(
         height: 100,
-        backgroundColor: isDark ? CColors.darkerGrey : CColors.light,
-        margin: const EdgeInsets.only(right: CSizes.sm),
-        padding: const EdgeInsets.all(CSizes.md),
+        width: 100,
+        backgroundColor: dark ? CColors.darkerGrey : CColors.light,
+
+        // margin: const EdgeInsets.only(right: CSizes.sm),
+        // padding: const EdgeInsets.all(CSizes.md),
         child: Image.asset(index, fit: BoxFit.contain),
       ),
     );

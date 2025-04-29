@@ -5,13 +5,13 @@ import '../../../../../auth/screens/app_bar/counter_icon.dart';
 import 'home_app_bar_title.dart';
 
 class HomeAppBar extends StatelessWidget {
-  const HomeAppBar({super.key});
-
+  const HomeAppBar({super.key, required this.dark});
+final bool dark;
   @override
   Widget build(BuildContext context) {
-    return const CAppBar(
+    return  CAppBar(
       title: HomeAppBarTitles(),
-      actions: [CounterIcon()],
+      actions: [CounterIcon(dark:!dark ,)], dark: dark,
     );
   }
 }

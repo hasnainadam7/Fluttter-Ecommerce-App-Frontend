@@ -5,6 +5,9 @@ import 'package:ecommerceapp/app/features/auth/screens/password_configuration/re
 import 'package:ecommerceapp/app/features/auth/screens/signup/signup_screen.dart';
 import 'package:ecommerceapp/app/common/widgets/login_signup/sucess_screen.dart';
 import 'package:ecommerceapp/app/features/auth/screens/signup/verify_email_screen.dart';
+import 'package:ecommerceapp/app/features/shop/screens/favourite/favourite_screen.dart';
+import 'package:ecommerceapp/app/features/shop/screens/home/home_screen.dart';
+import 'package:ecommerceapp/app/features/shop/screens/shop/shop_screen.dart';
 import 'package:ecommerceapp/app/navigation_menu.dart';
 import 'package:get/get.dart';
 
@@ -19,13 +22,21 @@ class Routes {
   static const String forget = '/forget';
   static const String resetPasswordSuccuess = '/resetPasswordSuccuess';
   static const String navigator = '/navigator';
+  static const String home = '/home';
+  static const String shop = '/shop';
+  static const String favourite = '/favourite';
 
   static final routes = [
     GetPage(name: onboarding, page: () => OnboardingScreen()),
     GetPage(name: signup, page: () => const SignupScreen()),
     GetPage(name: login, page: () => const LoginScreen()),
     GetPage(name: verifyEmail, page: () => const VerifyEmailScreen()),
+    GetPage(name: forget, page: () => const ForgetPasswordScreen()),
     GetPage(name: navigator, page: () => NavigationMenu()),
+    GetPage(name: home, page: () => HomeScreen()),
+    GetPage(name: shop, page: () => ShopScreen()),
+    GetPage(name: favourite, page: () => FavouriteScreen()),
+
     GetPage(
       name: succuessScreen,
       page: () {
@@ -40,7 +51,6 @@ class Routes {
       },
     ),
 
-    GetPage(name: forget, page: () => const ForgetPasswordScreen()),
     GetPage(
       name: resetPasswordSuccuess,
       page: () {

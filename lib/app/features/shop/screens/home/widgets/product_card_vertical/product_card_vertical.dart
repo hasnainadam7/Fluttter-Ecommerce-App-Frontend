@@ -15,8 +15,8 @@ import 'circular_icon.dart';
 import 'discounted_label.dart';
 
 class ProductCardVertical extends StatelessWidget {
-  const ProductCardVertical({super.key, required this.isDark});
-  final bool isDark;
+  const ProductCardVertical({super.key, required this.dark});
+  final bool dark;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -25,7 +25,7 @@ class ProductCardVertical extends StatelessWidget {
       decoration: BoxDecoration(
         boxShadow: CShadowStyles.verticalProductShadow,
         borderRadius: BorderRadius.circular(CSizes.productImgRadius),
-        color: isDark ? CColors.darkerGrey : CColors.white,
+        color: dark ? CColors.darkerGrey : CColors.white,
       ),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -34,7 +34,7 @@ class ProductCardVertical extends StatelessWidget {
           CRoundedContainer(
 
             // padding: EdgeInsets.all(CSizes.sm),
-            backgroundColor: isDark ? CColors.darkerGrey : CColors.light,
+            backgroundColor: dark ? CColors.darkerGrey : CColors.light,
             child: Stack(
               children: [
                 const CRoundedImages(
@@ -42,7 +42,7 @@ class ProductCardVertical extends StatelessWidget {
                   imgUrl: CImages.productImage1,
                 ),
                 const DiscountedLabelWidget(discount: 25),
-                Positioned(right: 2, top: 2, child: CircularIcon(isDark: isDark)),
+                Positioned(right: 2, top: 2, child: CircularIcon(dark: dark)),
               ],
             ),
           ),

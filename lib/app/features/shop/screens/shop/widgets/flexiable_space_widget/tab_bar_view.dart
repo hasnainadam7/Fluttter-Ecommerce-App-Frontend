@@ -9,9 +9,9 @@ import '../../../../../../utils/constants/sizes.dart';
 import '../../../../../../utils/constants/texts.dart';
 
 class ShopFlexibleSpaceWidget extends StatelessWidget {
-  const ShopFlexibleSpaceWidget({super.key, required this.isDark});
+  const ShopFlexibleSpaceWidget({super.key, required this.dark});
 
-  final bool isDark;
+  final bool dark;
 
   @override
   Widget build(BuildContext context) {
@@ -31,7 +31,7 @@ child:
             showBackground: false,
 
             text: CTexts.searchBarTitleHome,
-            isDark: isDark,
+            dark: dark,
           ),
 
           CSectionHeading(
@@ -40,11 +40,11 @@ child:
             title: CTexts.featureBrands,
             showActionButton: true,
             onPressed: () {},
-            dark: isDark,
+            dark: dark,
           ),
 
           CGridLayout(
-            dark: isDark,
+            dark: dark,
             itemCount: 4,
             padding: EdgeInsets.zero,
             mainAxisExtent: 80,

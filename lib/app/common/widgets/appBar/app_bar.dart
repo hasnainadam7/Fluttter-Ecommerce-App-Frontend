@@ -14,7 +14,7 @@ class CAppBar extends StatelessWidget implements PreferredSizeWidget {
     this.showBackArrow = false,
     this.leadingIcon,
     this.actions,
-    this.leadingOnPressed,
+    this.leadingOnPressed, required this.dark,
   });
 
   final Widget? title;
@@ -22,10 +22,10 @@ class CAppBar extends StatelessWidget implements PreferredSizeWidget {
   final IconData? leadingIcon;
   final List<Widget>? actions;
   final VoidCallback? leadingOnPressed;
-
+  final bool dark;
   @override
   Widget build(BuildContext context) {
-    final dark = CHelperFunctions.isDarkMode(context);
+
 
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: CSizes.md),

@@ -15,7 +15,7 @@ class HomeGrid extends StatelessWidget {
       itemCount: 4,
       mainAxisExtent: Get.height * 0.3,
       itemBuilder: (_, index) {
-        return ProductCardVertical(isDark: dark);
+        return ProductCardVertical(dark: dark);
       },
     );
   }

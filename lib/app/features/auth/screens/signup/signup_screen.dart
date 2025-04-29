@@ -8,11 +8,11 @@ import 'package:flutter/material.dart';
 import '../../../../utils/constants/texts.dart';
 
 class SignupScreen extends StatelessWidget {
-  const SignupScreen({super.key});
+  const SignupScreen({super.key, });
 
   @override
   Widget build(BuildContext context) {
-    final dark = CHelperFunctions.isDarkMode(context);
+    final bool dark= CHelperFunctions.isDarkMode(context);
     return Scaffold(
       appBar: AppBar(),
       body: SingleChildScrollView(

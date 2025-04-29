@@ -7,6 +7,8 @@ class HomeController extends GetxController {
 
   void updateCarouselIndex(index) {
     carouselCurrentIndex.value = index;
+    print(index);
+    update();
   }
 
 }

@@ -14,7 +14,7 @@ class CCarouselSlider extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: CupertinoColors.black,
+      // color: dark ? CColors.black :,
       child: CarouselSlider(
         items: List.generate(3, (index) {
           return CRoundedImages(
