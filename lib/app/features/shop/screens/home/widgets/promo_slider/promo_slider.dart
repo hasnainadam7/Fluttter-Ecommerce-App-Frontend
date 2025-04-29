@@ -12,7 +12,7 @@ final bool dark;
   Widget build(BuildContext context) {
     final controller = Get.put(HomeController());
     return Padding(
-      padding: EdgeInsets.all(CSizes.defaultSpace),
+      padding: const EdgeInsets.all(CSizes.defaultSpace),
       child: Column(
         spacing: CSizes.spaceBtwItems,
         children: [

@@ -23,7 +23,7 @@ class CircularIcon extends StatelessWidget {
       child: Center(
         child: IconButton(
           onPressed: () {},
-          icon: Icon(size: CSizes.lg, Iconsax.heart5, color: Colors.red),
+          icon: const Icon(size: CSizes.lg, Iconsax.heart5, color: Colors.red),
         ),
       ),
     );

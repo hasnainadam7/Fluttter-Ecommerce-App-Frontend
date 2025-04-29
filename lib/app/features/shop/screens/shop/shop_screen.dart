@@ -1,61 +1,51 @@
-import 'package:ecommerceapp/app/common/widgets/appBar/app_bar.dart';
-import 'package:ecommerceapp/app/features/auth/screens/app_bar/counter_icon.dart';
-import 'package:ecommerceapp/app/utils/constants/sizes.dart';
-import 'package:ecommerceapp/app/utils/helpers/helper_functions.dart';
+import 'package:ecommerceapp/app/features/shop/screens/shop/widgets/body/tab_bar_view.dart';
+import 'package:ecommerceapp/app/features/shop/screens/shop/widgets/flexiable_space_widget/tab_bar_view.dart';
+import 'package:ecommerceapp/app/utils/helpers/helper_functions.dart' show CHelperFunctions;
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-
-import '../../../../common/widgets/headings/section_heading.dart';
-import '../../../../common/widgets/search_bar/search_bar.dart';
-import '../../../../utils/constants/colors.dart';
-import '../../../../utils/constants/texts.dart';
+import 'package:get/get.dart' show Get, GetNavigation;
+import '../../../../common/widgets/appBar/app_bar.dart' show CAppBar;
+import '../../../../common/widgets/appBar/tab_bar.dart' show CTabBar;
+import '../../../auth/screens/app_bar/counter_icon.dart' show CounterIcon;
 
 class ShopScreen extends StatelessWidget {
-  const ShopScreen({super.key});
-
+  ShopScreen({super.key});
+  final List<String> tabs = ['Sports', 'Furniture', 'Electronics', 'Clothes', 'Cosmetics'];
   @override
   Widget build(BuildContext context) {
     bool isDark = CHelperFunctions.isDarkMode(context);
-    return Scaffold(
-      appBar: CAppBar(
-        title: Text("Store", style: Theme.of(context).textTheme.headlineMedium),
-        actions: [CounterIcon()],
-      ),
-      body: NestedScrollView(
-        headerSliverBuilder: (_, innerBoxIsScrolled) {
-          return [
-            SliverAppBar(
-              automaticallyImplyLeading: false,
-              pinned: true,
-              floating: false,
-              // backgroundColor: isDark ? CColors.black : CColors.white,
-              expandedHeight: Get.height * 0.4,
-              flexibleSpace: Padding(
-                padding: EdgeInsets.all(CSizes.defaultSpace),
-                child: ListView(
-                  shrinkWrap: true,
-                  physics: NeverScrollableScrollPhysics(),
-                  children: [
-                    SizedBox(height: CSizes.spaceBtwItems),
-                    CSearchBar(
-                      padding: EdgeInsets.zero,
-                      text: CTexts.searchBarTitleHome,
-                      isDark: isDark,
-                    ),
-                    SizedBox(height: CSizes.spacesBtwSections),
-                    SectionHeading(
-                      padding: EdgeInsets.zero,
-                      title: CTexts.featureBrands,
-                      showActionButton: false,
-                    ),
-                  ],
-                ),
+    return DefaultTabController(
+      length: tabs.length,
+      child: Scaffold(
+        appBar: CAppBar(
+          title: Text("Store", style: Theme.of(context).textTheme.headlineMedium),
+          actions: const [CounterIcon()],
+        ),
+        body: NestedScrollView(
+          headerSliverBuilder: (_, innerBoxIsScrolled) {
+            return [
+              SliverAppBar(
+                automaticallyImplyLeading: false,
+                pinned: true,
+                floating: true, // Set this to false to avoid stacking issue
+                // backgroundColor: isDark ? CColors.black : Colors.red.withValues(alpha: 0.2),
+                expandedHeight: Get.height * 0.42,
+                // expandedHeight: 440,
+                flexibleSpace: ShopFlexibleSpaceWidget(isDark: isDark),
+                bottom: CTabBar(isDark: isDark, tabs: tabs),
+
               ),
-            ),
-          ];
-        },
-        body: Container(),
+            ];
+          },
+          body: CTabBarView(tabs: tabs, isDark: isDark),
+        ),
       ),
     );
   }
 }
+
+
+
+
+
+
+

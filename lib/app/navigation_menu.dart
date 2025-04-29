@@ -1,38 +1,29 @@
-import 'package:ecommerceapp/app/features/shop/screens/home/home_screen.dart';
-import 'package:ecommerceapp/app/features/shop/screens/shop/shop_screen.dart';
 import 'package:ecommerceapp/app/utils/constants/sizes.dart';
-import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'package:iconsax/iconsax.dart';
+import 'package:flutter/material.dart'
+    show
+        BuildContext,
+        Colors,
+        Container,
+        Icon,
+        NavigationBar,
+        NavigationDestination,
+        Scaffold,
+        StatelessWidget,
+        Widget;
+import 'package:get/get.dart' show Get, GetBuilder, GetxController, Inst, IntExtension, Rx;
+import 'package:iconsax/iconsax.dart' show Iconsax;
+
+import 'features/shop/screens/home/home_screen.dart';
+import 'features/shop/screens/shop/shop_screen.dart' show ShopScreen;
 
 class NavigationMenu extends StatelessWidget {
   NavigationMenu({super.key});
 
   final List<Map<String, dynamic>> navigations = [
-    {
-      'title': 'Home',
-      'icon': Iconsax.home,
-      'onTap': () {
-      },
-    },
-    {
-      'title': 'Store',
-      'icon': Iconsax.shop,
-      'onTap': () {
-      },
-    },
-    {
-      'title': 'Wishlist',
-      'icon': Iconsax.heart,
-      'onTap': () {
-      },
-    },
-    {
-      'title': 'Profile',
-      'icon': Iconsax.user,
-      'onTap': () {
-      },
-    },
+    {'title': 'Home', 'icon': Iconsax.home, 'onTap': () {}},
+    {'title': 'Store', 'icon': Iconsax.shop, 'onTap': () {}},
+    {'title': 'Wishlist', 'icon': Iconsax.heart, 'onTap': () {}},
+    {'title': 'Profile', 'icon': Iconsax.user, 'onTap': () {}},
   ];
 
   final controller = Get.put(NavigationController());
@@ -42,11 +33,12 @@ class NavigationMenu extends StatelessWidget {
     return GetBuilder<NavigationController>(
       builder: (controller2) {
         return Scaffold(
+          backgroundColor: Colors.white,
           bottomNavigationBar: NavigationBar(
             height: CSizes.navigationBarHeight,
 
-            elevation: 0,
-
+            elevation: 2,
+            // backgroundColor: Colors.white,
             selectedIndex: controller2.selectedIndex.value,
             onDestinationSelected: controller2.changeIndex,
             destinations:
@@ -77,5 +69,3 @@ class NavigationController extends GetxController {
     update();
   }
 }
-
-

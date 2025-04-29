@@ -1,8 +1,7 @@
-import 'package:ecommerceapp/app/utils/routes/app_routes.dart';
-import 'package:ecommerceapp/app/utils/theme/theme.dart';
-
-import 'package:flutter/material.dart';
-import 'package:get/get_navigation/src/root/get_material_app.dart';
+import 'package:ecommerceapp/app/utils/routes/app_routes.dart' show Routes;
+import 'package:ecommerceapp/app/utils/theme/theme.dart' show CThemeApp;
+import 'package:flutter/material.dart' show BuildContext, StatelessWidget, ThemeMode, Widget;
+import 'package:get/get_navigation/src/root/get_material_app.dart' show GetMaterialApp;
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});

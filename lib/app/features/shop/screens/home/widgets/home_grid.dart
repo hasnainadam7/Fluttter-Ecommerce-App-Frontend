@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-
+import 'package:get/get.dart';
 import '../../../../../common/widgets/layout/grid_layout.dart';
 import 'product_card_vertical/product_card_vertical.dart';
 
@@ -13,6 +13,7 @@ class HomeGrid extends StatelessWidget {
     return CGridLayout(
       dark: dark,
       itemCount: 4,
+      mainAxisExtent: Get.height * 0.3,
       itemBuilder: (_, index) {
         return ProductCardVertical(isDark: dark);
       },

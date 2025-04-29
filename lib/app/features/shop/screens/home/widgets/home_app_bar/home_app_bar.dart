@@ -9,9 +9,9 @@ class HomeAppBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return CAppBar(
+    return const CAppBar(
       title: HomeAppBarTitles(),
-      actions: const [CounterIcon()],
+      actions: [CounterIcon()],
     );
   }
 }

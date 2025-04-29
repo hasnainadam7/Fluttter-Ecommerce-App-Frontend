@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import '../../../utils/constants/colors.dart';
 import '../../../utils/constants/sizes.dart';
 
-class SectionHeading extends StatelessWidget {
-  const SectionHeading({
+class CSectionHeading extends StatelessWidget {
+  const CSectionHeading({
     super.key,
     this.buttonTitle = "View All",
     required this.title,
@@ -12,8 +12,9 @@ class SectionHeading extends StatelessWidget {
     this.showActionButton = true,
     this.onPressed,
     this.padding = const EdgeInsets.symmetric(horizontal: CSizes.defaultSpace),
+    required this.dark,
   });
-
+  final bool dark;
   final String buttonTitle, title;
   final Color textColor;
   final bool showActionButton;
@@ -32,10 +33,10 @@ class SectionHeading extends StatelessWidget {
           Text(
             overflow: TextOverflow.ellipsis,
             maxLines: 1,
-
             title,
-
-            style: Theme.of(context).textTheme.headlineSmall!.apply(color: CColors.white),
+            style: Theme.of(
+              context,
+            ).textTheme.headlineSmall!.apply(color: dark ? CColors.white : CColors.black),
           ),
           if (showActionButton) TextButton(onPressed: onPressed, child: Text(buttonTitle)),
         ],

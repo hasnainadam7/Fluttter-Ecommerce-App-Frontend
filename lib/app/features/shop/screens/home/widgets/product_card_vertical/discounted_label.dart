@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:iconsax/iconsax.dart';
 
 import '../../../../../../common/widgets/custom_shapes/containers/rounded_container.dart';
 import '../../../../../../utils/constants/colors.dart';
@@ -16,7 +15,7 @@ class DiscountedLabelWidget extends StatelessWidget {
       left: CSizes.sm,
       top: CSizes.sm,
       child: CRoundedContainer(
-        padding: EdgeInsets.symmetric(horizontal: CSizes.sm, vertical: CSizes.xs),
+        padding: const EdgeInsets.symmetric(horizontal: CSizes.sm, vertical: CSizes.xs),
         radius: CSizes.sm,
         backgroundColor: CColors.secondaryColor.withValues(alpha: 0.8),
         child: Text(

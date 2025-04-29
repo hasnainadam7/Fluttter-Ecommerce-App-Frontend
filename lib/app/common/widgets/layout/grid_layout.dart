@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 
 import '../../../utils/constants/sizes.dart';
 
@@ -9,24 +8,27 @@ class CGridLayout extends StatelessWidget {
     required this.dark,
     required this.itemCount,
     required this.itemBuilder,
+    this.mainAxisExtent = (388),
+    this.padding = const EdgeInsets.symmetric(horizontal: CSizes.defaultSpace),
   });
-
+  final double mainAxisExtent;
   final bool dark;
   final int itemCount;
+  final EdgeInsetsGeometry padding;
   final Widget? Function(BuildContext, int) itemBuilder;
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.symmetric(horizontal: CSizes.defaultSpace),
+      padding: padding,
       child: GridView.builder(
         itemCount: itemCount,
         padding: EdgeInsets.zero,
-        physics: NeverScrollableScrollPhysics(),
+        physics: const NeverScrollableScrollPhysics(),
         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
           crossAxisCount: 2,
           mainAxisSpacing: CSizes.gridViewSpacing,
           crossAxisSpacing: CSizes.gridViewSpacing,
-          mainAxisExtent: Get.height * 0.281,
+          mainAxisExtent: mainAxisExtent,
         ),
         shrinkWrap: true,
         itemBuilder: itemBuilder,

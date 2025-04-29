@@ -37,14 +37,14 @@ class ProductPriceAndCounts extends StatelessWidget {
                   ),
         ),
         Container(
-          decoration: BoxDecoration(
+          decoration: const BoxDecoration(
             color: CColors.dark,
             borderRadius: BorderRadius.only(
               topLeft: Radius.circular(CSizes.cardRadiusMd),
               bottomRight: Radius.circular(CSizes.cardRadiusMd),
             ),
           ),
-          child: SizedBox(
+          child: const SizedBox(
             height: CSizes.iconsLg * 1.2,
             width: CSizes.iconsLg * 1.2,
             child: Icon(Iconsax.add, color: CColors.white),

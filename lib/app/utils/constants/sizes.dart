@@ -26,6 +26,7 @@ class CSizes {
 
   //appbar Sizes
   static const double appHeight = 56;
+  static const double shopContainerIconsSize = 56;
 
   //image Sizes
   static const double imageThumbSizes = 80;
