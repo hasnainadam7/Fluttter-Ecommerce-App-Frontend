@@ -8,7 +8,7 @@ class CGridLayout extends StatelessWidget {
     required this.dark,
     required this.itemCount,
     required this.itemBuilder,
-    this.mainAxisExtent = (388),
+    this.mainAxisExtent = (258),
     this.padding = const EdgeInsets.symmetric(horizontal: CSizes.defaultSpace),
   });
   final double mainAxisExtent;

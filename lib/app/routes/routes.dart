@@ -5,8 +5,10 @@ import 'package:ecommerceapp/app/features/auth/screens/password_configuration/re
 import 'package:ecommerceapp/app/features/auth/screens/signup/signup_screen.dart';
 import 'package:ecommerceapp/app/common/widgets/login_signup/sucess_screen.dart';
 import 'package:ecommerceapp/app/features/auth/screens/signup/verify_email_screen.dart';
+import 'package:ecommerceapp/app/features/personalization/screens/profile/profile_screen.dart';
 import 'package:ecommerceapp/app/features/shop/screens/favourite/favourite_screen.dart';
 import 'package:ecommerceapp/app/features/shop/screens/home/home_screen.dart';
+import 'package:ecommerceapp/app/features/shop/screens/product_details/product_details.dart';
 import 'package:ecommerceapp/app/features/shop/screens/shop/shop_screen.dart';
 import 'package:ecommerceapp/app/navigation_menu.dart';
 import 'package:get/get.dart';
@@ -25,6 +27,9 @@ class Routes {
   static const String home = '/home';
   static const String shop = '/shop';
   static const String favourite = '/favourite';
+  static const String profile = '/profile';
+  static const String productDetails = '/productDetails';
+
 
   static final routes = [
     GetPage(name: onboarding, page: () => OnboardingScreen()),
@@ -33,10 +38,11 @@ class Routes {
     GetPage(name: verifyEmail, page: () => const VerifyEmailScreen()),
     GetPage(name: forget, page: () => const ForgetPasswordScreen()),
     GetPage(name: navigator, page: () => NavigationMenu()),
-    GetPage(name: home, page: () => HomeScreen()),
+    GetPage(name: home, page: () => const HomeScreen()),
     GetPage(name: shop, page: () => ShopScreen()),
-    GetPage(name: favourite, page: () => FavouriteScreen()),
-
+    GetPage(name: favourite, page: () => const FavouriteScreen()),
+    GetPage(name: profile, page: () => ProfileScreen()),
+    GetPage(name: productDetails, page: () => const ProductDetails()),
     GetPage(
       name: succuessScreen,
       page: () {

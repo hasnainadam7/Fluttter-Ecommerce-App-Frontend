@@ -10,7 +10,7 @@ final bool dark;
   @override
   Widget build(BuildContext context) {
     return  CAppBar(
-      title: HomeAppBarTitles(),
+      title: const HomeAppBarTitles(),
       actions: [CounterIcon(dark:!dark ,)], dark: dark,
     );
   }

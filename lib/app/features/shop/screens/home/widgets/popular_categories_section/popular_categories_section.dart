@@ -2,6 +2,7 @@ import 'package:ecommerceapp/app/utils/helpers/helper_functions.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../../../common/widgets/texts/section_heading.dart';
+import '../../../../../../utils/constants/colors.dart';
 import '../../../../../../utils/constants/sizes.dart';
 import '../../../../../../utils/constants/texts.dart';
 
@@ -17,8 +18,13 @@ class PopularCategoriesSection extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       spacing: CSizes.spaceBtwItems,
       children: [
-        CSectionHeading(title: CTexts.popularCategories, showActionButton: false, dark: dark),
-      const  VerticalImagesAndText(),
+        CSectionHeading(
+          padding: EdgeInsets.symmetric(horizontal: CSizes.defaultSpace),
+          title: CTexts.popularCategories,
+          showActionButton: false,
+          dark: true,
+        ),
+        const VerticalImagesAndText(),
       ],
     );
   }

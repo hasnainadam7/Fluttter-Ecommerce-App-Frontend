@@ -4,8 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
 
+import '../../../../routes/routes.dart';
 import '../../../../utils/constants/images_string.dart';
-import '../../../../utils/routes/app_routes.dart';
 
 class ForgetPasswordScreen extends StatelessWidget {
   const ForgetPasswordScreen({super.key});

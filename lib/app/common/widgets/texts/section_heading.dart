@@ -11,7 +11,7 @@ class CSectionHeading extends StatelessWidget {
     this.textColor = CColors.white,
     this.showActionButton = true,
     this.onPressed,
-    this.padding = const EdgeInsets.symmetric(horizontal: CSizes.defaultSpace),
+    this.padding = EdgeInsets.zero,
     required this.dark,
   });
   final bool dark;

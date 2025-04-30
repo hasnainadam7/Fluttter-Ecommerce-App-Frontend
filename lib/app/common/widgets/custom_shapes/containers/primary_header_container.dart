@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
+import 'circular_container.dart';
+import '../curved_edges/curved_edges_widget.dart';
+import '../../../../utils/constants/colors.dart';
 
-import '../../../../../common/widgets/custom_shapes/containers/circular_container.dart';
-import '../../../../../common/widgets/custom_shapes/curved_edges/curved_edges_widget.dart';
-import '../../../../../utils/constants/colors.dart';
-
-class PrimaryHeaderContainer extends StatelessWidget {
-  const PrimaryHeaderContainer({super.key, required this.child});
+class CPrimaryHeaderContainer extends StatelessWidget {
+  const CPrimaryHeaderContainer({super.key, required this.child});
   final Widget child;
   @override
   Widget build(BuildContext context) {
@@ -15,7 +14,7 @@ class PrimaryHeaderContainer extends StatelessWidget {
         padding: const EdgeInsets.all(0),
         child: SizedBox(
           // width: Get.width,
-          height: 450,
+          // height: Get.height * 0.47,
           child: Stack(
             children: [
               Positioned(

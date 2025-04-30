@@ -1,6 +1,7 @@
 import 'package:ecommerceapp/app/common/widgets/layout/grid_layout.dart';
 import 'package:ecommerceapp/app/common/widgets/texts/section_heading.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import '../../../../../../utils/constants/images_string.dart';
 import '../../../../../../utils/constants/sizes.dart';
 import '../../../home/widgets/product_card_vertical/product_card_vertical.dart';
@@ -42,7 +43,7 @@ class CTabBarView extends StatelessWidget {
                         dark: dark,
                       ),
                       CGridLayout(
-                        mainAxisExtent: 250,
+                        mainAxisExtent: Get.height* 0.31,
                         padding: EdgeInsets.zero,
                         dark: dark,
                         itemCount: 4,

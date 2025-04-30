@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-import '../../../utils/constants/colors.dart';
 
 import '../../../utils/constants/sizes.dart';
 
@@ -12,8 +11,8 @@ class CCircularImage extends StatelessWidget {
     this.height = CSizes.shopContainerIconsSize,
     this.width = CSizes.shopContainerIconsSize,
     this.padding = CSizes.sm,
-    this.overlayColor = CColors.dark,
-    this.backgroundColor = CColors.white,
+    this.overlayColor ,
+    this.backgroundColor ,
     this.fit = BoxFit.cover,
   });
 
@@ -21,7 +20,7 @@ class CCircularImage extends StatelessWidget {
   final String imgPath;
   final bool isNetworkImage;
   final double height, width, padding;
-  final Color overlayColor, backgroundColor;
+  final Color? overlayColor, backgroundColor;
   final BoxFit fit;
 
   @override

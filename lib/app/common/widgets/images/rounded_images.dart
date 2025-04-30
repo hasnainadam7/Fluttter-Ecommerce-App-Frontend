@@ -13,12 +13,12 @@ class CRoundedImages extends StatelessWidget {
     this.backgroundColor = CColors.light,
     this.fit = BoxFit.contain,
     this.onPressed,
-    this.height = 158,
-    this.width = 400,
+    this.height,
+    this.width,
     this.padding,
     this.borderRadius = CSizes.md,
   });
-  final double height, width, borderRadius;
+  final double? height, width, borderRadius;
 
   final String imgUrl;
   final bool applyImgRadius, isNetworkImage;
@@ -39,15 +39,11 @@ class CRoundedImages extends StatelessWidget {
         decoration: BoxDecoration(
           color: backgroundColor,
           border: border,
-
-          borderRadius: BorderRadius.circular(borderRadius),
+          borderRadius: BorderRadius.circular(borderRadius!),
         ),
         child: ClipRRect(
-          borderRadius: applyImgRadius ? BorderRadius.circular(borderRadius) : BorderRadius.zero,
-          child:
-              !isNetworkImage
-                  ? Image.asset(imgUrl, fit: fit)
-                  : Image.network(imgUrl, fit: fit),
+          borderRadius: applyImgRadius ? BorderRadius.circular(borderRadius!) : BorderRadius.zero,
+          child: !isNetworkImage ? Image.asset(imgUrl, fit: fit) : Image.network(imgUrl, fit: fit),
         ),
       ),
     );

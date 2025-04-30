@@ -70,7 +70,8 @@ class CTexts {
 
   // -- Home
   static const String homeAppbarTitle = "Good day for shopping";
-  static const String homeAppbarSubTitle = "Hasnain Adam";
+  static const String userName = "Hasnain Adam";
+  static const String userEmail = "hasnainadam7@gmail.com";
 
   // -- Shop
   static const String featureBrands = "Featured Brands";

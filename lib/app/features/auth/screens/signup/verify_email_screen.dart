@@ -1,7 +1,7 @@
 import 'package:ecommerceapp/app/utils/constants/images_string.dart';
 import 'package:ecommerceapp/app/utils/constants/texts.dart';
 import 'package:ecommerceapp/app/utils/helpers/helper_functions.dart';
-import 'package:ecommerceapp/app/utils/routes/app_routes.dart';
+import 'package:ecommerceapp/app/routes/routes.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';

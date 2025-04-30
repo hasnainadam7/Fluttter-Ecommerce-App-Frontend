@@ -18,7 +18,7 @@ class HomeAppBarTitles extends StatelessWidget {
           style: Theme.of(context).textTheme.labelMedium!.apply(color: CColors.grey),
         ),
         Text(
-          CTexts.homeAppbarSubTitle,
+          CTexts.userName,
 
           style: Theme.of(context).textTheme.headlineMedium!.apply(color: CColors.white),
         ),

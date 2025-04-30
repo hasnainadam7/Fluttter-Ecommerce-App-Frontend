@@ -1,12 +1,12 @@
-import 'dart:ui';
 
 import 'package:ecommerceapp/app/utils/helpers/helper_functions.dart';
+import 'package:flutter/material.dart';
 
 import '../../../utils/constants/colors.dart';
 import '../../../utils/constants/enums.dart';
 import '../../../utils/constants/images_string.dart';
 import '../../../utils/constants/sizes.dart';
-import '../../imports/material_shortcuts.dart';
+
 import '../custom_shapes/containers/rounded_container.dart';
 import '../images/circular_images.dart';
 import '../texts/rounded_title_with_text_verified_logo.dart';
@@ -21,7 +21,7 @@ class CBrandedCard extends StatelessWidget {
     return GestureDetector(
       onTap: onTap,
       child: CRoundedContainer(
-        padding: EdgeInsets.all(CSizes.sm),
+        padding: const EdgeInsets.all(CSizes.sm),
         showBorder: showBorder,
         backgroundColor: CColors.transparent,
         child: Row(

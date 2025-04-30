@@ -13,25 +13,22 @@ class CCarouselSlider extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      // color: dark ? CColors.black :,
-      child: CarouselSlider(
-        items: List.generate(3, (index) {
-          return CRoundedImages(
-backgroundColor: CColors.transparent ,
-            imgUrl: [CImages.promoBanner1, CImages.promoBanner2, CImages.promoBanner3][index],
-          );
-        }),
+    return CarouselSlider(
+      items: List.generate(3, (index) {
+        return CRoundedImages(
+    backgroundColor: CColors.transparent ,
+          imgUrl: [CImages.promoBanner1, CImages.promoBanner2, CImages.promoBanner3][index],
+        );
+      }),
 
-        options: CarouselOptions(
+      options: CarouselOptions(
 
-          // height: 200,
-          autoPlay: true,
-          onPageChanged: (index, _) {
-            controller.updateCarouselIndex(index);
-          },
-          viewportFraction: 1,
-        ),
+        // height: 200,
+        autoPlay: true,
+        onPageChanged: (index, _) {
+          controller.updateCarouselIndex(index);
+        },
+        viewportFraction: 1,
       ),
     );
   }

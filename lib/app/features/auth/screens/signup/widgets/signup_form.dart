@@ -1,4 +1,4 @@
-import 'package:ecommerceapp/app/utils/routes/app_routes.dart';
+import 'package:ecommerceapp/app/routes/routes.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 

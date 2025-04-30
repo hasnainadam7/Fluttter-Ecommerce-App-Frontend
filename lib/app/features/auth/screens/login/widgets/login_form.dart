@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
 
+import '../../../../../routes/routes.dart';
 import '../../../../../utils/constants/sizes.dart';
 import '../../../../../utils/constants/texts.dart';
-import '../../../../../utils/routes/app_routes.dart';
 
 class LoginForm extends StatelessWidget {
   const LoginForm({super.key});
