@@ -5,6 +5,7 @@ import '../../constants/colors.dart';
 class CChipTheme {
   CChipTheme._();
 
+
   static ChipThemeData lightChipTheme = ChipThemeData(
     disabledColor: CColors.grey.withValues(alpha: 0.4),
     labelStyle: const TextStyle(color: CColors.black),

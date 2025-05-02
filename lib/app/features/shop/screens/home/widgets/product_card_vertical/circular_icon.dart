@@ -1,36 +1,52 @@
 import 'package:flutter/material.dart';
-import 'package:iconsax/iconsax.dart';
 
 import '../../../../../../utils/constants/colors.dart';
 import '../../../../../../utils/constants/sizes.dart';
+import '../../../../../../utils/helpers/helper_functions.dart';
 
-class CircularIcon extends StatelessWidget {
-  const CircularIcon({
+class CCircularIcon extends StatelessWidget {
+  /// A custom icon widget with a background color
+  ///
+  /// Properties are:
+  /// Container [width]. [height], & [backgroundColor]
+  ///
+  /// Icon's [size], [color], & [onPressed]
+  const CCircularIcon({
     super.key,
-    required this.dark,
-    this.iconData = Iconsax.heart5,
-    this.onTap,
-    this.iconColor = Colors.red,
+    this.width,
+    this.height,
+    this.size = CSizes.lg,
+    required this.icon,
+    this.color,
+    this.backgroundColor,
+    this.onPressed,
   });
 
-  final bool dark;
-  final IconData iconData;
-  final VoidCallback? onTap;
-  final Color? iconColor;
+  final double? width, height, size;
+  final IconData icon;
+  final Color? color;
+  final Color? backgroundColor;
+  final VoidCallback? onPressed;
+
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: CSizes.lg * 2,
-      width: CSizes.lg * 2,
+      width: width,
+      height: height,
       decoration: BoxDecoration(
-        color: !dark ? CColors.white.withValues(alpha: 0.9) : CColors.black.withValues(alpha: 0.9),
-
         borderRadius: BorderRadius.circular(100),
+        color: backgroundColor != null
+            ? backgroundColor!
+            : CHelperFunctions.isDarkMode(context)
+            ? CColors.black.withOpacity(0.9)
+            : CColors.white.withOpacity(0.9),
       ),
-      child: Center(
-        child: IconButton(
-          onPressed: onTap,
-          icon: Icon(size: CSizes.lg, iconData, color: iconColor),
+      child: IconButton(
+        onPressed: onPressed,
+        icon: Icon(
+          icon,
+          color: color,
+          size: size,
         ),
       ),
     );

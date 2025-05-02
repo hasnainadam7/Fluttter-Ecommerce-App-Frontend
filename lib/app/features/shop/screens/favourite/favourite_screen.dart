@@ -23,11 +23,14 @@ class FavouriteScreen extends StatelessWidget {
       appBar: CAppBar(
         title: Text('Wishlist', style: Theme.of(context).textTheme.headlineMedium),
         actions: [
-          CircularIcon(
-            iconColor: dark ? CColors.white : CColors.black,
+          GestureDetector(
             onTap: () => controller.changeIndex(0),
-            dark: dark,
-            iconData: Iconsax.add,
+            child: CCircularIcon(
+             color: dark ? CColors.white : CColors.black,
+
+
+              icon: Iconsax.add,
+            ),
           ),
         ],
         dark: dark,

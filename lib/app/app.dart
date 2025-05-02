@@ -11,8 +11,8 @@ class MyApp extends StatelessWidget {
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
       title: "E-Commerce",
-      // themeMode: ThemeMode.dark,
-      themeMode: ThemeMode.light,
+      themeMode: ThemeMode.dark,
+      // themeMode: ThemeMode.light,
       theme: CThemeApp.lightThemeData,
       darkTheme: CThemeApp.darkThemeData,
 

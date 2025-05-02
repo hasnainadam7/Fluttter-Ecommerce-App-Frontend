@@ -10,6 +10,7 @@ import 'package:ecommerceapp/app/utils/constants/sizes.dart';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:iconsax/iconsax.dart';
 import '../../../../../../common/widgets/images/rounded_images.dart';
 import '../../../../../../common/widgets/texts/rounded_title_with_text_verified_logo.dart';
 import 'circular_icon.dart';
@@ -45,7 +46,7 @@ class ProductCardVertical extends StatelessWidget {
                     imgUrl: CImages.productImage1,
                   ),
                   const DiscountedLabelWidget(discount: 25),
-                  Positioned(right: 2, top: 2, child: CircularIcon(dark: dark)),
+                  Positioned(right: 2, top: 2, child: CCircularIcon(icon: Iconsax.heart,)),
                 ],
               ),
             ),
