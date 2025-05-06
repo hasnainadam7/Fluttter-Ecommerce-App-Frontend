@@ -29,7 +29,7 @@ class ProfileScreen extends StatelessWidget {
     bool dark = CHelperFunctions.isDarkMode(context);
     return Scaffold(
       appBar: CAppBar(
-        dark: dark,
+
         title: Text("Profile", style: Theme.of(context).textTheme.headlineMedium),
         showBackArrow: true,
       ),

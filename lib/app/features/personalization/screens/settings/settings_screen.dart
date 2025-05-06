@@ -3,6 +3,7 @@ import 'package:ecommerceapp/app/common/widgets/custom_shapes/containers/primary
 import 'package:ecommerceapp/app/common/widgets/texts/section_heading.dart';
 import 'package:ecommerceapp/app/features/personalization/screens/settings/widgets/settings_menu_tile.dart';
 import 'package:ecommerceapp/app/features/personalization/screens/settings/widgets/user_profile_tile.dart';
+import 'package:ecommerceapp/app/features/shop/screens/cart/cart.dart';
 import 'package:ecommerceapp/app/routes/routes.dart';
 import 'package:ecommerceapp/app/utils/constants/colors.dart';
 import 'package:ecommerceapp/app/utils/constants/sizes.dart';
@@ -10,6 +11,8 @@ import 'package:ecommerceapp/app/utils/helpers/helper_functions.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
+
+import '../address/address.dart';
 
 class SettingsScreen extends StatelessWidget {
   SettingsScreen({super.key});
@@ -43,12 +46,13 @@ class SettingsScreen extends StatelessWidget {
       "icon": Iconsax.safe_home,
       "title": 'My Addresses',
       "subTitle": 'Set shopping addresses',
-      // "onTap": () => Get.to(() => const UserAddressScreen()),
+      "onTap": () => Get.to(() =>  UserAddressScreen()),
     },
     {
       "icon": Iconsax.shopping_cart,
       "title": 'My Cart',
       "subTitle": 'Add, remove products & move to checkout',
+      "onTap": () => Get.to(() =>  CartScreen()),
     },
     {
       "icon": Iconsax.bag_tick,
@@ -90,7 +94,7 @@ class SettingsScreen extends StatelessWidget {
                 // spacing: CSizes.spacesBtwSections,
                 children: [
                   CAppBar(
-                    dark: dark,
+
                     title: Text(
                       'Account',
                       style: Theme.of(

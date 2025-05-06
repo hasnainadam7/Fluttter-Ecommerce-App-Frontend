@@ -53,8 +53,8 @@ class ProductImageSlider extends StatelessWidget {
                 ),
               ),
             ),
-            CAppBar(
-              dark: dark,
+            const CAppBar(
+
               showBackArrow: true,
               actions: [CCircularIcon( icon: Iconsax.heart5, color: Colors.red,)],
             ),

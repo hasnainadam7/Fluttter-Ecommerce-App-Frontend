@@ -2,7 +2,7 @@ import 'package:ecommerceapp/app/common/widgets/custom_shapes/containers/rounded
 import 'package:ecommerceapp/app/common/widgets/images/circular_images.dart';
 import 'package:ecommerceapp/app/common/widgets/texts/product_price_text.dart';
 import 'package:ecommerceapp/app/common/widgets/texts/product_title_text.dart';
-import 'package:ecommerceapp/app/common/widgets/texts/rounded_title_with_text_verified_logo.dart';
+import 'package:ecommerceapp/app/common/widgets/texts/brand_title_text_with_verified_icon.dart';
 import 'package:ecommerceapp/app/utils/constants/colors.dart';
 import 'package:ecommerceapp/app/utils/constants/enums.dart';
 import 'package:ecommerceapp/app/utils/constants/images_string.dart';
@@ -50,7 +50,7 @@ class ProductMetaData extends StatelessWidget {
         Row(
           children: [
             CCircularImage(imgPath: CImages.shoeIcon,height: 32,width: 32,overlayColor: dark ? CColors.white:CColors.black ,),
-            const CRoundedTitleWithTextVerifiedLogo(title: "Nike",brandTextSize: TextSizes.medium,),
+            const CBrandTitleWithVerifiedIcon(title: "Nike",brandTextSize: TextSizes.medium,),
           ],
         ),
       ],

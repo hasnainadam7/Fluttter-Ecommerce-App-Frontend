@@ -9,7 +9,7 @@ import '../../../utils/constants/sizes.dart';
 
 import '../custom_shapes/containers/rounded_container.dart';
 import '../images/circular_images.dart';
-import '../texts/rounded_title_with_text_verified_logo.dart';
+import '../texts/brand_title_text_with_verified_icon.dart';
 
 class CBrandedCard extends StatelessWidget {
   const CBrandedCard({super.key, this.showBorder = true, this.onTap});
@@ -41,7 +41,7 @@ class CBrandedCard extends StatelessWidget {
                 mainAxisSize: MainAxisSize.min,
                 // spacing: CSizes.sm ,
                 children: [
-                  CRoundedTitleWithTextVerifiedLogo(
+                  CBrandTitleWithVerifiedIcon(
                     title: "Nike",
                     brandTextSize: TextSizes.large,
                     textColor: dark ? CColors.white : CColors.black,

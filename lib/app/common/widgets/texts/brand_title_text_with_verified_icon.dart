@@ -6,8 +6,8 @@ import '../../../utils/constants/enums.dart';
 import '../../../utils/constants/sizes.dart';
 import 'brand_title_text.dart';
 
-class CRoundedTitleWithTextVerifiedLogo extends StatelessWidget {
-  const CRoundedTitleWithTextVerifiedLogo({
+class CBrandTitleWithVerifiedIcon extends StatelessWidget {
+  const CBrandTitleWithVerifiedIcon({
     super.key,
     required this.title,
     this.maxLines = 1,

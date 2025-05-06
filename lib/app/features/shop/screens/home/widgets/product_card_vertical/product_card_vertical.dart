@@ -12,7 +12,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
 import '../../../../../../common/widgets/images/rounded_images.dart';
-import '../../../../../../common/widgets/texts/rounded_title_with_text_verified_logo.dart';
+import '../../../../../../common/widgets/texts/brand_title_text_with_verified_icon.dart';
 import 'circular_icon.dart';
 import 'discounted_label.dart';
 
@@ -39,13 +39,13 @@ class ProductCardVertical extends StatelessWidget {
 
               // padding: EdgeInsets.all(CSizes.sm),
               backgroundColor: dark ? CColors.darkerGrey : CColors.light,
-              child: Stack(
+              child: const Stack(
                 children: [
-                  const CRoundedImages(
+                  CRoundedImages(
 
                     imgUrl: CImages.productImage1,
                   ),
-                  const DiscountedLabelWidget(discount: 25),
+                  DiscountedLabelWidget(discount: 25),
                   Positioned(right: 2, top: 2, child: CCircularIcon(icon: Iconsax.heart,)),
                 ],
               ),
@@ -59,7 +59,7 @@ class ProductCardVertical extends StatelessWidget {
 
                 children: [
                   ProductTitle(title: "Green Nike Air Shoes"),
-                  CRoundedTitleWithTextVerifiedLogo(title: "Nike"),
+                  CBrandTitleWithVerifiedIcon(title: "Nike"),
                   ProductPriceAndCounts(price: '35.5'),
                 ],
               ),

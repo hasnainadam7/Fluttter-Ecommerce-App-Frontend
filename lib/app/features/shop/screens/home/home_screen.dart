@@ -3,7 +3,6 @@
 import 'package:flutter/material.dart';
 
 import '../../../../common/widgets/search_bar/search_bar.dart';
-import '../../../../utils/constants/colors.dart';
 import '../../../../utils/constants/sizes.dart';
 import '../../../../utils/constants/texts.dart';
 import '../../../../utils/helpers/helper_functions.dart';

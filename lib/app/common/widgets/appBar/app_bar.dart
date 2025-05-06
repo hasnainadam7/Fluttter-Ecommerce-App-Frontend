@@ -5,6 +5,7 @@ import 'package:iconsax/iconsax.dart';
 import '../../../utils/constants/colors.dart';
 import '../../../utils/constants/sizes.dart';
 import '../../../utils/device/device_utility.dart';
+import '../../../utils/helpers/helper_functions.dart';
 
 class CAppBar extends StatelessWidget implements PreferredSizeWidget {
   const CAppBar({
@@ -13,7 +14,7 @@ class CAppBar extends StatelessWidget implements PreferredSizeWidget {
     this.showBackArrow = false,
     this.leadingIcon,
     this.actions,
-    this.leadingOnPressed, required this.dark,
+    this.leadingOnPressed,
   });
 
   final Widget? title;
@@ -21,10 +22,10 @@ class CAppBar extends StatelessWidget implements PreferredSizeWidget {
   final IconData? leadingIcon;
   final List<Widget>? actions;
   final VoidCallback? leadingOnPressed;
-  final bool dark;
+
   @override
   Widget build(BuildContext context) {
-
+    final bool dark = CHelperFunctions.isDarkMode(context);
 
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: CSizes.md),

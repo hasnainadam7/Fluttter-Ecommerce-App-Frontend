@@ -11,7 +11,7 @@ final bool dark;
   Widget build(BuildContext context) {
     return  CAppBar(
       title: const HomeAppBarTitles(),
-      actions: [CounterIcon(dark:!dark ,)], dark: dark,
+      actions: [CounterIcon(dark:!dark ,)],
     );
   }
 }

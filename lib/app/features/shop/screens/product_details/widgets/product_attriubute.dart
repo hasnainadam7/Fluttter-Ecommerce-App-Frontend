@@ -20,7 +20,7 @@ class ProductAttributes extends StatelessWidget {
       // spacing: CSizes.spaceBtwItems,
       children: [
         CRoundedContainer(
-          padding: EdgeInsets.all(CSizes.md),
+          padding: const EdgeInsets.all(CSizes.md),
           backgroundColor: dark ? CColors.darkerGrey : CColors.grey,
           child: Column(
             children: [
@@ -39,7 +39,7 @@ class ProductAttributes extends StatelessWidget {
                       Row(
                         spacing: CSizes.spaceBtwItems,
                         children: [
-                          CProductTitleText(title: "Price :", smallSize: true),
+                          const CProductTitleText(title: "Price :", smallSize: true),
                           Row(
                             spacing: CSizes.spaceBtwItems,
                             children: [
@@ -51,7 +51,7 @@ class ProductAttributes extends StatelessWidget {
                                   decoration: TextDecoration.lineThrough,
                                 ),
                               ),
-                              CProductPriceText(price: "20"),
+                              const CProductPriceText(price: "20"),
                             ],
                           ),
                         ],
@@ -59,7 +59,7 @@ class ProductAttributes extends StatelessWidget {
                       Row(
                         spacing: CSizes.spaceBtwItems,
                         children: [
-                          CProductTitleText(title: "Stock :", smallSize: true),
+                          const CProductTitleText(title: "Stock :", smallSize: true),
                           Text(
                             "In Stock",
                             style: Theme.of(context).textTheme.titleMedium,
@@ -70,7 +70,7 @@ class ProductAttributes extends StatelessWidget {
                   ),
                 ],
               ),
-              CProductTitleText(
+              const CProductTitleText(
                 smallSize: true,
                 maxLines: 4,
                 title:

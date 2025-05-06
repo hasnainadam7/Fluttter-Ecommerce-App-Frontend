@@ -1,8 +1,6 @@
-import 'package:ecommerceapp/app/utils/helpers/helper_functions.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../../../common/widgets/texts/section_heading.dart';
-import '../../../../../../utils/constants/colors.dart';
 import '../../../../../../utils/constants/sizes.dart';
 import '../../../../../../utils/constants/texts.dart';
 
@@ -13,8 +11,8 @@ class PopularCategoriesSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    bool dark = CHelperFunctions.isDarkMode(context);
-    return Column(
+
+    return const Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       spacing: CSizes.spaceBtwItems,
       children: [
@@ -24,7 +22,7 @@ class PopularCategoriesSection extends StatelessWidget {
           showActionButton: false,
           dark: true,
         ),
-        const VerticalImagesAndText(),
+        VerticalImagesAndText(),
       ],
     );
   }

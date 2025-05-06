@@ -62,11 +62,11 @@ class CCloudHelperFunctions {
       final url = await ref.getDownloadURL();
       return url;
     } on FirebaseException catch (e) {
-      throw e.message!;
+      throw Exception(e.message!);
     } on PlatformException catch (e) {
-      throw e.message!;
+      throw Exception(e.message!);
     } catch (e) {
-      throw 'Something went wrong.';
+      throw Exception('Something went wrong.');
     }
   }
 
@@ -78,11 +78,11 @@ class CCloudHelperFunctions {
       final downloadUrl = await ref.getDownloadURL();
       return downloadUrl;
     } on FirebaseException catch (e) {
-      throw e.message!;
+      throw Exception(e.message!);
     } on PlatformException catch (e) {
-      throw e.message!;
+      throw Exception(e.message!);
     } catch (e) {
-      throw 'Something went wrong.';
+      throw Exception('Something went wrong.');
     }
   }
 }

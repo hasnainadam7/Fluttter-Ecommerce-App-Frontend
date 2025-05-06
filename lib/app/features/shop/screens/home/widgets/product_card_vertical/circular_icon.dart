@@ -38,8 +38,8 @@ class CCircularIcon extends StatelessWidget {
         color: backgroundColor != null
             ? backgroundColor!
             : CHelperFunctions.isDarkMode(context)
-            ? CColors.black.withOpacity(0.9)
-            : CColors.white.withOpacity(0.9),
+            ? CColors.black.withValues(alpha: 0.9)
+            : CColors.white..withValues(alpha: 0.9)
       ),
       child: IconButton(
         onPressed: onPressed,

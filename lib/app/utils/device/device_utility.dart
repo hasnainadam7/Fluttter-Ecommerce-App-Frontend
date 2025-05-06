@@ -109,7 +109,7 @@ class CDeviceUtils {
     if (await canLaunchUrlString(url)) {
       await launchUrlString(url);
     } else {
-      throw 'Could not launch $url';
+      throw Exception('Could not launch $url');
     }
   }
 

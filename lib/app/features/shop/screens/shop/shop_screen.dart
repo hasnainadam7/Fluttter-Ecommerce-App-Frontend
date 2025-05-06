@@ -19,7 +19,7 @@ class ShopScreen extends StatelessWidget {
         appBar: CAppBar(
           title: Text("Store", style: Theme.of(context).textTheme.headlineMedium),
           actions: [CounterIcon(dark: dark)],
-          dark: dark,
+
         ),
         body: NestedScrollView(
           headerSliverBuilder: (_, innerBoxIsScrolled) {

@@ -28,7 +28,7 @@ class CBottomAddToCart extends StatelessWidget {
         children: [
           Row(
             children: [
-               CCircularIcon(
+               const CCircularIcon(
 
                 icon: Iconsax.minus,
                 backgroundColor: CColors.darkGrey,

@@ -33,7 +33,7 @@ class FavouriteScreen extends StatelessWidget {
             ),
           ),
         ],
-        dark: dark,
+
       ),
       body: SingleChildScrollView(
         child: Padding(
