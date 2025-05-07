@@ -1,7 +1,7 @@
+import 'package:ecommerceapp/app/common/widgets/cards/product_card_vertical/circular_icon.dart';
 import 'package:flutter/material.dart';
 import 'package:iconsax/iconsax.dart';
 
-import '../../../features/shop/screens/home/widgets/product_card_vertical/circular_icon.dart';
 import '../../../utils/constants/colors.dart';
 import '../../../utils/constants/sizes.dart';
 import '../../../utils/helpers/helper_functions.dart';

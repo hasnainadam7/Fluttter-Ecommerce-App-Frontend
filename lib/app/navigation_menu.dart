@@ -17,7 +17,7 @@ import 'package:get/get.dart' show Get, GetxController, Inst, IntExtension, Obx,
 import 'package:iconsax/iconsax.dart' show Iconsax;
 
 import 'features/shop/screens/home/home_screen.dart';
-import 'features/shop/screens/shop/shop_screen.dart' show ShopScreen;
+import 'features/shop/screens/store/shop_screen.dart' show ShopScreen;
 
 class NavigationMenu extends StatelessWidget {
   NavigationMenu({super.key});

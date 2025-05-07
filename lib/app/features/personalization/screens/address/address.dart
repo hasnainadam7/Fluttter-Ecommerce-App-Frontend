@@ -26,7 +26,7 @@ class UserAddressScreen extends StatelessWidget {
       ),
       body: SingleChildScrollView(
         child: Padding(
-          padding: EdgeInsets.all(CSizes.defaultSpace),
+          padding: const EdgeInsets.all(CSizes.defaultSpace),
           child: Column(
             children: List.generate(4, (r) {
               return CSingleAddress(selectedAddress: selectedIndex == r);

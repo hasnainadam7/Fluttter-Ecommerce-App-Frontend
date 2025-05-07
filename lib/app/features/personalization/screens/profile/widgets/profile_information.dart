@@ -6,22 +6,22 @@ import 'profile_menu.dart';
 class ProfileInformation extends StatelessWidget {
   const ProfileInformation({
     super.key,
-    required this.dark,
-    required this.profileInformation,
+
+    required this.profileInformation, required this.dark,
   });
 
-  final bool dark;
-  final List<Map<String, dynamic>> profileInformation;
 
+  final List<Map<String, dynamic>> profileInformation;
+  final bool dark ;
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
         CSectionHeading(
           title: "Profile Information",
-          dark: dark,
+
           showActionButton: false,
-          padding: EdgeInsets.zero,
+          padding: EdgeInsets.zero, dark: dark,
         ),
         ...profileInformation.map((r) {
           return ProfileMenu(

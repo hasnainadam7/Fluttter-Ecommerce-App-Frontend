@@ -3,13 +3,13 @@ import 'package:ecommerceapp/app/features/auth/screens/onboarding/onboarding_scr
 import 'package:ecommerceapp/app/features/auth/screens/password_configuration/forget_password_screen.dart';
 import 'package:ecommerceapp/app/features/auth/screens/password_configuration/reset_password_screen.dart';
 import 'package:ecommerceapp/app/features/auth/screens/signup/signup_screen.dart';
-import 'package:ecommerceapp/app/common/widgets/login_signup/sucess_screen.dart';
+import 'package:ecommerceapp/app/common/widgets/sucess_screen/sucess_screen.dart';
 import 'package:ecommerceapp/app/features/auth/screens/signup/verify_email_screen.dart';
 import 'package:ecommerceapp/app/features/personalization/screens/profile/profile_screen.dart';
 import 'package:ecommerceapp/app/features/shop/screens/favourite/favourite_screen.dart';
 import 'package:ecommerceapp/app/features/shop/screens/home/home_screen.dart';
 import 'package:ecommerceapp/app/features/shop/screens/product_details/product_details.dart';
-import 'package:ecommerceapp/app/features/shop/screens/shop/shop_screen.dart';
+import 'package:ecommerceapp/app/features/shop/screens/store/shop_screen.dart';
 import 'package:ecommerceapp/app/navigation_menu.dart';
 import 'package:get/get.dart';
 

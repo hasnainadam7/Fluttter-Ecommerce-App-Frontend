@@ -2,9 +2,10 @@ import 'package:ecommerceapp/app/common/widgets/layout/grid_layout.dart';
 import 'package:ecommerceapp/app/common/widgets/texts/section_heading.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import '../../../../../../common/widgets/cards/product_card_vertical/product_card_vertical.dart';
 import '../../../../../../utils/constants/images_string.dart';
 import '../../../../../../utils/constants/sizes.dart';
-import '../../../home/widgets/product_card_vertical/product_card_vertical.dart';
+
 import 'brand_show_case.dart';
 
 class CTabBarView extends StatelessWidget {

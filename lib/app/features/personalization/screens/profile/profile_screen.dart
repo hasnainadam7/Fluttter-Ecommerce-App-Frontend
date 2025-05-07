@@ -43,9 +43,9 @@ class ProfileScreen extends StatelessWidget {
               //img Section
               const ImageUploadSection(),
               //profile information
-              ProfileInformation(dark: dark, profileInformation: profileInformation),
+              ProfileInformation( profileInformation: profileInformation, dark: dark,),
               //personal information
-              PersonalInformation(dark: dark, personalInformation: personalInformation),
+              PersonalInformation( personalInformation: personalInformation, dark: dark,),
               //logout btn
               const CloseAccountButton(),
             ],

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-
+import 'package:get/get.dart';
 import '../../../../../../common/widgets/cards/branded_card.dart';
 import '../../../../../../common/widgets/layout/grid_layout.dart';
 import '../../../../../../common/widgets/search_bar/search_bar.dart';
@@ -7,6 +7,7 @@ import '../../../../../../common/widgets/texts/section_heading.dart';
 import '../../../../../../utils/constants/colors.dart';
 import '../../../../../../utils/constants/sizes.dart';
 import '../../../../../../utils/constants/texts.dart';
+import '../../../brands/all_brands.dart';
 
 class ShopFlexibleSpaceWidget extends StatelessWidget {
   const ShopFlexibleSpaceWidget({super.key, required this.dark});
@@ -39,7 +40,7 @@ child:
             padding: EdgeInsets.zero,
             title: CTexts.featureBrands,
             showActionButton: true,
-            onPressed: () {},
+            onPressed: () {Get.to(()=>const AllBrandsScreen());},
             dark: dark,
           ),
 

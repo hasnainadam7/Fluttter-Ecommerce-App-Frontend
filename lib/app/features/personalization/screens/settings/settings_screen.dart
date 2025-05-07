@@ -12,6 +12,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
 
+import '../../../shop/screens/order/order.dart';
 import '../address/address.dart';
 
 class SettingsScreen extends StatelessWidget {
@@ -46,19 +47,19 @@ class SettingsScreen extends StatelessWidget {
       "icon": Iconsax.safe_home,
       "title": 'My Addresses',
       "subTitle": 'Set shopping addresses',
-      "onTap": () => Get.to(() =>  UserAddressScreen()),
+      "onTap": () => Get.to(() =>  const UserAddressScreen()),
     },
     {
       "icon": Iconsax.shopping_cart,
       "title": 'My Cart',
       "subTitle": 'Add, remove products & move to checkout',
-      "onTap": () => Get.to(() =>  CartScreen()),
+      "onTap": () => Get.to(() =>  const CartScreen()),
     },
     {
       "icon": Iconsax.bag_tick,
       "title": 'My Orders',
       "subTitle": 'In-progress & completed orders',
-      // "onTap": () => Get.to(() => const OrderScreen()),
+      "onTap": () => Get.to(() => const OrderScreen()),
     },
     {
       "icon": Iconsax.bank,
@@ -118,8 +119,8 @@ class SettingsScreen extends StatelessWidget {
                   CSectionHeading(
                     title: "Account Settings",
                     showActionButton: false,
-                    dark: dark,
-                    padding: EdgeInsets.zero,
+
+                    padding: EdgeInsets.zero, dark: dark,
                   ),
                   ...accountSetting.map((r) {
                     return SettingsMenuTile(
@@ -135,8 +136,8 @@ class SettingsScreen extends StatelessWidget {
                   CSectionHeading(
                     title: "App Settings",
                     showActionButton: false,
-                    dark: dark,
-                    padding: EdgeInsets.zero,
+
+                    padding: EdgeInsets.zero, dark: dark,
                   ),
                   ...appSetting.map((r) {
                     return SettingsMenuTile(

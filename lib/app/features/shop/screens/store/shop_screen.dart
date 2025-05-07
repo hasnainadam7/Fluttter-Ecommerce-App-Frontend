@@ -1,11 +1,12 @@
-import 'package:ecommerceapp/app/features/shop/screens/shop/widgets/body/tab_bar_view.dart';
-import 'package:ecommerceapp/app/features/shop/screens/shop/widgets/flexiable_space_widget/tab_bar_view.dart';
-import 'package:ecommerceapp/app/utils/helpers/helper_functions.dart' show CHelperFunctions;
+
 import 'package:flutter/material.dart';
-import 'package:get/get.dart' show Get, GetNavigation;
-import '../../../../common/widgets/appBar/app_bar.dart' show CAppBar;
-import '../../../../common/widgets/appBar/tab_bar.dart' show CTabBar;
-import '../../../auth/screens/app_bar/counter_icon.dart' show CounterIcon;
+import 'package:get/get.dart';
+import '../../../../common/widgets/appBar/app_bar.dart' ;
+import '../../../../common/widgets/appBar/tab_bar.dart' ;
+import '../../../../utils/helpers/helper_functions.dart';
+import '../../../auth/screens/app_bar/counter_icon.dart' ;
+import 'widgets/body/tab_bar_view.dart';
+import 'widgets/flexible_space_widget/tab_bar_view.dart';
 
 class ShopScreen extends StatelessWidget {
   ShopScreen({super.key});

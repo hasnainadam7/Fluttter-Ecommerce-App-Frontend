@@ -1,9 +1,7 @@
 import 'package:ecommerceapp/app/common/styles/shadow_styles.dart';
 import 'package:ecommerceapp/app/common/widgets/custom_shapes/containers/rounded_container.dart';
-import 'package:ecommerceapp/app/features/shop/screens/home/widgets/product_card_vertical/product_price_and_counts.dart';
+import 'package:ecommerceapp/app/features/shop/screens/cart/cart.dart';
 
-import 'package:ecommerceapp/app/features/shop/screens/home/widgets/product_card_vertical/product_title.dart';
-import 'package:ecommerceapp/app/routes/routes.dart';
 import 'package:ecommerceapp/app/utils/constants/colors.dart';
 import 'package:ecommerceapp/app/utils/constants/images_string.dart';
 import 'package:ecommerceapp/app/utils/constants/sizes.dart';
@@ -11,10 +9,13 @@ import 'package:ecommerceapp/app/utils/constants/sizes.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
-import '../../../../../../common/widgets/images/rounded_images.dart';
-import '../../../../../../common/widgets/texts/brand_title_text_with_verified_icon.dart';
+
+import '../../images/rounded_images.dart';
+import '../../texts/brand_title_text_with_verified_icon.dart';
 import 'circular_icon.dart';
 import 'discounted_label.dart';
+import 'product_price_and_counts.dart';
+import 'product_title.dart';
 
 class ProductCardVertical extends StatelessWidget {
   const ProductCardVertical({super.key, required this.dark});
@@ -22,7 +23,7 @@ class ProductCardVertical extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: ()=>Get.toNamed(Routes.productDetails),
+      onTap: ()=>Get.to(const CartScreen()),
       child: Container(
 
         width: Get.width * 0.4,
@@ -46,7 +47,9 @@ class ProductCardVertical extends StatelessWidget {
                     imgUrl: CImages.productImage1,
                   ),
                   DiscountedLabelWidget(discount: 25),
-                  Positioned(right: 2, top: 2, child: CCircularIcon(icon: Iconsax.heart,)),
+                  Positioned(right: 2, top: 2, child: CCircularIcon(
+                    color: Colors.red,
+                    icon: Iconsax.heart5,)),
                 ],
               ),
             ),

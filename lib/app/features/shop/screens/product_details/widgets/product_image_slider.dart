@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:iconsax/iconsax.dart';
 
 import '../../../../../common/widgets/appBar/app_bar.dart';
+import '../../../../../common/widgets/cards/product_card_vertical/circular_icon.dart';
 import '../../../../../common/widgets/custom_shapes/curved_edges/curved_edges_widget.dart';
 import '../../../../../common/widgets/images/rounded_images.dart';
 import '../../../../../utils/constants/colors.dart';
 import '../../../../../utils/constants/images_string.dart';
 import '../../../../../utils/constants/sizes.dart';
-import '../../home/widgets/product_card_vertical/circular_icon.dart';
 
 class ProductImageSlider extends StatelessWidget {
   const ProductImageSlider({super.key, required this.dark});

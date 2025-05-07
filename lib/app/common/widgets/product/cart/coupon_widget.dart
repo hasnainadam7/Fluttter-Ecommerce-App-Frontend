@@ -5,8 +5,8 @@ import '../../../../utils/constants/sizes.dart';
 import '../../../../utils/helpers/helper_functions.dart';
 import '../../custom_shapes/containers/rounded_container.dart';
 
-class TCouponCode extends StatelessWidget {
-  const TCouponCode({super.key});
+class CCouponCode extends StatelessWidget {
+  const CCouponCode({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -15,13 +15,11 @@ class TCouponCode extends StatelessWidget {
     return CRoundedContainer(
       showBorder: true,
       backgroundColor: dark ? CColors.dark : CColors.white,
-      padding: const EdgeInsets.only(
-        top:  CSizes.sm,
-        bottom: CSizes.sm,
-        right: CSizes.sm,
-        left: CSizes.md,
+      padding: const EdgeInsets.all(
+        CSizes.sm,
       ),
       child: Row(
+        spacing: CSizes.sm,
         children: [
           /// TextField
           Flexible(
@@ -35,7 +33,7 @@ class TCouponCode extends StatelessWidget {
               ),
             ),
           ),
-
+          // SizedBox(width:  ),
           /// Button
           SizedBox(
             width: 80,

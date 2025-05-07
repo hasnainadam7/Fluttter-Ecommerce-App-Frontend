@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:iconsax/iconsax.dart';
 
-import '../../../../features/shop/screens/home/widgets/product_card_vertical/circular_icon.dart';
 import '../../../../utils/constants/colors.dart';
 import '../../../../utils/constants/sizes.dart';
 import '../../../../utils/helpers/helper_functions.dart';
+import '../../cards/product_card_vertical/circular_icon.dart';
 
-class TProductQuantityWithAddRemoveButton extends StatelessWidget {
-  const TProductQuantityWithAddRemoveButton({super.key});
+class CProductQuantityWithAddRemoveButton extends StatelessWidget {
+  const CProductQuantityWithAddRemoveButton({super.key});
 
   @override
   Widget build(BuildContext context) {

@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:iconsax/iconsax.dart';
 
+import '../../../../../common/widgets/cards/product_card_vertical/circular_icon.dart';
 import '../../../../../utils/constants/colors.dart';
 import '../../../../../utils/constants/sizes.dart';
 import '../../../../../utils/helpers/helper_functions.dart';
-import '../../home/widgets/product_card_vertical/circular_icon.dart';
 
 class CBottomAddToCart extends StatelessWidget {
   const CBottomAddToCart({super.key});

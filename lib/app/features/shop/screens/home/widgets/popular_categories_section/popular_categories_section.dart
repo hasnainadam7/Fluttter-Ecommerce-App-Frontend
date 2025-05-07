@@ -1,4 +1,6 @@
+import 'package:ecommerceapp/app/features/shop/screens/sub_category/sub_category.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 import '../../../../../../common/widgets/texts/section_heading.dart';
 import '../../../../../../utils/constants/sizes.dart';
@@ -11,18 +13,17 @@ class PopularCategoriesSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
-    return const Column(
+    return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       spacing: CSizes.spaceBtwItems,
       children: [
-        CSectionHeading(
+        const CSectionHeading(
           padding: EdgeInsets.symmetric(horizontal: CSizes.defaultSpace),
           title: CTexts.popularCategories,
           showActionButton: false,
           dark: true,
         ),
-        VerticalImagesAndText(),
+        VerticalImagesAndText(onTap: () => Get.to(() => const SubCategoriesScreen())),
       ],
     );
   }

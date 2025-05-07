@@ -1,4 +1,5 @@
 import 'package:ecommerceapp/app/common/widgets/texts/section_heading.dart';
+import 'package:ecommerceapp/app/features/shop/screens/checkout/checkout.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
@@ -43,7 +44,9 @@ class ProductDetails extends StatelessWidget {
                   SizedBox(
                     width: double.infinity,
                     child: ElevatedButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        Get.to(()=> const CheckoutScreen());
+                      },
                       child: const Text("Check Out"),
                     ),
                   ),
