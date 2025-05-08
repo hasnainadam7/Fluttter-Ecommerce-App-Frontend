@@ -1,4 +1,4 @@
-import 'package:ecommerceapp/app/features/auth/controllers/onboarding_controller.dart';
+import 'package:ecommerceapp/app/features/auth/controllers/onboarding/onboarding_controller.dart';
 import 'package:ecommerceapp/app/utils/helpers/helper_functions.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';

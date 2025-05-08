@@ -21,18 +21,36 @@ class NetworkManager extends GetxController {
   @override
   void onInit() {
     super.onInit();
-    _connectivitySubscription = _connectivity.onConnectivityChanged.listen((List<ConnectivityResult> results) {
-      // You can decide how to handle multiple results here
-      final firstResult = results.isNotEmpty ? results.first : ConnectivityResult.none;
-      _updateConnectionStatus(firstResult);
+    Future.delayed(Duration(seconds: 2), () async {
+      final result = await _connectivity.checkConnectivity();
+      _updateConnectionStatus(result.first);
     });
+
+    // _connectivitySubscription =
+    //     _connectivity.onConnectivityChanged.listen((List<ConnectivityResult> results) {
+    //       final firstResult = results.isNotEmpty ? results.first : ConnectivityResult.none;
+    //       _updateConnectionStatus(firstResult);
+    //     });
   }
 
   /// Update the connection status based on changes in connectivity and show a relevant popup for no internet connection.
+  ConnectivityResult? _lastStatus;
+
   Future<void> _updateConnectionStatus(ConnectivityResult result) async {
-    _connectionStatus.value = result;
-    if (_connectionStatus.value == ConnectivityResult.none) {
-      CLoaders.warningSnackBar(title: 'No Internet Connection');
+    if (result != _lastStatus) {
+      print("🔄 The Connection changed: $_lastStatus → $result");
+      _connectionStatus.value = result;
+
+      if (result == ConnectivityResult.none) {
+        CLoaders.warningSnackBar(
+          title: 'No Internet Connection',
+          message: "Please check your internet connection",
+        );
+      }
+
+      _lastStatus = result;
+    } else {
+      print("⚠️ Duplicate connectivity result: $result – Ignoring");
     }
   }
 
@@ -41,12 +59,14 @@ class NetworkManager extends GetxController {
   Future<bool> isConnected() async {
     try {
       final result = await _connectivity.checkConnectivity();
+
       if (result == ConnectivityResult.none) {
         return false;
       } else {
         return true;
       }
-    } on PlatformException catch (_) {
+    } on PlatformException catch (e) {
+      print(e.message);
       return false;
     }
   }

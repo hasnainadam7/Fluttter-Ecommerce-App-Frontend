@@ -52,7 +52,7 @@ class CLoaders {
     );
   }
 
-  static void warningSnackBar({required title, message = '', duration = ''}) {
+  static void warningSnackBar({required title, message = ''}) {
     Get.snackbar(
       title,
       message,

@@ -9,8 +9,8 @@ import 'package:get/get.dart';
 import '../../../../utils/constants/sizes.dart';
 
 class VerifyEmailScreen extends StatelessWidget {
-  const VerifyEmailScreen({super.key});
-
+  const VerifyEmailScreen({super.key, required this.email});
+  final String email;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -44,7 +44,7 @@ class VerifyEmailScreen extends StatelessWidget {
                   textAlign: TextAlign.center,
                 ),
                 Text(
-                  CTexts.supportEmail,
+                  email,
                   style: Theme.of(context).textTheme.labelLarge,
                   textAlign: TextAlign.center,
                 ),

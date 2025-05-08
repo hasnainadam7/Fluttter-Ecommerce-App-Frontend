@@ -1,4 +1,4 @@
-import 'package:ecommerceapp/app/features/auth/controllers/onboarding_controller.dart';
+import 'package:ecommerceapp/app/features/auth/controllers/onboarding/onboarding_controller.dart';
 import 'package:ecommerceapp/app/features/auth/screens/onboarding/widgets/onboarding_next_button.dart';
 import 'package:ecommerceapp/app/utils/constants/texts.dart';
 import 'package:flutter/material.dart';
