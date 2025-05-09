@@ -4,14 +4,16 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
 
-import '../../../../routes/routes.dart';
-import '../../../../utils/constants/images_string.dart';
+import '../../../../utils/validators/validation.dart';
+import '../../controllers/forget_password/forget_password_controller.dart';
 
 class ForgetPasswordScreen extends StatelessWidget {
-  const ForgetPasswordScreen({super.key});
+  ForgetPasswordScreen({super.key});
+  final TextEditingController emailController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
+    final controller = Get.put(ForgetPasswordController());
     return Scaffold(
       appBar: AppBar(),
       body: Padding(
@@ -29,10 +31,15 @@ class ForgetPasswordScreen extends StatelessWidget {
               ],
             ),
             const SizedBox(height: CSizes.spacesBtwSections),
-            TextFormField(
-              decoration: const InputDecoration(
-                labelText: CTexts.email,
-                prefixIcon: Icon(Iconsax.direct_right),
+            Form(
+              key: controller.forgetFormKey,
+              child: TextFormField(
+                controller: emailController,
+                validator: (value) => CValidator.validateEmail(value),
+                decoration: const InputDecoration(
+                  labelText: CTexts.email,
+                  prefixIcon: Icon(Iconsax.direct_right),
+                ),
               ),
             ),
 
@@ -40,18 +47,7 @@ class ForgetPasswordScreen extends StatelessWidget {
               width: double.infinity,
               child: ElevatedButton(
                 onPressed: () {
-                  Get.offAllNamed(
-                    Routes.resetPasswordSuccuess,
-                    arguments: {
-                      'image': CImages.deliveredEmailIllustration,
-                      'title': CTexts.changeYourPasswordTitle,
-                      'subTitle': CTexts.changeYourPasswordSubTitle,
-                      'onPressed': () => Get.offAllNamed(Routes.login),
-                      'onPressed2': () => Get.offAllNamed(Routes.login),
-                      'button1Text': CTexts.done,
-                      'button2Text': CTexts.resendEmail,
-                    },
-                  );
+                  controller.forgotPassword(emailController.text.trim());
                 },
                 child: const Text(CTexts.submit),
               ),

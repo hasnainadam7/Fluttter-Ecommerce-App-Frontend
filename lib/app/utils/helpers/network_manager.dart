@@ -38,7 +38,6 @@ class NetworkManager extends GetxController {
 
   Future<void> _updateConnectionStatus(ConnectivityResult result) async {
     if (result != _lastStatus) {
-      print("🔄 The Connection changed: $_lastStatus → $result");
       _connectionStatus.value = result;
 
       if (result == ConnectivityResult.none) {
@@ -49,8 +48,6 @@ class NetworkManager extends GetxController {
       }
 
       _lastStatus = result;
-    } else {
-      print("⚠️ Duplicate connectivity result: $result – Ignoring");
     }
   }
 
@@ -66,7 +63,6 @@ class NetworkManager extends GetxController {
         return true;
       }
     } on PlatformException catch (e) {
-      print(e.message);
       return false;
     }
   }

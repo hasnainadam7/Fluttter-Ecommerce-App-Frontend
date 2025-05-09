@@ -15,7 +15,7 @@ dependencies:
   cupertino_icons: ^1.0.8          # iOS-style icons
   google_fonts: ^6.2.1             # Custom fonts support from Google Fonts
   smooth_page_indicator: ^1.2.1    # Dots indicator for sliders/onboarding
-  iconsax: ^0.0.8                  # Popular icon pack
+  iconsax: ^0.0.8                  # Popular icon pack h
   readmore: ^3.0.0                 # Show more/show less text
   carousel_slider: ^5.0.0          # Image/content carousels
   flutter_rating_bar: ^4.0.1       # Star rating bars
@@ -30,15 +30,17 @@ dependencies:
 
   # ---------------- Firebase / Backend Related ----------------
   firebase_core: ^3.13.0           # Base for all Firebase services
-  firebase_auth: ^5.5.3            # User authentication
+  firebase_auth: ^5.5.3            # User authentication via email and password
   cloud_firestore: ^5.6.7          # NoSQL cloud database
   firebase_storage: ^12.4.5        # Upload/store files like images
+  google_sign_in: ^6.3.0           # User authentication via google
 
   # ---------------- Utilities / Miscellaneous ----------------
   logger: ^2.5.0                   # Logging for debugging
   url_launcher: ^6.3.1             # Launch external URLs, mail, phone
   flutter_native_splash: ^2.4.6    # Auto-generate native splash screens
   capped_progress_indicator: ^0.0.2 # Custom circular progress indicators
+
 
 
 dev_dependencies:

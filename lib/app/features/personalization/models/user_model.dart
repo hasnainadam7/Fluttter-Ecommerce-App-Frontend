@@ -1,5 +1,5 @@
-
 import '../../../utils/formatters/formatters.dart';
+import 'dart:math';
 
 /// Model class representing user data.
 class UserModel {
@@ -27,24 +27,42 @@ class UserModel {
   String get fullName => '$firstName $lastName';
 
   /// Helper function to format phone number.
-  String get formattedPhoneNo =>CFormatter.formatPhoneNumber(phoneNumber);
+  String get formattedPhoneNo => CFormatter.formatPhoneNumber(phoneNumber);
 
   /// Static function to split full name into first & last name.
   static List<String> nameParts(fullName) => fullName.split(" ");
 
   /// Static function to generate a username from the full name.
-  static String generateUsername(fullName) {
-    List<String> nameParts = fullName.split(" ");
+
+  static String generateUsername(String fullName) {
+    final random = Random();
+    List<String> nameParts = fullName.trim().split(RegExp(r"\s+"));
+
     String firstName = nameParts[0].toLowerCase();
     String lastName = nameParts.length > 1 ? nameParts[1].toLowerCase() : "";
 
-    String camelCaseUsername = "$firstName$lastName"; // Combine first & last name
-    String usernameWithPrefix = "cwt_$camelCaseUsername"; // Add "cwd_" prefix
-    return usernameWithPrefix;
+    // Sanitize to remove special characters
+    String sanitizedFirstName = firstName.replaceAll(RegExp(r'[^a-z0-9]'), '');
+    String sanitizedLastName = lastName.replaceAll(RegExp(r'[^a-z0-9]'), '');
+
+    // Add a random number (3 digits) to avoid duplication
+    int randomDigits = 100 + random.nextInt(900); // gives 100-999
+
+    String username = "algoace_${sanitizedFirstName}_${sanitizedLastName}_$randomDigits";
+
+    return username;
   }
 
   /// Static function to create an empty user model.
-  static UserModel empty() => UserModel(id: '', firstName: '', lastName: '', username: '', email: '', phoneNumber: '', profilePicture: '');
+  static UserModel empty() => UserModel(
+    id: '',
+    firstName: '',
+    lastName: '',
+    username: '',
+    email: '',
+    phoneNumber: '',
+    profilePicture: '',
+  );
 
   /// Convert model to JSON structure for storing data in Firebase.
   Map<String, dynamic> toJson() {

@@ -27,7 +27,7 @@ class CFullScreenLoader {
               height: double.infinity,
               child: Column(
                 children: [
-                  const SizedBox(height: 50), // Adjust the spacing as needed
+                  // const SizedBox(height: 50), // Adjust the spacing as needed
                   CAnimationLoaderWidget(text: text, animation: animation),
                 ],
               ),

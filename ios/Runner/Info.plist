@@ -47,11 +47,24 @@
 		<true/>
 		<key>UIStatusBarHidden</key>
 		<false/>
-
-<key>NSAppTransportSecurity</key>
+<key>CFBundleURLTypes</key>
+<array>
+  <dict>
+    <key>CFBundleURLSchemes</key>
+    <array>
+      <string>com.googleusercontent.apps.754262512945-1no0km6vb8stn1a2scqe6lf93g7mi6gl</string>
+    </array>
+  </dict>
+</array>
+<key>LSApplicationQueriesSchemes</key>
+<array>
+  <string>google</string>
+  <string>com-google-gidconsent</string>
+</array>
+        <key>NSAppTransportSecurity</key>
 		<dict>
-			<key>NSAllowsArbitraryLoads</key>
-			<true/>
+		<key>NSAllowsArbitraryLoads</key>
+		<true/>
 		</dict>
 	</dict>
 </plist>

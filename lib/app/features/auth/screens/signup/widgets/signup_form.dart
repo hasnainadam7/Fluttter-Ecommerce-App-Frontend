@@ -82,22 +82,22 @@ class SignupForm extends StatelessWidget {
               labelText: CTexts.phoneNo,
             ),
           ),
-          Obx(()=> TextFormField(
-            controller: controller.password,
-            expands: false,
-            obscureText:controller.hidePassword.value ,
-            validator: (value) => CValidator.validatePassword(value),
-            decoration: InputDecoration(
-              prefixIcon: Icon(Iconsax.password_check),
-              suffixIcon:
-              GestureDetector(
-                onTap: () => controller.hidePassword.toggle(),
-                child: Icon(controller.hidePassword.value ? Iconsax.eye_slash : Iconsax.eye),
-
+          Obx(
+            () => TextFormField(
+              controller: controller.password,
+              expands: false,
+              obscureText: controller.hidePassword.value,
+              validator: (value) => CValidator.validatePassword(value),
+              decoration: InputDecoration(
+                prefixIcon: Icon(Iconsax.password_check),
+                suffixIcon: GestureDetector(
+                  onTap: () => controller.hidePassword.toggle(),
+                  child: Icon(controller.hidePassword.value ? Iconsax.eye_slash : Iconsax.eye),
+                ),
+                labelText: CTexts.password,
               ),
-              labelText: CTexts.password,
             ),
-          ), ),
+          ),
 
           Row(
             spacing: CSizes.spaceBtwItems,
@@ -105,7 +105,12 @@ class SignupForm extends StatelessWidget {
               SizedBox(
                 height: CSizes.lg,
                 width: CSizes.lg,
-                child: Checkbox(value: true, onChanged: (r) {}),
+                child: Obx(
+                  () => Checkbox(
+                    value: controller.privacyPolicy.value,
+                    onChanged: (_) => controller.privacyPolicy.toggle(),
+                  ),
+                ),
               ),
               Text.rich(
                 TextSpan(

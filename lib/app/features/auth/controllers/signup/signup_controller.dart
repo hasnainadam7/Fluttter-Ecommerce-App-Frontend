@@ -32,7 +32,7 @@ class SignupController extends GetxController {
       // // Start Loading
       CFullScreenLoader.openLoadingDialog(
         'We are processing your information...',
-       CImages.docerAnimation,
+        CImages.docerAnimation,
       );
 
       // Check Internet Connectivity
@@ -40,6 +40,12 @@ class SignupController extends GetxController {
       if (!isConnected) {
         // Remove Loader
         CFullScreenLoader.stopLoading();
+
+        CLoaders.warningSnackBar(
+          title: 'No Internet Connection',
+          message: "Please check your internet connection",
+        );
+
         return;
       }
 
@@ -52,11 +58,13 @@ class SignupController extends GetxController {
 
       // Privacy Policy Check
       if (!privacyPolicy.value) {
+        CFullScreenLoader.stopLoading();
         CLoaders.warningSnackBar(
           title: 'Accept Privacy Policy',
           message:
               'In order to create account, you must have to read & accept the Privacy Policy & Terms of Use.',
         );
+
         return;
       }
 
@@ -65,7 +73,6 @@ class SignupController extends GetxController {
         email.text.trim(),
         password.text.trim(),
       );
-
 
       // Save Authenticated user data in the Firebase FireStore
       final newUser = UserModel(

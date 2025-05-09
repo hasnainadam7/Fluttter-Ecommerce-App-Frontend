@@ -1,13 +1,18 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 
 import '../../../features/auth/screens/login/login_screen.dart';
 import '../../../features/auth/screens/onboarding/onboarding_screen.dart';
 import '../../../features/auth/screens/signup/verify_email_screen.dart';
 import '../../../navigation_menu.dart';
+import '../../../routes/routes.dart';
+import '../../../utils/constants/images_string.dart';
+import '../../../utils/constants/texts.dart';
 import '../../../utils/exceptions/firebase_exceptions.dart';
 import '../../../utils/exceptions/format_exceptions.dart';
 import '../../../utils/exceptions/platform_exceptions.dart';
@@ -18,6 +23,7 @@ class AuthenticationRepository extends GetxController {
   /// Variables
   final deviceStorage = GetStorage();
   final _auth = FirebaseAuth.instance;
+  GlobalKey<FormState> forgetFormKey = GlobalKey<FormState>();
 
   /// Called from main.dart app launch
   @override
@@ -32,11 +38,10 @@ class AuthenticationRepository extends GetxController {
   Future<void> screenRedirect() async {
     final user = _auth.currentUser;
     if (user != null) {
-
       if (user.emailVerified) {
         Get.offAll(() => NavigationMenu());
       } else {
-        Get.offAll(() => VerifyEmailScreen(email: _auth.currentUser!.email ??""));
+        Get.offAll(() => VerifyEmailScreen(email: _auth.currentUser!.email ?? ""));
         // Get.offAll(() => VerifyEmailScreen());
       }
     } else {
@@ -85,16 +90,44 @@ class AuthenticationRepository extends GetxController {
     return firebaseAuthHandler(() async => await _auth.currentUser!.sendEmailVerification());
   }
 
-  // Future<void> sendEmailVerification() {
-  //   return firebaseAuthHandler(() => _auth.currentUser!.sendEmailVerification());
-  // }
+
   /// [ReAuthentication] - ReAuthenticate User
   /// [EmailAuthentication] - Forgot Password
+  Future<void> forgotPassword(String email) async => firebaseAuthHandler(() async {
+    await _auth.sendPasswordResetEmail(email: email);
+  });
+
   /// [GoogleAuthentication] - GOOGLE
+  Future<UserCredential?> loginWithGoogle() async {
+    return await firebaseAuthHandler(() async {
+      try {
+        final GoogleSignInAccount? userAccount = await GoogleSignIn().signIn();
+
+        if (userAccount != null) {
+          final auth = await userAccount.authentication;
+
+          final credential = GoogleAuthProvider.credential(
+            accessToken: auth.accessToken,
+            idToken: auth.idToken,
+          );
+
+          final userCredential = await FirebaseAuth.instance.signInWithCredential(credential);
+          return userCredential;
+        } else {
+          print('User cancelled Google Sign-In');
+          return null;
+        }
+      } catch (e) {
+        print('iOS Sign-In Crash Error: $e');
+        return null;
+      }
+    });
+  }
+
   /// [FacebookAuthentication] - FACEBOOK
   /// [LogoutUser] - Valid for any authentication
   Future<void> logout() async => firebaseAuthHandler(() async {
-    await FirebaseAuth.instance.signOut();
+    await _auth.signOut();
     Get.offAll(() => const LoginScreen());
   });
 
@@ -104,15 +137,18 @@ class AuthenticationRepository extends GetxController {
   Future<T> firebaseAuthHandler<T>(Future<T> Function() authFunction) async {
     try {
       return await authFunction();
-    } on FirebaseAuthException catch (e) {
-      throw Exception(CFirebaseException(e.code).message);
-    } on FirebaseException catch (e) {
-      throw Exception(CFirebaseException(e.code).message);
-    } on FormatException catch (_) {
-      throw Exception(CFormatException());
-    } on PlatformException catch (e) {
-      throw Exception(CPlatformException(e.code).message);
-    } catch (e) {
+    }
+    // on FirebaseAuthException catch (e) {
+    //   throw Exception(CFirebaseException(e.code).message);
+    // } on FirebaseException catch (e) {
+    //   throw Exception(CFirebaseException(e.code).message);
+    // } on FormatException catch (_) {
+    //   throw Exception(CFormatException());
+    // } on PlatformException catch (e) {
+    //   throw Exception(CPlatformException(e.code).message);
+    // }
+    catch (e) {
+      print(e);
       throw Exception('Something went wrong. Please try again');
     }
   }

@@ -7,16 +7,13 @@ import 'package:get/get.dart';
 import 'package:url_launcher/url_launcher_string.dart';
 
 class CDeviceUtils {
-
   CDeviceUtils._();
   static void hideKeyboard(BuildContext context) {
     FocusScope.of(context).requestFocus(FocusNode());
   }
 
   static Future<void> setStatusBarColor(Color color) async {
-    SystemChrome.setSystemUIOverlayStyle(
-      SystemUiOverlayStyle(statusBarColor: color),
-    );
+    SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(statusBarColor: color));
   }
 
   static bool isLandscapeOrientation(BuildContext context) {
@@ -30,7 +27,9 @@ class CDeviceUtils {
   }
 
   static void setFullScreen(bool enable) {
-    SystemChrome.setEnabledSystemUIMode(enable ? SystemUiMode.immersiveSticky : SystemUiMode.edgeToEdge);
+    SystemChrome.setEnabledSystemUIMode(
+      enable ? SystemUiMode.immersiveSticky : SystemUiMode.edgeToEdge,
+    );
   }
 
   static double getScreenHeight() {
@@ -68,7 +67,8 @@ class CDeviceUtils {
   }
 
   static Future<bool> isPhysicalDevice() async {
-    return defaultTargetPlatform == TargetPlatform.android || defaultTargetPlatform == TargetPlatform.iOS;
+    return defaultTargetPlatform == TargetPlatform.android ||
+        defaultTargetPlatform == TargetPlatform.iOS;
   }
 
   static void vibrate(Duration duration) {
@@ -113,6 +113,5 @@ class CDeviceUtils {
     }
   }
 
-
-// Add more device utility methods as per your specific requirements.
+  // Add more device utility methods as per your specific requirements.
 }
