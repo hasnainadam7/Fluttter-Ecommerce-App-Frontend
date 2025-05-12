@@ -1,4 +1,3 @@
-import 'package:ecommerceapp/app/data/repositories/authentication/authentication_repository.dart';
 import 'package:ecommerceapp/app/data/repositories/user/user_repository.dart';
 import 'package:ecommerceapp/app/utils/popups/loaders.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -9,6 +8,28 @@ import '../models/user_model.dart';
 class UserController extends GetxController {
   static UserController get instance => Get.find();
   final userRepository = Get.put(UserRepository());
+  Rx<UserModel> user = UserModel.empty().obs;
+  Rx<bool> loader = false.obs;
+  @override
+  void onInit() {
+    super.onInit();
+
+    fetchUserRecord();
+  }
+
+  Future<void> fetchUserRecord() async {
+    try {
+      loader.value = true;
+      final user = await userRepository.fetchUserDetails();
+      this.user(user);
+      loader.value = false;
+    } catch (_) {
+      user(UserModel.empty());
+    } finally {
+      loader.value = false;
+    }
+  }
+
   Future<void> saveUserRecord(UserCredential? userCredentials) async {
     try {
       if (userCredentials != null) {

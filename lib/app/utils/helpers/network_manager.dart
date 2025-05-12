@@ -2,7 +2,6 @@
 
 import 'dart:async';
 import 'package:connectivity_plus/connectivity_plus.dart';
-import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 
 import '../popups/loaders.dart';
@@ -21,7 +20,7 @@ class NetworkManager extends GetxController {
   @override
   void onInit() {
     super.onInit();
-    Future.delayed(Duration(seconds: 2), () async {
+    Future.delayed(const Duration(seconds: 2), () async {
       final result = await _connectivity.checkConnectivity();
       _updateConnectionStatus(result.first);
     });
@@ -62,7 +61,7 @@ class NetworkManager extends GetxController {
       } else {
         return true;
       }
-    } on PlatformException catch (e) {
+    } catch (e) {
       return false;
     }
   }

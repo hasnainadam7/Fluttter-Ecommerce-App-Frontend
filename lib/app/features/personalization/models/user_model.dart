@@ -1,3 +1,5 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+
 import '../../../utils/formatters/formatters.dart';
 import 'dart:math';
 
@@ -75,20 +77,44 @@ class UserModel {
       'ProfilePicture': profilePicture,
     };
   }
+  UserModel copyWith({
+    String? id,
+    String? firstName,
+    String? lastName,
+    String? username,
+    String? email,
+    String? phoneNumber,
+    String? profilePicture,
+  }) {
+    return UserModel(
+      id: id ?? this.id,
+      firstName: firstName ?? this.firstName,
+      lastName: lastName ?? this.lastName,
+      username: username ?? this.username,
+      email: email ?? this.email,
+      phoneNumber: phoneNumber ?? this.phoneNumber,
+      profilePicture: profilePicture ?? this.profilePicture,
+    );
+  }
+
 
   /// Factory method to create a UserModel from a Firebase document snapshot.
-  // factory UserModel.fromSnapshot(DocumentSnapshot<Map<String, dynamic>> document) {
-  //   if (document.data() != null) {
-  //     final data = document.data()!;
-  //     return UserModel(
-  //       id: document.id,
-  //       firstName: data['FirstName'] ?? '',
-  //       lastName: data['LastName'] ?? '',
-  //       username: data['Username'] ?? '',
-  //       email: data['Email'] ?? '',
-  //       phoneNumber: data['PhoneNumber'] ?? '',
-  //       profilePicture: data['ProfilePicture'] ?? '',
-  //     );
-  //   }
-  // }
+  factory UserModel.fromSnapshot(DocumentSnapshot<Map<String, dynamic>> document) {
+    final data = document.data();
+    if (data == null) {
+      throw Exception("User data not found");
+    }
+
+    return UserModel(
+      id: document.id,
+      firstName: data['FirstName'] ?? '',
+      lastName: data['LastName'] ?? '',
+      username: data['Username'] ?? '',
+      email: data['Email'] ?? '',
+      phoneNumber: data['PhoneNumber'] ?? '',
+      profilePicture: data['ProfilePicture'] ?? '',
+    );
+  }
+
+
 }

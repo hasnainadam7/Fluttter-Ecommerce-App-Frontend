@@ -8,6 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import '../constants/colors.dart';
 import 'custom_themes/outlined_button_theme.dart';
+import 'custom_themes/switch_theme.dart';
 import 'custom_themes/text_form_field_theme.dart';
 
 class CThemeApp {
@@ -20,6 +21,7 @@ class CThemeApp {
     textTheme: CTextTheme.lightTextTheme,
     scaffoldBackgroundColor: CColors.white,
     appBarTheme: CAppBarTheme.lightAppBarTheme,
+    switchTheme: CSwitchTheme.lightSwitchTheme,
     checkboxTheme: CCheckBoxTheme.lightCheckboxThemeData,
     outlinedButtonTheme: COutlinedButtonThemeData.lightOutlinedButtonTheme,
     elevatedButtonTheme: CElevatedButtonTheme.lightElevatedButtonTheme,
@@ -35,6 +37,7 @@ class CThemeApp {
     elevatedButtonTheme: CElevatedButtonTheme.darkElevatedButtonTheme,
     textTheme: CTextTheme.darkTextTheme,
     primaryColor: Colors.blue,
+    switchTheme: CSwitchTheme.darkSwitchTheme,
     appBarTheme: CAppBarTheme.darkAppBarTheme,
     outlinedButtonTheme: COutlinedButtonThemeData.darkOutlinedButtonTheme,
     bottomSheetTheme: CBottomSheet.darkBottomSheetTheme,

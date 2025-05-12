@@ -12,13 +12,13 @@ class MyApp extends StatelessWidget {
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
       title: "E-Commerce",
-      themeMode: ThemeMode.light,
-      // themeMode: ThemeMode.dark,
+      // themeMode: ThemeMode.light,
+      themeMode: ThemeMode.dark,
       initialBinding: GeneralBindings(),
 
       theme: CThemeApp.lightThemeData,
       darkTheme: CThemeApp.darkThemeData,
-      home: Center(child: CircularProgressIndicator()),
+      home: const Center(child: CircularProgressIndicator()),
       //     initialRoute: Routes.onboarding,
       getPages: Routes.routes,
     );

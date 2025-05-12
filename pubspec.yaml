@@ -20,6 +20,7 @@ dependencies:
   carousel_slider: ^5.0.0          # Image/content carousels
   flutter_rating_bar: ^4.0.1       # Star rating bars
   lottie: ^3.3.1                   # JSON-based animations
+  shimmer: ^3.0.0                  # Skeleton loading effect for UI placeholders
 
   # ---------------- Data Handling / Logic / API ----------------
   http: ^1.3.0                     # REST API calls

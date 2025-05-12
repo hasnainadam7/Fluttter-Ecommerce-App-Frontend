@@ -93,17 +93,20 @@ class LoginController extends GetxController {
         return;
       }
 
-      // Save Data if Remember Me is selected
 
       // Login user using Email & Password Authentication
       final userCredentials = await AuthenticationRepository.instance.loginWithGoogle();
 
-      // Remove Loader
-      CFullScreenLoader.stopLoading();
+      // SaveUser
       userController.saveUserRecord(userCredentials);
 
+      // Remove Loader
+      CFullScreenLoader.stopLoading();
+
       // Redirect
-      // AuthenticationRepository.instance.screenRedirect();
+      AuthenticationRepository.instance.screenRedirect();
+
+
     } catch (e) {
       CFullScreenLoader.stopLoading();
       CLoaders.errorSnackBar(title: 'Oh Snap', message: e.toString());

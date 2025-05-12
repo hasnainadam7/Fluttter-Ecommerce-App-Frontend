@@ -1,5 +1,4 @@
 import 'package:ecommerceapp/app/features/auth/controllers/signup/signup_controller.dart';
-import 'package:ecommerceapp/app/routes/routes.dart';
 import 'package:ecommerceapp/app/utils/validators/validation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -89,7 +88,7 @@ class SignupForm extends StatelessWidget {
               obscureText: controller.hidePassword.value,
               validator: (value) => CValidator.validatePassword(value),
               decoration: InputDecoration(
-                prefixIcon: Icon(Iconsax.password_check),
+                prefixIcon: const Icon(Iconsax.password_check),
                 suffixIcon: GestureDetector(
                   onTap: () => controller.hidePassword.toggle(),
                   child: Icon(controller.hidePassword.value ? Iconsax.eye_slash : Iconsax.eye),

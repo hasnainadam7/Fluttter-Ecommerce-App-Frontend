@@ -1,4 +1,6 @@
+import 'package:ecommerceapp/app/utils/constants/colors.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 
@@ -40,9 +42,29 @@ class CHelperFunctions {
   }
 
   static void showSnackBar(String message) {
-    ScaffoldMessenger.of(
-      Get.context!,
-    ).showSnackBar(SnackBar(content: Text(message)));
+    hideSnackBar();
+    ScaffoldMessenger.of(Get.context!).showSnackBar(SnackBar(content: Text(message)));
+  }
+  static void hideSnackBar() {
+    ScaffoldMessenger.of(Get.context!).hideCurrentSnackBar();
+  }
+
+  static void copyToClipboard(String text) {
+    final bool dark = isDarkMode(Get.context!);
+    Clipboard.setData(ClipboardData(text: text)).then((_) {
+      hideSnackBar();
+
+      ScaffoldMessenger.of(Get.context!).showSnackBar(
+        SnackBar(
+          content:  Text('Copied!',style : TextStyle(color:!dark ? CColors.light : CColors.dark)),
+          duration: const Duration(seconds: 1),
+          backgroundColor: dark ? CColors.light : CColors.dark,
+          behavior: SnackBarBehavior.floating,
+          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
+          margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+        ),
+      );
+    });
   }
 
   static void showAlert(String title, String message) {
@@ -53,11 +75,57 @@ class CHelperFunctions {
           title: Text(title),
           content: Text(message),
           actions: [
-            TextButton(
-              onPressed: () => Navigator.of(context).pop(),
-              child: const Text('OK'),
-            ),
+            TextButton(onPressed: () => Navigator.of(context).pop(), child: const Text('OK')),
           ],
+        );
+      },
+    );
+  }
+
+  static void showLogoutDialog(VoidCallback fn) {
+    final isDark = isDarkMode(Get.context!);
+    showDialog(
+      context: Get.context!,
+      builder: (_) {
+        return Dialog(
+          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+          backgroundColor: isDark ? CColors.dark : Colors.white,
+          child: Padding(
+            padding: const EdgeInsets.all(20),
+            child: Column(
+              spacing: 10,
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Text(
+                  "Logout",
+                  style: Theme.of(
+                    Get.context!,
+                  ).textTheme.titleLarge!.copyWith(color: isDark ? CColors.white : CColors.black),
+                ),
+
+                Text(
+                  "Are you sure you want to Logout?",
+                  style: Theme.of(
+                    Get.context!,
+                  ).textTheme.bodyMedium!.copyWith(color: isDark ? CColors.light : CColors.dark),
+                ),
+                const SizedBox(height: 10),
+                Row(
+                  spacing:20,
+                  children: [
+                    Expanded(
+                      child: OutlinedButton(
+                        onPressed: () => Navigator.of(Get.context!).pop(),
+                        child: const Text("Cancel"),
+                      ),
+                    ),
+
+                    Expanded(child: ElevatedButton(onPressed: fn, child: const Text("Confirm"))),
+                  ],
+                ),
+              ],
+            ),
+          ),
         );
       },
     );
@@ -91,10 +159,7 @@ class CHelperFunctions {
     return MediaQuery.of(Get.context!).size.width;
   }
 
-  static String getFormattedDate(
-    DateTime date, {
-    String format = 'dd MMM yyyy',
-  }) {
+  static String getFormattedDate(DateTime date, {String format = 'dd MMM yyyy'}) {
     return DateFormat(format).format(date);
   }
 

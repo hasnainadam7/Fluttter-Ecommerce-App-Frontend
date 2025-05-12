@@ -4,7 +4,6 @@ import 'package:ecommerceapp/app/features/auth/screens/password_configuration/fo
 import 'package:ecommerceapp/app/features/auth/screens/password_configuration/reset_password_screen.dart';
 import 'package:ecommerceapp/app/features/auth/screens/signup/signup_screen.dart';
 import 'package:ecommerceapp/app/common/widgets/sucess_screen/sucess_screen.dart';
-import 'package:ecommerceapp/app/features/auth/screens/signup/verify_email_screen.dart';
 import 'package:ecommerceapp/app/features/personalization/screens/profile/profile_screen.dart';
 import 'package:ecommerceapp/app/features/shop/screens/favourite/favourite_screen.dart';
 import 'package:ecommerceapp/app/features/shop/screens/home/home_screen.dart';
@@ -41,7 +40,7 @@ class Routes {
     GetPage(name: home, page: () => const HomeScreen()),
     GetPage(name: shop, page: () => ShopScreen()),
     GetPage(name: favourite, page: () => const FavouriteScreen()),
-    GetPage(name: profile, page: () => ProfileScreen()),
+    GetPage(name: profile, page: () => const ProfileScreen()),
     GetPage(name: productDetails, page: () => const ProductDetails()),
     GetPage(
       name: succuessScreen,

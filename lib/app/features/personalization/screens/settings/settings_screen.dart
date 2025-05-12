@@ -1,6 +1,7 @@
 import 'package:ecommerceapp/app/common/widgets/appBar/app_bar.dart';
 import 'package:ecommerceapp/app/common/widgets/custom_shapes/containers/primary_header_container.dart';
 import 'package:ecommerceapp/app/common/widgets/texts/section_heading.dart';
+import 'package:ecommerceapp/app/data/repositories/authentication/authentication_repository.dart';
 import 'package:ecommerceapp/app/features/personalization/screens/settings/widgets/settings_menu_tile.dart';
 import 'package:ecommerceapp/app/features/personalization/screens/settings/widgets/user_profile_tile.dart';
 import 'package:ecommerceapp/app/features/shop/screens/cart/cart.dart';
@@ -47,13 +48,13 @@ class SettingsScreen extends StatelessWidget {
       "icon": Iconsax.safe_home,
       "title": 'My Addresses',
       "subTitle": 'Set shopping addresses',
-      "onTap": () => Get.to(() =>  const UserAddressScreen()),
+      "onTap": () => Get.to(() => const UserAddressScreen()),
     },
     {
       "icon": Iconsax.shopping_cart,
       "title": 'My Cart',
       "subTitle": 'Add, remove products & move to checkout',
-      "onTap": () => Get.to(() =>  const CartScreen()),
+      "onTap": () => Get.to(() => const CartScreen()),
     },
     {
       "icon": Iconsax.bag_tick,
@@ -95,7 +96,6 @@ class SettingsScreen extends StatelessWidget {
                 // spacing: CSizes.spacesBtwSections,
                 children: [
                   CAppBar(
-
                     title: Text(
                       'Account',
                       style: Theme.of(
@@ -104,7 +104,7 @@ class SettingsScreen extends StatelessWidget {
                     ),
                   ),
 
-                  UserProfileTile(onPressed:()=> Get.toNamed(Routes.profile) ,),
+                  UserProfileTile(onPressed: () => Get.toNamed(Routes.profile)),
                   const SizedBox(height: CSizes.spacesBtwSections),
                   //body
                 ],
@@ -120,7 +120,8 @@ class SettingsScreen extends StatelessWidget {
                     title: "Account Settings",
                     showActionButton: false,
 
-                    padding: EdgeInsets.zero, dark: dark,
+                    padding: EdgeInsets.zero,
+                    dark: dark,
                   ),
                   ...accountSetting.map((r) {
                     return SettingsMenuTile(
@@ -137,7 +138,8 @@ class SettingsScreen extends StatelessWidget {
                     title: "App Settings",
                     showActionButton: false,
 
-                    padding: EdgeInsets.zero, dark: dark,
+                    padding: EdgeInsets.zero,
+                    dark: dark,
                   ),
                   ...appSetting.map((r) {
                     return SettingsMenuTile(
@@ -150,6 +152,19 @@ class SettingsScreen extends StatelessWidget {
                           () {}, // can be null, which is okay if SettingsMenuTile handles it
                     );
                   }),
+                  const SizedBox(height: CSizes.spaceBtwInputFields),
+                  Container(
+                    width: double.infinity,
+                    padding: const EdgeInsets.symmetric(horizontal: CSizes.spaceBtwItems),
+                    child: OutlinedButton(
+                      onPressed: () {
+                        CHelperFunctions.showLogoutDialog(() {
+                          AuthenticationRepository.instance.logout();
+                        });
+                      },
+                      child: const Text('Logout'),
+                    ),
+                  ),
                 ],
               ),
             ),
