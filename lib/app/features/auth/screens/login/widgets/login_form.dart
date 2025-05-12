@@ -34,7 +34,7 @@ class LoginForm extends StatelessWidget {
               obscureText: controller.hidePassword.value,
               controller: controller.password,
               decoration: InputDecoration(
-                prefixIcon: Icon(Iconsax.password_check),
+                prefixIcon: const Icon(Iconsax.password_check),
                 suffixIcon: GestureDetector(
                   onTap: () => controller.hidePassword.toggle(),
                   child: Icon(controller.hidePassword.value ? Iconsax.eye_slash : Iconsax.eye),
