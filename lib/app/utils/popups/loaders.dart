@@ -15,7 +15,7 @@ class CLoaders {
     ScaffoldMessenger.of(Get.context!).showSnackBar(
       SnackBar(
         elevation: 0,
-        duration: const Duration(seconds: 3),
+        duration: const Duration(seconds: 7),
         backgroundColor: Colors.transparent,
         content: Container(
           padding: const EdgeInsets.all(12.0),

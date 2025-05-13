@@ -20,32 +20,40 @@ class ProfileScreen extends StatelessWidget {
     final List<Map<String, dynamic>> profileInformation = [
       {
         "title": 'Name',
-        "value": controller.user.value.fullName,
+
+        "value": Obx(() => buildText(controller.user.value.fullName)),
         "onPressed": () {
-          Get.to(
-            ChangeName(
-              firstName: TextEditingController()..text = controller.user.value.firstName,
-              lastName: TextEditingController()..text = controller.user.value.lastName,
-            ),
-          );
+          Get.to(ChangeName());
         },
       },
-      {"title": 'Username', "value": controller.user.value.username, "onPressed": () {}},
+      {
+        "title": 'Username',
+        "value": Obx(() => buildText(controller.user.value.username)),
+        "onPressed": () {},
+      },
     ];
 
     final List<Map<String, dynamic>> personalInformation = [
       {
         "title": 'User ID',
-        "value": controller.user.value.id,
+        "value": Obx(() => buildText(controller.user.value.id)),
         "icon": Iconsax.copy,
         "onPressed": () {
           CHelperFunctions.copyToClipboard(controller.user.value.id);
         },
       },
-      {"title": 'E-mail', "value": controller.user.value.email, "onPressed": () {}},
-      {"title": 'Phone Number', "value": controller.user.value.phoneNumber, "onPressed": () {}},
-      {"title": 'Gender', "value": 'Male', "onPressed": () {}},
-      {"title": 'Date of Birth', "value": '4 Feb, 2001', "onPressed": () {}},
+      {
+        "title": 'E-mail',
+        "value": Obx(() => buildText(controller.user.value.email)),
+        "onPressed": () {},
+      },
+      {
+        "title": 'Phone Number',
+        "value": Obx(() => buildText(controller.user.value.phoneNumber)),
+        "onPressed": () {},
+      },
+      {"title": 'Gender', "value": buildText('Male'), "onPressed": () {}},
+      {"title": 'Date of Birth', "value": buildText('4 Feb, 2001'), "onPressed": () {}},
     ];
     bool dark = CHelperFunctions.isDarkMode(context);
     return Scaffold(
@@ -72,6 +80,16 @@ class ProfileScreen extends StatelessWidget {
           ),
         ),
       ),
+    );
+  }
+
+  Text buildText(String value) {
+    return
+
+      Text(
+      value,
+      style: Theme.of(Get.context!).textTheme.bodyMedium,
+      overflow: TextOverflow.ellipsis,
     );
   }
 }

@@ -1,10 +1,17 @@
+import 'package:ecommerceapp/app/utils/exceptions/exceptions.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
+import '../exceptions/firebase_auth_exceptions.dart';
+import '../exceptions/firebase_exceptions.dart';
+import '../exceptions/format_exceptions.dart';
+import '../exceptions/platform_exceptions.dart';
+
 /// Helper functions for cloud-related operations.
 class CCloudHelperFunctions {
   CCloudHelperFunctions._();
+
   /// Helper function to check the state of a single database record.
   ///
   /// Returns a Widget based on the state of the snapshot.
@@ -35,7 +42,12 @@ class CCloudHelperFunctions {
   /// If no data is found, it returns a generic "No Data Found" message or a custom nothingFoundWidget if provided.
   /// If an error occurs, it returns a generic error message.
   /// Otherwise, it returns null.
-  static Widget? checkMultiRecordState<T>({required AsyncSnapshot<List<T>> snapshot, Widget? loader, Widget? error, Widget? nothingFound}) {
+  static Widget? checkMultiRecordState<T>({
+    required AsyncSnapshot<List<T>> snapshot,
+    Widget? loader,
+    Widget? error,
+    Widget? nothingFound,
+  }) {
     if (snapshot.connectionState == ConnectionState.waiting) {
       if (loader != null) return loader;
       return const Center(child: CircularProgressIndicator());
@@ -83,6 +95,33 @@ class CCloudHelperFunctions {
       throw Exception(e.message!);
     } catch (e) {
       throw Exception('Something went wrong.');
+    }
+  }
+
+  static Future<T> safeCall<T>(Future<T> Function() fn) async {
+    try {
+      return await fn();
+    } on FirebaseException catch (e) {
+      print(e);
+      throw (CFirebaseException(e.code).message);
+    } on CFirebaseAuthException catch (e) {
+      print(e);
+      throw (CFirebaseAuthException(e.code).message);
+    } on CFirebaseException catch (e) {
+      print(e);
+      throw (CFirebaseException(e.code).message);
+    } on CExceptions catch (e) {
+      print(e);
+      throw (CExceptions(e.message));
+    } on FormatException catch (e) {
+      print(e);
+      throw (const CFormatException());
+    } on PlatformException catch (e) {
+      print(e);
+      throw (CPlatformException(e.code).message);
+    } catch (e) {
+      print(e);
+      throw 'Something went wrong. Please try again';
     }
   }
 }

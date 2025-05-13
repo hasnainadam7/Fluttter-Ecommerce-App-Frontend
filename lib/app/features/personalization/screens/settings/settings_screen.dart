@@ -158,9 +158,11 @@ class SettingsScreen extends StatelessWidget {
                     padding: const EdgeInsets.symmetric(horizontal: CSizes.spaceBtwItems),
                     child: OutlinedButton(
                       onPressed: () {
-                        CHelperFunctions.showLogoutDialog(() {
-                          AuthenticationRepository.instance.logout();
-                        });
+                        CHelperFunctions.showConfirmationDialog(
+                          title: "Logout",
+                          message: "Are you sure you want to logout?",
+                          onConfirm: () async => await AuthenticationRepository.instance.logout(),
+                        );
                       },
                       child: const Text('Logout'),
                     ),

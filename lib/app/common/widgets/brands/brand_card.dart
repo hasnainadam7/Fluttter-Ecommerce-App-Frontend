@@ -11,9 +11,9 @@ import '../texts/brand_title_text_with_verified_icon.dart';
 
 class CBrandCard extends StatelessWidget {
   const CBrandCard({
-    super.key, required this.showBorder, this.onTap,
+    super.key, required this.showBorder, this.onTap, required this.imgPath, required this.title,
   });
-
+  final String imgPath,title;
   final bool showBorder;
   final void Function()? onTap;
 
@@ -34,8 +34,8 @@ class CBrandCard extends StatelessWidget {
             /// --- Icon
             Flexible(
               child: CCircularImage(
-                imgPath: CImages.clothIcon,
-                isNetworkImage: false,
+                imgPath: imgPath,
+                isNetworkImage: true,
                 backgroundColor: Colors.transparent,
                 overlayColor:
                 isDark
@@ -55,8 +55,8 @@ class CBrandCard extends StatelessWidget {
                 crossAxisAlignment:
                 CrossAxisAlignment.start,
                 children: [
-                  const CBrandTitleWithVerifiedIcon(
-                    title: 'Nike',
+                   CBrandTitleWithVerifiedIcon(
+                    title: title,
                     brandTextSize: TextSizes.large,
                   ),
                   Text(

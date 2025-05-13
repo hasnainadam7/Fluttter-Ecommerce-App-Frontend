@@ -1,4 +1,3 @@
-
 import 'package:ecommerceapp/app/utils/helpers/helper_functions.dart';
 import 'package:flutter/material.dart';
 
@@ -12,9 +11,18 @@ import '../images/circular_images.dart';
 import '../texts/brand_title_text_with_verified_icon.dart';
 
 class CBrandedCard extends StatelessWidget {
-  const CBrandedCard({super.key, this.showBorder = true, this.onTap});
+  const CBrandedCard({
+    super.key,
+    this.showBorder = true,
+    this.onTap,
+    required this.title,
+    required  this.imgPath,
+  });
   final bool showBorder;
   final VoidCallback? onTap;
+  final String title;
+  final String imgPath;
+
   @override
   Widget build(BuildContext context) {
     bool dark = CHelperFunctions.isDarkMode(context);
@@ -29,9 +37,10 @@ class CBrandedCard extends StatelessWidget {
           children: [
             Flexible(
               child: CCircularImage(
-                imgPath: CImages.clothIcon,
+                isNetworkImage: true,
+                imgPath: imgPath,
                 overlayColor: !dark ? CColors.white : CColors.black,
-                backgroundColor:  dark ? CColors.white : CColors.black,
+                backgroundColor: dark ? CColors.white : CColors.black,
               ),
             ),
             Expanded(
@@ -42,7 +51,7 @@ class CBrandedCard extends StatelessWidget {
                 // spacing: CSizes.sm ,
                 children: [
                   CBrandTitleWithVerifiedIcon(
-                    title: "Nike",
+                    title: title,
                     brandTextSize: TextSizes.large,
                     textColor: dark ? CColors.white : CColors.black,
                   ),
@@ -50,8 +59,9 @@ class CBrandedCard extends StatelessWidget {
                     "256 Products",
 
                     overflow: TextOverflow.ellipsis,
-                    style: Theme.of(context).textTheme.labelMedium!.apply(color:
-                    dark ? CColors.white : CColors.black,),
+                    style: Theme.of(
+                      context,
+                    ).textTheme.labelMedium!.apply(color: dark ? CColors.white : CColors.black),
                   ),
                 ],
               ),

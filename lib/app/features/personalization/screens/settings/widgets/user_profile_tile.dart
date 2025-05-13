@@ -13,10 +13,24 @@ class UserProfileTile extends StatelessWidget {
   Widget build(BuildContext context) {
     final controller = Get.put(UserController());
     return ListTile(
-      leading: const CCircularImage(imgPath: CImages.user, height: 50, width: 50, padding: 0),
-      title: Text(
-        controller.user.value.fullName,
-        style: Theme.of(context).textTheme.headlineSmall!.apply(color: CColors.white),
+      leading: Obx(
+        () => CCircularImage(
+          isNetworkImage: controller.user.value.profilePicture != '',
+          imgPath:
+              controller.user.value.profilePicture != ''
+                  ? controller.user.value.profilePicture
+                  : CImages.userProfileImage2,
+          height: 50,
+          width: 50,
+          padding: 0,
+        ),
+      ),
+
+      title: Obx(
+        () => Text(
+          controller.user.value.fullName,
+          style: Theme.of(context).textTheme.headlineSmall!.apply(color: CColors.white),
+        ),
       ),
       subtitle: Text(
         controller.user.value.email,

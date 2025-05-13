@@ -1,3 +1,4 @@
+import 'package:ecommerceapp/app/features/shop/controllers/category_controller.dart';
 import 'package:ecommerceapp/app/utils/helpers/helper_functions.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -14,28 +15,45 @@ class AllBrandsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final controller = Get.put(CategoryController());
+    if (controller.allCategories.isEmpty) {
+      debugPrint("🚨 Empty imgPath passed to CCircularImage!");
+    }
     final bool dark = CHelperFunctions.isDarkMode(context);
     return Scaffold(
       appBar: const CAppBar(title: Text('Brand'), showBackArrow: true),
       body: SingleChildScrollView(
-
         child: Padding(
           padding: const EdgeInsets.all(CSizes.defaultSpace),
           child: Column(
             children: [
               /// Heading
-               CSectionHeading(title: 'Brands', showActionButton: false, dark: dark,),
+              CSectionHeading(title: 'Brands', showActionButton: false, dark: dark),
               const SizedBox(height: CSizes.spaceBtwItems),
 
               /// Brands
               CGridLayout(
-                itemCount: 10,
+                itemCount: controller.allCategories.length,
                 mainAxisExtent: 80,
                 padding: EdgeInsets.zero,
-                itemBuilder: (context, index) => CBrandCard(
-                  showBorder: true,
-                  onTap: () => Get.to(() => const BrandProducts()),
-                ), dark: dark,
+                itemBuilder:
+                    (context, index) {
+
+
+
+                       return CBrandCard(
+                      showBorder: true,
+                      onTap:
+                          () => Get.to(
+                            () => BrandProducts(
+                              imgPath: controller.allCategories[index].image,
+                              title: controller.allCategories[index].name,
+                            ),
+                          ),
+                      imgPath: controller.allCategories[index].image,
+                      title: controller.allCategories[index].name,
+                    );},
+                dark: dark,
               ),
             ],
           ),

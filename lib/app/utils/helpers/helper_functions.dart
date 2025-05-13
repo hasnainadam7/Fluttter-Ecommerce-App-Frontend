@@ -45,6 +45,7 @@ class CHelperFunctions {
     hideSnackBar();
     ScaffoldMessenger.of(Get.context!).showSnackBar(SnackBar(content: Text(message)));
   }
+
   static void hideSnackBar() {
     ScaffoldMessenger.of(Get.context!).hideCurrentSnackBar();
   }
@@ -56,7 +57,7 @@ class CHelperFunctions {
 
       ScaffoldMessenger.of(Get.context!).showSnackBar(
         SnackBar(
-          content:  Text('Copied!',style : TextStyle(color:!dark ? CColors.light : CColors.dark)),
+          content: Text('Copied!', style: TextStyle(color: !dark ? CColors.light : CColors.dark)),
           duration: const Duration(seconds: 1),
           backgroundColor: dark ? CColors.light : CColors.dark,
           behavior: SnackBarBehavior.floating,
@@ -82,8 +83,14 @@ class CHelperFunctions {
     );
   }
 
-  static void showLogoutDialog(VoidCallback fn) {
+  static void showConfirmationDialog({
+    required String title,
+    required String message,
+    required VoidCallback onConfirm,
+    bool isDestructive = false, // true = red confirm button (like delete)
+  }) {
     final isDark = isDarkMode(Get.context!);
+
     showDialog(
       context: Get.context!,
       builder: (_) {
@@ -93,25 +100,23 @@ class CHelperFunctions {
           child: Padding(
             padding: const EdgeInsets.all(20),
             child: Column(
-              spacing: 10,
               mainAxisSize: MainAxisSize.min,
               children: [
                 Text(
-                  "Logout",
+                  title,
                   style: Theme.of(
                     Get.context!,
                   ).textTheme.titleLarge!.copyWith(color: isDark ? CColors.white : CColors.black),
                 ),
-
+                const SizedBox(height: 10),
                 Text(
-                  "Are you sure you want to Logout?",
+                  message,
                   style: Theme.of(
                     Get.context!,
                   ).textTheme.bodyMedium!.copyWith(color: isDark ? CColors.light : CColors.dark),
                 ),
-                const SizedBox(height: 10),
+                const SizedBox(height: 20),
                 Row(
-                  spacing:20,
                   children: [
                     Expanded(
                       child: OutlinedButton(
@@ -119,8 +124,19 @@ class CHelperFunctions {
                         child: const Text("Cancel"),
                       ),
                     ),
-
-                    Expanded(child: ElevatedButton(onPressed: fn, child: const Text("Confirm"))),
+                    const SizedBox(width: 10),
+                    Expanded(
+                      child: ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor:
+                              isDestructive
+                                  ? Colors.red
+                                  : CColors.primaryColor,
+                        ),
+                        onPressed: onConfirm,
+                        child: const Text("Confirm"),
+                      ),
+                    ),
                   ],
                 ),
               ],

@@ -1,3 +1,4 @@
+import 'package:ecommerceapp/app/features/shop/controllers/category_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../../../../../common/widgets/cards/branded_card.dart';
@@ -16,12 +17,11 @@ class ShopFlexibleSpaceWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final controller = Get.put(CategoryController());
     return Padding(
-
-      padding: const EdgeInsets.all(CSizes.defaultSpace ),
+      padding: const EdgeInsets.all(CSizes.defaultSpace),
       // child: Container()
-child:
-      ListView(
+      child: ListView(
         shrinkWrap: true,
         physics: const NeverScrollableScrollPhysics(),
         children: [
@@ -40,17 +40,23 @@ child:
             padding: EdgeInsets.zero,
             title: CTexts.featureBrands,
             showActionButton: true,
-            onPressed: () {Get.to(()=>const AllBrandsScreen());},
+            onPressed: () {
+              Get.to(() => const AllBrandsScreen());
+            },
             dark: dark,
           ),
 
           CGridLayout(
             dark: dark,
-            itemCount: 4,
+            itemCount: controller.featuredCategories.length,
             padding: EdgeInsets.zero,
             mainAxisExtent: 80,
             itemBuilder: (_, index) {
-              return const CBrandedCard(showBorder: true);
+              return CBrandedCard(
+                showBorder: true,
+                title: controller.featuredCategories[index].name,
+                imgPath: controller.featuredCategories[index].image,
+              );
             },
           ),
         ],

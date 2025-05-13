@@ -30,33 +30,40 @@ class ChangeNameController extends GetxController {
   }
 
   Future<void> updateUserName() async {
-    try {
-      CFullScreenLoader.openLoadingDialog(
-        "We are updating your information...",
-        CImages.docerAnimation,
-      );
-      // Check Internet Connectivity
-      final bool isConnected = await NetworkManager.instance.isConnected();
-      if (!isConnected) {
-        CLoaders.warningSnackBar(
-          title: 'No Internet Connection',
-          message: "Please check your internet connection",
+    if (!updateUserNameFormKey.currentState!.validate()) {
+      return;
+    } else {
+      try {
+
+        CFullScreenLoader.openLoadingDialog(
+          "We are updating your information...",
+          CImages.docerAnimation,
         );
-        CFullScreenLoader.stopLoading();
-        return;
-      }
-      if( updateUserNameFormKey.currentState!.validate() ){
-        CFullScreenLoader.stopLoading();
-        return;
-      }
-      UserModel updatedUser = userController.user.value.copyWith(firstName:  firstName.text, lastName:   lastName.text);
-     await userRepository.updateUserRecord(updatedUser.toJson());
-      CFullScreenLoader.stopLoading();
+        // Check Internet Connectivity
+        final bool isConnected = await NetworkManager.instance.isConnected();
+        if (!isConnected) {
+          CLoaders.warningSnackBar(
+            title: 'No Internet Connection',
+            message: "Please check your internet connection",
+          );
+          CFullScreenLoader.stopLoading();
+          return;
+        }
 
-    } catch (e) {}
+        UserModel updatedUser = userController.user.value.copyWith(
+          firstName: firstName.text,
+          lastName: lastName.text,
+        );
+        await userRepository.updateUserRecord(updatedUser.toJson());
+        userController.user(updatedUser);
+        CFullScreenLoader.stopLoading();
+        Get.back();
+        CLoaders.successSnackBar(title:"Congratulations",message: "Your name has been updated");
+
+
+      } catch (e) {
+        print(e.toString());
+      }
+    }
   }
-
-  // Future<void> changeName(){
-  //   userRepository.
-  // }
 }

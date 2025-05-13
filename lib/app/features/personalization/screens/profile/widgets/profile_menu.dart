@@ -13,7 +13,8 @@ class ProfileMenu extends StatelessWidget {
     this.icon = Iconsax.arrow_right_34,
   });
 
-  final String title, value;
+  final String title;
+  final Widget value;
   final IconData? icon;
   final VoidCallback onPressed;
   @override
@@ -34,11 +35,7 @@ class ProfileMenu extends StatelessWidget {
             ),
             Expanded(
               flex:4,
-              child: Text(
-              value,
-                style: Theme.of(context).textTheme.bodyMedium,
-                overflow: TextOverflow.ellipsis,
-              ),
+              child: value,
             ),
             Expanded(child: Align(alignment: Alignment.topRight, child: Icon(icon, size: 18))),
           ],

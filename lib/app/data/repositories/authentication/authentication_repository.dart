@@ -9,6 +9,7 @@ import '../../../features/auth/screens/login/login_screen.dart';
 import '../../../features/auth/screens/onboarding/onboarding_screen.dart';
 import '../../../features/auth/screens/signup/verify_email_screen.dart';
 import '../../../navigation_menu.dart';
+import '../../../utils/helpers/cloud_helper_functions.dart';
 
 class AuthenticationRepository extends GetxController {
   static AuthenticationRepository get instance => Get.find();
@@ -16,7 +17,7 @@ class AuthenticationRepository extends GetxController {
   /// Variables
   final deviceStorage = GetStorage();
   final _auth = FirebaseAuth.instance;
-  User? get authUser=> _auth.currentUser;
+  User? get authUser => _auth.currentUser;
 
   GlobalKey<FormState> forgetFormKey = GlobalKey<FormState>();
 
@@ -37,7 +38,6 @@ class AuthenticationRepository extends GetxController {
         Get.offAll(() => NavigationMenu());
       } else {
         Get.offAll(() => VerifyEmailScreen(email: _auth.currentUser!.email ?? ""));
-
       }
     } else {
       // Local Storage
@@ -58,14 +58,15 @@ class AuthenticationRepository extends GetxController {
 
   /// [EmailAuthentication] - LOGIN
   Future<UserCredential> loginWithEmailAndPassword(String email, String password) async {
-    return firebaseAuthHandler(
+    return CCloudHelperFunctions.safeCall(
       () async => await _auth.signInWithEmailAndPassword(email: email, password: password),
     );
   }
 
+  // ignore: comment_references
   /// [EmailAuthentication] - REGISTER
   Future<UserCredential> registerWithEmailAndPassword(String email, String password) async {
-    return await firebaseAuthHandler(() async {
+    return await CCloudHelperFunctions.safeCall(() async {
       final userCredential = await _auth.createUserWithEmailAndPassword(
         email: email,
         password: password,
@@ -82,19 +83,20 @@ class AuthenticationRepository extends GetxController {
 
   /// [EmailVerification] - MAIL VERIFICATION
   Future<void> sendEmailVerification() async {
-    return firebaseAuthHandler(() async => await _auth.currentUser!.sendEmailVerification());
+    return CCloudHelperFunctions.safeCall(
+      () async => await _auth.currentUser!.sendEmailVerification(),
+    );
   }
-
 
   /// [ReAuthentication] - ReAuthenticate User
   /// [EmailAuthentication] - Forgot Password
-  Future<void> forgotPassword(String email) async => firebaseAuthHandler(() async {
+  Future<void> forgotPassword(String email) async => CCloudHelperFunctions.safeCall(() async {
     await _auth.sendPasswordResetEmail(email: email);
   });
 
   /// [GoogleAuthentication] - GOOGLE
   Future<UserCredential?> loginWithGoogle() async {
-    return await firebaseAuthHandler(() async {
+    return await CCloudHelperFunctions.safeCall(() async {
       try {
         final GoogleSignInAccount? userAccount = await GoogleSignIn().signIn();
 
@@ -119,29 +121,10 @@ class AuthenticationRepository extends GetxController {
 
   /// [FacebookAuthentication] - FACEBOOK
   /// [LogoutUser] - Valid for any authentication
-  Future<void> logout() async => firebaseAuthHandler(() async {
+  Future<void> logout() async => CCloudHelperFunctions.safeCall(() async {
     await _auth.signOut();
     Get.offAll(() => const LoginScreen());
   });
 
   /// DELETE USER - Remove user Auth & Firebase Account
-
-  ///Re Usable Function Higher Order Function
-  Future<T> firebaseAuthHandler<T>(Future<T> Function() authFunction) async {
-    try {
-      return await authFunction();
-    }
-    // on FirebaseAuthException catch (e) {
-    //   throw Exception(CFirebaseException(e.code).message);
-    // } on FirebaseException catch (e) {
-    //   throw Exception(CFirebaseException(e.code).message);
-    // } on FormatException catch (_) {
-    //   throw Exception(CFormatException());
-    // } on PlatformException catch (e) {
-    //   throw Exception(CPlatformException(e.code).message);
-    // }
-    catch (e) {
-      throw Exception('Something went wrong. Please try again');
-    }
-  }
 }

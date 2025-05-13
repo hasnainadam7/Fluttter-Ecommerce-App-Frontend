@@ -1,7 +1,10 @@
+import 'dart:io';
+
 import 'package:ecommerceapp/app/data/repositories/user/user_repository.dart';
 import 'package:ecommerceapp/app/utils/popups/loaders.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
+import 'package:img_picker/img_picker.dart';
 
 import '../models/user_model.dart';
 
@@ -15,6 +18,28 @@ class UserController extends GetxController {
     super.onInit();
 
     fetchUserRecord();
+  }
+
+  Future<void> uploadImg() async {
+    final ImagePicker picker = ImagePicker();
+
+    // Pick image from gallery
+    final XFile? pickedFile = await picker.pickImage(source: ImageSource.gallery);
+
+
+    if (pickedFile != null) {
+      final File imageFile = File(pickedFile.path);
+      user(await userRepository.uploadAndUpdateImg(imageFile));
+      CLoaders.successSnackBar(
+        title: "Upload Successful",
+        message: "Your profile image has been updated successfully.",
+      );
+    } else {
+      CLoaders.errorSnackBar(
+        title: "Upload Cancelled",
+        message: "No image was selected from the gallery.",
+      );
+    }
   }
 
   Future<void> fetchUserRecord() async {
@@ -48,7 +73,7 @@ class UserController extends GetxController {
         );
         await userRepository.saveUserRecord(user);
       }
-    } catch (e) {
+    } catch (_) {
       CLoaders.warningSnackBar(
         title: "Data not saved",
         message:

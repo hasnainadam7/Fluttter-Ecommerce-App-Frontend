@@ -25,7 +25,7 @@ class BrandShowCase extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          const CBrandedCard(showBorder: false),
+          const CBrandedCard(showBorder: false, title: '', imgPath: '',),
           Row(
             mainAxisSize: MainAxisSize.min,
             spacing: CSizes.sm,

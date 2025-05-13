@@ -24,7 +24,9 @@ class SubCategoriesScreen extends StatelessWidget {
           child: Column(
             children: [
               /// Banner
+
               const CRoundedImages(
+
                 imgUrl: CImages.promoBanner2,
                 applyImgRadius: true,
                 width: double.infinity,

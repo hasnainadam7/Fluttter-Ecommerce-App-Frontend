@@ -10,11 +10,11 @@ import 'brand_card.dart';
 class CBrandShowcase extends StatelessWidget {
   const CBrandShowcase({
     super.key,
-    required this.images,
+    required this.productImages, required this.imgPath, required this.title,
   });
 
-  final List<String> images;
-
+  final List<String> productImages;
+  final String imgPath,title;
   @override
   Widget build(BuildContext context) {
     return CRoundedContainer(
@@ -26,12 +26,12 @@ class CBrandShowcase extends StatelessWidget {
       child: Column(
         children: [
           /// Brand with Products Count
-          const CBrandCard(showBorder: false),
+           CBrandCard(showBorder: false, imgPath:imgPath, title:title,),
           const SizedBox(height: CSizes.spaceBtwItems),
 
           /// Brand Top 3 Product Images
           Row(
-            children: images
+            children: productImages
                 .map((image) => brandTopProductImageWidget(image, context))
                 .toList(),
           ),
