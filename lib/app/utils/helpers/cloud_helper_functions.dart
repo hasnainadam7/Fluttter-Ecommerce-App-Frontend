@@ -102,26 +102,20 @@ class CCloudHelperFunctions {
     try {
       return await fn();
     } on FirebaseException catch (e) {
-      print(e);
       throw (CFirebaseException(e.code).message);
     } on CFirebaseAuthException catch (e) {
-      print(e);
       throw (CFirebaseAuthException(e.code).message);
     } on CFirebaseException catch (e) {
-      print(e);
       throw (CFirebaseException(e.code).message);
     } on CExceptions catch (e) {
-      print(e);
       throw (CExceptions(e.message));
-    } on FormatException catch (e) {
-      print(e);
+    } on FormatException catch (_) {
       throw (const CFormatException());
     } on PlatformException catch (e) {
-      print(e);
       throw (CPlatformException(e.code).message);
     } catch (e) {
-      print(e);
-      throw 'Something went wrong. Please try again';
+
+      throw 'Something went wrong. Please try again $e';
     }
   }
 }

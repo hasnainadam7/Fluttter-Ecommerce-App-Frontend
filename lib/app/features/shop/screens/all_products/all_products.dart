@@ -6,18 +6,18 @@ import '../../../../common/widgets/product/sortable/sortable_products.dart';
 import '../../../../utils/constants/sizes.dart';
 
 class AllProducts extends StatelessWidget {
-  const AllProducts({super.key});
-
+  const AllProducts({super.key, required this.id});
+final String id;
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
+    return  Scaffold(
       appBar:
           CAppBar(title: Text('Popular Products'), showBackArrow: true),
       body: SingleChildScrollView(
         child: SingleChildScrollView(
           child: Padding(
             padding: EdgeInsets.all(CSizes.defaultSpace),
-            child: CSortableProducts(),
+            child: CSortableProducts(id:id),
           ),
         ),
       ),

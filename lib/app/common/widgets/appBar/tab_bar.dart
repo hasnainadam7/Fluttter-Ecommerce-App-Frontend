@@ -7,7 +7,7 @@ class CTabBar extends StatelessWidget implements PreferredSizeWidget {
   const CTabBar({super.key, required this.dark, required this.tabs});
 
   final bool dark;
-  final List<String> tabs;
+  final List<Map<String,String>> tabs;
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +23,7 @@ class CTabBar extends StatelessWidget implements PreferredSizeWidget {
         indicatorColor: CColors.primaryColor,
         labelColor: dark ? CColors.white : CColors.black,
         unselectedLabelColor: CColors.darkGrey,
-        tabs: tabs.map((tab) => Tab(child: Text(tab))).toList(),
+        tabs: tabs.map((tab) => Tab(child: Text(tab['name'] ??""))).toList(),
       ),
     );
   }

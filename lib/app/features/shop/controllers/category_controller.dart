@@ -15,21 +15,19 @@ class CategoryController extends GetxController {
     super.onInit();
   }
 
-  /// Function to save user data to FireStore.
+  /// Function to save category data to FireStore.
   Future<void> fetchCategories() async {
     try {
       //loader
       isLoading.value = true;
 
       allCategories(await _categoryRepository.getAllCategories());
-print(allCategories.toString());
       // Filter featured ones
       featuredCategories.assignAll(allCategories.where((category) => category.isFeatured).toList());
 
       isLoading.value = false;
     } catch (e) {
       CLoaders.errorSnackBar(title: "Oh Snaps", message: e.toString());
-
     } finally {
       isLoading.value = false;
     }

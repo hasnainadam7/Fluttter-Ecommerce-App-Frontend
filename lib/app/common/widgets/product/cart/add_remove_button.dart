@@ -4,7 +4,7 @@ import 'package:iconsax/iconsax.dart';
 import '../../../../utils/constants/colors.dart';
 import '../../../../utils/constants/sizes.dart';
 import '../../../../utils/helpers/helper_functions.dart';
-import '../../cards/product_card_vertical/circular_icon.dart';
+import '../../cards/product_card/circular_icon.dart';
 
 class CProductQuantityWithAddRemoveButton extends StatelessWidget {
   const CProductQuantityWithAddRemoveButton({super.key});

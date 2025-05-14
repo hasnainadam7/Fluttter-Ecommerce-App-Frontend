@@ -5,15 +5,16 @@ import 'package:get/get.dart';
 import '../../../../../../common/widgets/custom_shapes/containers/circular_container.dart';
 import '../../../../../../utils/constants/colors.dart';
 import '../../../../../../utils/constants/sizes.dart';
+import '../../../../controllers/banner_controller.dart';
 import '../../../../controllers/home_controller.dart';
 
 class CCarouselSliderDots extends StatelessWidget {
   const CCarouselSliderDots({
     super.key,
-    required this.controller, required this.dark,
+ required this.dark,
   });
   final bool dark;
-  final HomeController controller;
+
 
   @override
   Widget build(BuildContext context) {
@@ -27,7 +28,7 @@ class CCarouselSliderDots extends StatelessWidget {
             width: 20,
             height: 4,
             backgroundColor:
-            r == controller.carouselCurrentIndex.value
+            r ==   BannerController.instance.carouselCurrentIndex.value
                 ? CColors.primaryColor
                 : CColors.grey,
           ),

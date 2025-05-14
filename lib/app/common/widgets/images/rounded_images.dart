@@ -1,7 +1,10 @@
+import 'package:cached_network_image/cached_network_image.dart';
+import 'package:flutter/material.dart';
+
 import '../../../utils/constants/colors.dart';
-import 'package:flutter/cupertino.dart';
 
 import '../../../utils/constants/sizes.dart';
+import '../shimmer_effect/shimmer_effect.dart';
 
 class CRoundedImages extends StatelessWidget {
   const CRoundedImages({
@@ -43,7 +46,22 @@ class CRoundedImages extends StatelessWidget {
         ),
         child: ClipRRect(
           borderRadius: applyImgRadius ? BorderRadius.circular(borderRadius!) : BorderRadius.zero,
-          child: !isNetworkImage ? Image.asset(imgUrl, fit: fit) : Image.network(imgUrl, fit: fit),
+          child:
+              !isNetworkImage
+                  ? Image.asset(imgUrl, fit: fit)
+                  : CachedNetworkImage(
+                    progressIndicatorBuilder:
+                        (context, url, downloadProgress) => Container(
+                          padding: padding,
+                          child: CShimmerEffect(
+                            color: Colors.blue,
+                            width: double.infinity,
+                            height: 300,
+                          ),
+                        ),
+                    imageUrl: imgUrl,
+                    fit: fit,
+                  ),
         ),
       ),
     );

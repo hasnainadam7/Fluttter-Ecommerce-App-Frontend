@@ -36,23 +36,21 @@ class AllBrandsScreen extends StatelessWidget {
                 itemCount: controller.allCategories.length,
                 mainAxisExtent: 80,
                 padding: EdgeInsets.zero,
-                itemBuilder:
-                    (context, index) {
-
-
-
-                       return CBrandCard(
-                      showBorder: true,
-                      onTap:
-                          () => Get.to(
-                            () => BrandProducts(
-                              imgPath: controller.allCategories[index].image,
-                              title: controller.allCategories[index].name,
-                            ),
+                itemBuilder: (context, index) {
+                  return CBrandCard(
+                    showBorder: true,
+                    onTap:
+                        () => Get.to(
+                          () => BrandProducts(
+                            imgPath: controller.allCategories[index].image,
+                            title: controller.allCategories[index].name,
+                            id: (controller.allCategories[index].id),
                           ),
-                      imgPath: controller.allCategories[index].image,
-                      title: controller.allCategories[index].name,
-                    );},
+                        ),
+                    imgPath: controller.allCategories[index].image,
+                    title: controller.allCategories[index].name,
+                  );
+                },
                 dark: dark,
               ),
             ],

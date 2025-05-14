@@ -1,19 +1,26 @@
+import 'package:ecommerceapp/app/utils/constants/sizes.dart';
 import 'package:ecommerceapp/app/utils/helpers/helper_functions.dart';
 import 'package:flutter/material.dart';
 import 'package:iconsax/iconsax.dart';
 
-import '../../../../utils/constants/sizes.dart';
-import '../../cards/product_card_vertical/product_card_vertical.dart';
+import '../../../../features/shop/controllers/product_controller.dart';
+
+import '../../cards/product_card/vertical/product_card_vertical.dart';
 import '../../layout/grid_layout.dart';
 
 class CSortableProducts extends StatelessWidget {
-  const CSortableProducts({super.key});
-
+  const CSortableProducts({super.key, required this.id});
+  final String id;
   @override
   Widget build(BuildContext context) {
     final bool dark = CHelperFunctions.isDarkMode(context);
+
+
+    final filteredProducts =
+        ProductController.instance.allProducts.where((product) => product.brand?.id == id).toList();
+
     return Column(
-      spacing: CSizes.spacesBtwSections,
+      spacing: CSizes.defaultSpace,
       children: [
         /// Dropdown
         DropdownButtonFormField(
@@ -30,11 +37,21 @@ class CSortableProducts extends StatelessWidget {
           decoration: const InputDecoration(prefixIcon: Icon(Iconsax.sort)),
         ),
 
-        /// Products
+        /// Filtered Products Grid
         CGridLayout(
           padding: EdgeInsets.zero,
-          itemCount: 8,
-          itemBuilder: (_, index) => ProductCardVertical(dark: dark),
+          itemCount: filteredProducts.length,
+          itemBuilder: (_, index) {
+            final product = filteredProducts[index];
+            return ProductCardVertical(
+              dark: dark,
+              imgPath: product.thumbnail,
+              productTitle: product.description,
+              categoryTitle: product.brand?.name ?? '',
+              price: product.price,
+              discountedPrice: product.salePrice,
+            );
+          },
           dark: dark,
         ),
       ],

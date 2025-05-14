@@ -8,14 +8,14 @@ import '../../../../common/widgets/product/sortable/sortable_products.dart';
 import '../../../../utils/constants/sizes.dart';
 import '../../controllers/category_controller.dart';
 
-
 class BrandProducts extends StatelessWidget {
-  const BrandProducts({super.key, required this.title, required this.imgPath});
-  final String imgPath,title;
+  const BrandProducts({super.key, required this.title, required this.imgPath, required this.id});
+  final String imgPath, title;
+  final String id;
+
   @override
   Widget build(BuildContext context) {
-
-    return  Scaffold(
+    return Scaffold(
       appBar: CAppBar(title: Text(title)),
       body: SingleChildScrollView(
         child: Padding(
@@ -23,10 +23,10 @@ class BrandProducts extends StatelessWidget {
           child: Column(
             children: [
               /// Brand Detail
-              CBrandCard(showBorder: true,  imgPath: imgPath, title:title,),
-              SizedBox(height:CSizes.spacesBtwSections),
+              CBrandCard(showBorder: true, imgPath: imgPath, title: title),
+              SizedBox(height: CSizes.spacesBtwSections),
 
-              CSortableProducts(),
+              CSortableProducts(id: id,),
             ],
           ),
         ),

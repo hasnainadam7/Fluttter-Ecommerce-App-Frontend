@@ -3,13 +3,15 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
 import '../../../../common/widgets/appBar/app_bar.dart';
-import '../../../../common/widgets/cards/product_card_vertical/circular_icon.dart';
-import '../../../../common/widgets/cards/product_card_vertical/product_card_vertical.dart';
+
+import '../../../../common/widgets/cards/product_card/circular_icon.dart';
+import '../../../../common/widgets/cards/product_card/vertical/product_card_vertical.dart';
 import '../../../../common/widgets/layout/grid_layout.dart';
 import '../../../../navigation_menu.dart';
 import '../../../../utils/constants/colors.dart';
 import '../../../../utils/constants/sizes.dart';
 import '../../../../utils/helpers/helper_functions.dart';
+import '../../controllers/product_controller.dart';
 
 class FavouriteScreen extends StatelessWidget {
   const FavouriteScreen({super.key});
@@ -36,7 +38,13 @@ class FavouriteScreen extends StatelessWidget {
             dark: dark,
             itemCount: 7,
             itemBuilder: (_, index) {
-              return ProductCardVertical(dark: dark);
+              return ProductCardVertical(dark: dark,   imgPath: ProductController.instance.allProducts[index].thumbnail,
+                productTitle: ProductController.instance.allProducts[index].description,
+                categoryTitle:
+                ProductController.instance.allProducts[index].brand!.name,
+                price: ProductController.instance.allProducts[index].price,
+                discountedPrice:
+                ProductController.instance.allProducts[index].salePrice,);
             },
           ),
         ),

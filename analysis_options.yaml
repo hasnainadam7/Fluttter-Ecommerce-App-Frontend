@@ -10,7 +10,7 @@
 analyzer:
   errors:
     unrelated_type_equality_checks: ignore
-    avoid_print: ignore
+#    avoid_print: ignore
     only_throw_errors: ignore
     comment_references: ignore
 include: package:flutter_lints/flutter.yaml

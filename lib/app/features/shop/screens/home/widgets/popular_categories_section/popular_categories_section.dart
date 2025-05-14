@@ -15,7 +15,7 @@ class PopularCategoriesSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final CategoryController controller  = Get.put(CategoryController());
+    final CategoryController controller = Get.put(CategoryController());
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       spacing: CSizes.spaceBtwItems,
@@ -32,8 +32,8 @@ class PopularCategoriesSection extends StatelessWidget {
           child: Obx(() {
             if (controller.isLoading.value) {
               return Padding(
-                padding: const EdgeInsets.only(bottom :30),
-                child: CShimmerEffect(width: double.infinity, height: 70,),
+                padding: const EdgeInsets.only(bottom: 30),
+                child: CShimmerEffect(width: double.infinity, height: 70),
               );
             }
 
@@ -45,8 +45,12 @@ class PopularCategoriesSection extends StatelessWidget {
                 itemCount: controller.allCategories.length,
                 itemBuilder: (_, index) {
                   return VerticalImagesAndText(
+                    title: controller.allCategories[index].name,
                     images: controller.allCategories[index].image,
-                    onTap: () => Get.to(() => const SubCategoriesScreen()),
+                    onTap:
+                        () => Get.to(
+                          () => SubCategoriesScreen(categoryModel: controller.allCategories[index]),
+                        ),
                   );
                 },
               ),

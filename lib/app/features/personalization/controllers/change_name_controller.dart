@@ -62,7 +62,6 @@ class ChangeNameController extends GetxController {
 
 
       } catch (e) {
-        print(e.toString());
       }
     }
   }

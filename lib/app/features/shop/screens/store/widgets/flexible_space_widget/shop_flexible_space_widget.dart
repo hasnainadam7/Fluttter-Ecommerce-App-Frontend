@@ -1,3 +1,4 @@
+import 'package:ecommerceapp/app/common/widgets/shimmer_effect/shimmer_effect.dart';
 import 'package:ecommerceapp/app/features/shop/controllers/category_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -20,7 +21,7 @@ class ShopFlexibleSpaceWidget extends StatelessWidget {
     final controller = Get.put(CategoryController());
     return Padding(
       padding: const EdgeInsets.all(CSizes.defaultSpace),
-      // child: Container()
+
       child: ListView(
         shrinkWrap: true,
         physics: const NeverScrollableScrollPhysics(),
@@ -46,19 +47,25 @@ class ShopFlexibleSpaceWidget extends StatelessWidget {
             dark: dark,
           ),
 
-          CGridLayout(
-            dark: dark,
-            itemCount: controller.featuredCategories.length,
-            padding: EdgeInsets.zero,
-            mainAxisExtent: 80,
-            itemBuilder: (_, index) {
-              return CBrandedCard(
-                showBorder: true,
-                title: controller.featuredCategories[index].name,
-                imgPath: controller.featuredCategories[index].image,
+          Obx(() {
+            if (controller.isLoading.value) {
+              return CShimmerEffect(width: 120, height: 120);
+            } else {
+              return CGridLayout(
+                dark: dark,
+                itemCount: controller.featuredCategories.length,
+                padding: EdgeInsets.zero,
+                mainAxisExtent: 80,
+                itemBuilder: (_, index) {
+                  return CBrandedCard(
+                    showBorder: true,
+                    title: controller.featuredCategories[index].name,
+                    imgPath: controller.featuredCategories[index].image,
+                  );
+                },
               );
-            },
-          ),
+            }
+          }),
         ],
       ),
     );

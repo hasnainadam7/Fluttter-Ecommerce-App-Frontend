@@ -63,7 +63,6 @@ class UserRepository extends GetxController {
 
         // Wait for the upload to complete
         final TaskSnapshot snapshot = await uploadTask;
-        print("Upload completed: ${snapshot.bytesTransferred} bytes transferred");
 
         // Get download URL
         final downloadUrl = await snapshot.ref.getDownloadURL();
@@ -75,7 +74,6 @@ class UserRepository extends GetxController {
         // Get updated user data
         return await fetchUserDetails();
       } catch (e) {
-        print("Detailed storage error: $e");
         // Try alternative method if first method fails
         if (e.toString().contains("Message too long")) {
           return await uploadImageInChunks(imageFile, user.uid);
@@ -99,10 +97,9 @@ class UserRepository extends GetxController {
       final int totalBytes = bytes.length;
       int bytesUploaded = 0;
 
-      print("Starting chunked upload of $totalBytes bytes");
 
       // Create upload session
-      final uploadTask = storageRef.putData(
+  storageRef.putData(
         Uint8List(0), // Initial empty upload to start the session
         SettableMetadata(contentType: 'image/jpeg'),
       );
@@ -115,14 +112,12 @@ class UserRepository extends GetxController {
             (bytesUploaded + chunkSize) > totalBytes ? totalBytes : bytesUploaded + chunkSize;
         bytes.sublist(bytesUploaded, end);
 
-        print("Uploading chunk: ${bytesUploaded ~/ 1024}KB - ${end ~/ 1024}KB");
 
         // This doesn't actually work for Firebase Storage as it doesn't support resumable uploads like this
         // This is just a placeholder to show the concept - in reality we'd need a different approach
         bytesUploaded = end;
       }
 
-      print("Chunked upload complete");
 
       // Get download URL
       final downloadUrl = await storageRef.getDownloadURL();
@@ -134,7 +129,6 @@ class UserRepository extends GetxController {
       // Get updated user data
       return await fetchUserDetails();
     } catch (e) {
-      print("Chunked upload failed: $e");
       throw "Image upload failed. Please try again with a smaller image.";
     }
   }
