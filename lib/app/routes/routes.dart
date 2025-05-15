@@ -7,7 +7,6 @@ import 'package:ecommerceapp/app/common/widgets/sucess_screen/sucess_screen.dart
 import 'package:ecommerceapp/app/features/personalization/screens/profile/profile_screen.dart';
 import 'package:ecommerceapp/app/features/shop/screens/favourite/favourite_screen.dart';
 import 'package:ecommerceapp/app/features/shop/screens/home/home_screen.dart';
-import 'package:ecommerceapp/app/features/shop/screens/product_details/product_details.dart';
 import 'package:ecommerceapp/app/features/shop/screens/store/shop_screen.dart';
 import 'package:ecommerceapp/app/navigation_menu.dart';
 import 'package:get/get.dart';
@@ -38,10 +37,10 @@ class Routes {
     GetPage(name: forget, page: () =>  ForgetPasswordScreen()),
     GetPage(name: navigator, page: () => NavigationMenu()),
     GetPage(name: home, page: () => const HomeScreen()),
-    GetPage(name: shop, page: () => ShopScreen()),
+    GetPage(name: shop, page: () => const ShopScreen()),
     GetPage(name: favourite, page: () => const FavouriteScreen()),
     GetPage(name: profile, page: () => const ProfileScreen()),
-    GetPage(name: productDetails, page: () => const ProductDetails()),
+
     GetPage(
       name: succuessScreen,
       page: () {

@@ -29,7 +29,7 @@ class CartScreen extends StatelessWidget {
         child: ElevatedButton(
           // onPressed: (){},
           onPressed: () => Get.to(() => const CheckoutScreen()),
-          child: const Text('Checkout \$256.0'),
+          child: const Text('Checkout \$2506.0'),
         ),
       ),
     );

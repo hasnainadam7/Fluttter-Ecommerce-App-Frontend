@@ -1,6 +1,7 @@
 import 'package:ecommerceapp/app/common/widgets/texts/product_price_text.dart';
 import 'package:ecommerceapp/app/common/widgets/texts/product_title_text.dart';
 import 'package:ecommerceapp/app/common/widgets/texts/section_heading.dart';
+import 'package:ecommerceapp/app/features/shop/models/product_model.dart';
 import 'package:ecommerceapp/app/utils/constants/colors.dart';
 import 'package:ecommerceapp/app/utils/constants/sizes.dart';
 import 'package:ecommerceapp/app/utils/helpers/helper_functions.dart';
@@ -10,8 +11,8 @@ import '../../../../../common/widgets/chips/choice_chip.dart';
 import '../../../../../common/widgets/custom_shapes/containers/rounded_container.dart';
 
 class ProductAttributes extends StatelessWidget {
-  const ProductAttributes({super.key});
-
+  const ProductAttributes({super.key, required this.product});
+  final ProductModel product;
   @override
   Widget build(BuildContext context) {
     bool dark = CHelperFunctions.isDarkMode(context);
@@ -45,9 +46,7 @@ class ProductAttributes extends StatelessWidget {
                             children: [
                               Text(
                                 "\$25",
-                                style: Theme.of(
-                                  context,
-                                ).textTheme.titleSmall!.apply(
+                                style: Theme.of(context).textTheme.titleSmall!.apply(
                                   decoration: TextDecoration.lineThrough,
                                 ),
                               ),
@@ -60,10 +59,7 @@ class ProductAttributes extends StatelessWidget {
                         spacing: CSizes.spaceBtwItems,
                         children: [
                           const CProductTitleText(title: "Stock :", smallSize: true),
-                          Text(
-                            "In Stock",
-                            style: Theme.of(context).textTheme.titleMedium,
-                          ),
+                          Text("In Stock", style: Theme.of(context).textTheme.titleMedium),
                         ],
                       ),
                     ],
@@ -73,45 +69,86 @@ class ProductAttributes extends StatelessWidget {
               const CProductTitleText(
                 smallSize: true,
                 maxLines: 4,
-                title:
-                    "This is description of the product and it can go up to max 4 lines ",
+                title: "This is description of the product and it can go up to max 4 lines ",
               ),
             ],
           ),
         ),
         Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          // spacing: CSizes.spaceBtwItems/2,
+          spacing: 10,
           children: [
-            CSectionHeading(title: "Colors", dark: dark),
-            Wrap(
-              spacing: 8,
-              children: [
-                CChoiceChip(selected: true, text: "Red", onSelected: (v) {}),
-                CChoiceChip(selected: false, text: "Blue", onSelected: (v) {}),
-                CChoiceChip(
-                  selected: false,
-                  text: "Yellow",
-                  onSelected: (v) {},
-                ),
-              ],
+            SectionColors(
+              dark: dark,
+              title: product.productAttributes[0].name,
+              list: product.productAttributes[0].values,
+            ),
+            SectionSizes(
+              dark: dark,
+              title: product.productAttributes[1].name,
+              list: product.productAttributes[1].values,
             ),
           ],
         ),
-        Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          // spacing: CSizes.spaceBtwItems / 2,
-          children: [
-            CSectionHeading(title: "Size", dark: dark),
-            Wrap(
-              spacing: 8,
-              children: [
-                CChoiceChip(selected: false, text: "EU 34", onSelected: (v) {}),
-                CChoiceChip(selected: true, text: "EU 35", onSelected: (v) {}),
-                CChoiceChip(selected: false, text: "EU 36", onSelected: (v) {}),
-              ],
-            ),
-          ],
+      ],
+    );
+  }
+}
+
+class SectionSizes extends StatelessWidget {
+  const SectionSizes({super.key, required this.dark, required this.title, required this.list});
+  final String title;
+  final bool dark;
+  final List<String> list;
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      spacing: CSizes.spaceBtwItems / 2,
+      children: [
+        CSectionHeading(title: title, dark: dark, showActionButton: false),
+        Wrap(
+          spacing: 8,
+          children:
+              list.map((r) {
+                return CChoiceChip(selected: false, text: r, onSelected: (v) {});
+              }).toList(),
+          // [
+          //  ,
+          //   CChoiceChip(selected: true, text: "EU 35", onSelected: (v) {}),
+          //   CChoiceChip(selected: false, text: "EU 36", onSelected: (v) {}),
+          // ],
+        ),
+      ],
+    );
+  }
+}
+
+class SectionColors extends StatelessWidget {
+  const SectionColors({super.key, required this.dark, required this.title, required this.list});
+  final String title;
+  final bool dark;
+  final List<String> list;
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      spacing: CSizes.spaceBtwItems / 2,
+      children: [
+        CSectionHeading(title: title, dark: dark, showActionButton: false),
+
+        Wrap(
+          spacing: 8,
+          children:
+              list.map((r) {
+print(r);
+                return CChoiceChip(selected: false, text: r, onSelected: (v) {});
+              }).toList(),
+          // [
+          //  ,
+          //   CChoiceChip(selected: true, text: "EU 35", onSelected: (v) {}),
+          //   CChoiceChip(selected: false, text: "EU 36", onSelected: (v) {}),
+          // ],
         ),
       ],
     );

@@ -6,7 +6,6 @@ import '../../../../common/widgets/appBar/app_bar.dart';
 import '../../../../common/widgets/appBar/tab_bar.dart';
 import '../../../../utils/helpers/helper_functions.dart';
 import '../../../auth/screens/app_bar/counter_icon.dart';
-import '../../controllers/product_controller.dart';
 import 'widgets/body/tab_bar_view.dart';
 import 'widgets/flexible_space_widget/shop_flexible_space_widget.dart';
 
@@ -31,7 +30,7 @@ class ShopScreen extends StatelessWidget {
             actions: [CounterIcon(dark: dark)],
           ),
           body: CategoryController.instance.isLoading.value
-              ? CShimmerEffect(width: double.infinity, height: Get.height)
+              ? const CShimmerEffect(width: double.infinity)
               : NestedScrollView(
             headerSliverBuilder: (_, innerBoxIsScrolled) {
               return [
@@ -42,7 +41,7 @@ class ShopScreen extends StatelessWidget {
                   expandedHeight: Get.height * 0.42,
                   flexibleSpace: ShopFlexibleSpaceWidget(dark: dark),
                   bottom: PreferredSize(
-                    preferredSize: Size.fromHeight(kToolbarHeight),
+                    preferredSize: const Size.fromHeight(kToolbarHeight),
                     child: CTabBar(dark: dark, tabs: tabs),
                   ),
                 ),

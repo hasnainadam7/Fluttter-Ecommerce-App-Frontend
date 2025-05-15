@@ -2,11 +2,21 @@ import 'package:ecommerceapp/app/data/repositories/shop/banner_repository.dart';
 import 'package:ecommerceapp/app/features/shop/models/promo_banner_model.dart';
 import 'package:get/get.dart';
 
-import '../../../data/repositories/shop/category_repository.dart';
 import '../../../utils/popups/loaders.dart';
 
 class BannerController extends GetxController {
-  static BannerController get instance => Get.find();
+  static BannerController get instance {
+    if (Get.isRegistered<BannerController>()) {
+      return Get.find<BannerController>();
+    } else {
+      try {
+        return Get.put(BannerController());
+      } catch (e) {
+        // fail silently or return null
+        rethrow; // ya return null agar null-safe karna hai
+      }
+    }
+  }
   final RxInt carouselCurrentIndex = 0.obs;
   final RxBool isLoading = false.obs;
   final BannerRepository _bannerRepository = Get.put(BannerRepository());

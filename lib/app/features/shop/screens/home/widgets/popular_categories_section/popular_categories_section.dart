@@ -31,8 +31,8 @@ class PopularCategoriesSection extends StatelessWidget {
           padding: const EdgeInsets.symmetric(horizontal: CSizes.defaultSpace),
           child: Obx(() {
             if (controller.isLoading.value) {
-              return Padding(
-                padding: const EdgeInsets.only(bottom: 30),
+              return const Padding(
+                padding: EdgeInsets.only(bottom: 30),
                 child: CShimmerEffect(width: double.infinity, height: 70),
               );
             }

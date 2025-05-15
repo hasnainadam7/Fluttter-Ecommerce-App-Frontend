@@ -14,7 +14,7 @@ class CCartItems extends StatelessWidget {
   Widget build(BuildContext context) {
     return ListView.separated(
       shrinkWrap: true,
-      separatorBuilder: (_, __) => const SizedBox(height: CSizes.spacesBtwSections),
+      separatorBuilder: (_, __) => const SizedBox(height: CSizes.spaceBtwSections),
       itemCount: 5,
       itemBuilder:
           (_, index) => Column(

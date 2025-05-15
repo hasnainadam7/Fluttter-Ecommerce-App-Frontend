@@ -1,4 +1,3 @@
-import 'package:ecommerceapp/app/features/shop/controllers/category_controller.dart';
 import 'package:ecommerceapp/app/features/shop/models/category_model.dart';
 import 'package:ecommerceapp/app/features/shop/screens/all_products/all_products.dart';
 import 'package:ecommerceapp/app/utils/helpers/helper_functions.dart';
@@ -12,7 +11,8 @@ import '../../../../common/widgets/images/rounded_images.dart';
 import '../../../../common/widgets/texts/section_heading.dart';
 import '../../../../utils/constants/images_string.dart';
 import '../../../../utils/constants/sizes.dart';
-import '../../controllers/product_controller.dart';
+import '../../controllers/product_controllers/product_controller.dart';
+
 class SubCategoriesScreen extends StatelessWidget {
   const SubCategoriesScreen({super.key, required this.categoryModel});
   final CategoryModel categoryModel;
@@ -22,9 +22,10 @@ class SubCategoriesScreen extends StatelessWidget {
     final bool dark = CHelperFunctions.isDarkMode(context);
 
     // Filtered list of products based on categoryModel.id matching brand.id
-    final filteredProducts = ProductController.instance.allProducts
-        .where((product) => product.brand?.id == categoryModel.id)
-        .toList();
+    final filteredProducts =
+        ProductController.instance.allProducts
+            .where((product) => product.brand?.id == categoryModel.id)
+            .toList();
 
     return Scaffold(
       appBar: CAppBar(title: Text(categoryModel.name), showBackArrow: true),
@@ -39,7 +40,7 @@ class SubCategoriesScreen extends StatelessWidget {
                 applyImgRadius: true,
                 width: double.infinity,
               ),
-              const SizedBox(height: CSizes.spacesBtwSections),
+              const SizedBox(height: CSizes.spaceBtwSections),
 
               /// Sub-Categories
               Column(
@@ -48,7 +49,7 @@ class SubCategoriesScreen extends StatelessWidget {
                   CSectionHeading(
                     title: categoryModel.name,
                     onPressed: () {
-                      Get.to(() =>  AllProducts(id:( categoryModel.id)));
+                      Get.to(() => AllProducts(id: (categoryModel.id)));
                     },
                     dark: dark,
                   ),
@@ -57,25 +58,20 @@ class SubCategoriesScreen extends StatelessWidget {
                   /// Product List
                   filteredProducts.isNotEmpty
                       ? SizedBox(
-                    height: 120,
-                    child: ListView.separated(
-                      itemCount: filteredProducts.length,
-                      scrollDirection: Axis.horizontal,
-                      separatorBuilder: (context, index) =>
-                          SizedBox(width: CSizes.spaceBtwItems),
-                      itemBuilder: (context, index) {
-                        final product = filteredProducts[index];
-                        return CProductCardHorizontal(
-                          imgPath: product.thumbnail,
-                          productTitle: product.description,
-                          categoryTitle: product.brand!.name,
-                          price: product.price,
-                          discountedPrice: product.salePrice,
-                        );
-                      },
-                    ),
-                  )
-                      : const Text("Koi product nahi mila is category ke liye 😢"),
+                        height: 120,
+                        child: ListView.separated(
+                          itemCount: filteredProducts.length,
+                          shrinkWrap: true,
+                          scrollDirection: Axis.horizontal,
+                          separatorBuilder:
+                              (context, index) => const SizedBox(width: CSizes.spaceBtwItems),
+                          itemBuilder: (context, index) {
+                            final product = filteredProducts[index];
+                            return CProductCardHorizontal(productModel: product);
+                          },
+                        ),
+                      )
+                      : const Text("No Products are here to show 😢"),
                 ],
               ),
             ],
@@ -85,4 +81,3 @@ class SubCategoriesScreen extends StatelessWidget {
     );
   }
 }
-

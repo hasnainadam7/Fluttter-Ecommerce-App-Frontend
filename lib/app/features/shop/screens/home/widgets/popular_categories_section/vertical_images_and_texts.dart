@@ -38,7 +38,7 @@ class VerticalImagesAndText extends StatelessWidget {
               child: Center(
                 child: CachedNetworkImage(
                   progressIndicatorBuilder:
-                      (context, url, downloadProgress) => CShimmerEffect(width: 56, height: 56),
+                      (context, url, downloadProgress) => const CShimmerEffect(width: 56, height: 56),
                   imageUrl: images,
                   fit: BoxFit.cover,
                   color: backgroundColor,

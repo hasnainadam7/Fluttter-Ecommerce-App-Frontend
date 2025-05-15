@@ -20,7 +20,7 @@ class ForgetPasswordScreen extends StatelessWidget {
         padding: const EdgeInsets.all(CSizes.defaultSpace),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
-          spacing: CSizes.spacesBtwSections,
+          spacing: CSizes.spaceBtwSections,
           children: [
             Column(
               spacing: CSizes.spaceBtwItems,
@@ -30,7 +30,7 @@ class ForgetPasswordScreen extends StatelessWidget {
                 Text(CTexts.forgetPasswordSubTitle, style: Theme.of(context).textTheme.labelMedium),
               ],
             ),
-            const SizedBox(height: CSizes.spacesBtwSections),
+            const SizedBox(height: CSizes.spaceBtwSections),
             Form(
               key: controller.forgetFormKey,
               child: TextFormField(

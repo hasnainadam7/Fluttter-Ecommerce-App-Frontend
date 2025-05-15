@@ -4,14 +4,29 @@ import 'package:ecommerceapp/app/utils/popups/loaders.dart';
 import 'package:get/get.dart';
 
 class CategoryController extends GetxController {
-  static CategoryController get instance => Get.find();
+  // static CategoryController get instance => Get.find();
+
+
+  static CategoryController get instance {
+    if (Get.isRegistered<CategoryController>()) {
+      return Get.find<CategoryController>();
+    } else {
+      try {
+        return Get.put(CategoryController());
+      } catch (e) {
+        // fail silently or return null
+        rethrow; // ya return null agar null-safe karna hai
+      }
+    }
+  }
+
   final RxBool isLoading = false.obs;
   final CategoryRepository _categoryRepository = Get.put(CategoryRepository());
   final RxList<CategoryModel> allCategories = <CategoryModel>[].obs;
   final RxList<CategoryModel> featuredCategories = <CategoryModel>[].obs;
   @override
-  void onInit() {
-    fetchCategories();
+  void onInit()async {
+    await fetchCategories();
     super.onInit();
   }
 
@@ -20,9 +35,10 @@ class CategoryController extends GetxController {
     try {
       //loader
       isLoading.value = true;
-
-      allCategories(await _categoryRepository.getAllCategories());
+  final categories =await _categoryRepository.getAllCategories();
+      allCategories(categories);
       // Filter featured ones
+
       featuredCategories.assignAll(allCategories.where((category) => category.isFeatured).toList());
 
       isLoading.value = false;

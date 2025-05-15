@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:shimmer/shimmer.dart';
 import '../../../utils/constants/colors.dart';
 import '../../../utils/constants/sizes.dart';
@@ -14,16 +15,18 @@ class CProductShimmer extends StatelessWidget {
       shrinkWrap: true,
       physics: const NeverScrollableScrollPhysics(),
       padding: EdgeInsets.zero,
+
       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
         crossAxisCount: 2,
+        childAspectRatio: 0.65,
         mainAxisSpacing: CSizes.gridViewSpacing,
         crossAxisSpacing: CSizes.gridViewSpacing,
-        mainAxisExtent: 288,
+        mainAxisExtent: Get.height*0.5,
       ),
       itemCount: 4, // Show 4 shimmer items while loading
       itemBuilder:
           (_, __) => Container(
-            width: 180,
+            width: 390,
             padding: const EdgeInsets.all(1),
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(CSizes.productImgRadius),
@@ -34,6 +37,7 @@ class CProductShimmer extends StatelessWidget {
               highlightColor: dark ? Colors.grey[700]! : Colors.grey[100]!,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
+
                 children: [
                   // Image container shimmer
                   Container(

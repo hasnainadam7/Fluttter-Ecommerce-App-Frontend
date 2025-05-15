@@ -35,7 +35,7 @@ class ProductReviewScreen extends StatelessWidget {
                COverallProductRating(),
               const CRatingBarIndicator(rating: 4.8),
               Text('12,612', style: Theme.of(context).textTheme.bodySmall),
-              const SizedBox(height: CSizes.spacesBtwSections),
+              const SizedBox(height: CSizes.spaceBtwSections),
               ...List.generate(4, (r){
                 return const UserReviewCard();
               }),

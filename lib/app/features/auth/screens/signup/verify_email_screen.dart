@@ -29,7 +29,7 @@ class VerifyEmailScreen extends StatelessWidget {
         padding: const EdgeInsets.all(CSizes.defaultSpace),
         child: Column(
           // crossAxisAlignment: CrossAxisAlignment.center,
-          spacing: CSizes.spacesBtwSections,
+          spacing: CSizes.spaceBtwSections,
           children: [
             Image.asset(
               CImages.deliveredEmailIllustration,

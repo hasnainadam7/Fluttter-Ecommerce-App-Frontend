@@ -16,6 +16,8 @@ import 'package:flutter/material.dart'
 import 'package:get/get.dart' show Get, GetxController, Inst, IntExtension, Obx, Rx;
 import 'package:iconsax/iconsax.dart' show Iconsax;
 
+import 'features/shop/controllers/category_controller.dart';
+import 'features/shop/controllers/product_controllers/product_controller.dart';
 import 'features/shop/screens/home/home_screen.dart';
 import 'features/shop/screens/store/shop_screen.dart' show ShopScreen;
 
@@ -33,6 +35,8 @@ class NavigationMenu extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Get.put(CategoryController());
+    Get.put(ProductController());
     bool dark = CHelperFunctions.isDarkMode(context);
     return Obx(
       () => Scaffold(
@@ -60,7 +64,7 @@ class NavigationController extends GetxController {
   Rx<int> selectedIndex = 0.obs;
   final List<Widget> screens = [
     const HomeScreen(),
-    ShopScreen(),
+    const ShopScreen(),
     const FavouriteScreen(),
     SettingsScreen(),
   ];

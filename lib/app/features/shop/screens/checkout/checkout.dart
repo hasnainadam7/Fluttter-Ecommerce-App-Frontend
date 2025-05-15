@@ -8,7 +8,7 @@ import '../../../../common/widgets/appBar/app_bar.dart';
 import '../../../../common/widgets/custom_shapes/containers/rounded_container.dart';
 import '../../../../common/widgets/product/cart/coupon_widget.dart';
 import '../../../../common/widgets/sucess_screen/sucess_screen.dart';
-import '../../../../navigation_menu.dart';
+import '../../../../data/repositories/authentication/authentication_repository.dart';
 import '../../../../utils/constants/colors.dart';
 import '../../../../utils/constants/images_string.dart';
 import '../../../../utils/constants/sizes.dart';
@@ -32,15 +32,13 @@ class CheckoutScreen extends StatelessWidget {
         child: Padding(
           padding: const EdgeInsets.all(CSizes.defaultSpace),
           child: Column(
-            spacing: CSizes.spacesBtwSections,
+            spacing: CSizes.spaceBtwSections,
             children: [
               /// -- Items in Cart
               const CCartItems(showAddRemoveButton: false),
 
-
               /// -- Coupon TextField
               const CCouponCode(),
-
 
               /// -- Billing Section
               CRoundedContainer(
@@ -80,7 +78,7 @@ class CheckoutScreen extends StatelessWidget {
                   image: CImages.successfulPaymentIcon,
                   title: 'Payment Success!',
                   subTitle: 'Your item will be shipped soon!',
-                  onPressed: () => Get.offAll(() => NavigationMenu()),
+                  onPressed: () => AuthenticationRepository.instance.screenRedirect(),
                   btnText: CTexts.tContinue,
                 ),
               ),

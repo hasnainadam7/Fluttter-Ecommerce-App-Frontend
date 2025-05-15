@@ -20,7 +20,7 @@ class LoginScreen extends StatelessWidget {
           padding: CSpacingStyle.paddingWithAppBarHeight,
 
           child: Column(
-            spacing: CSizes.spacesBtwSections,
+            spacing: CSizes.spaceBtwSections,
             children: [
               //header
               LoginHeader(dark: dark),

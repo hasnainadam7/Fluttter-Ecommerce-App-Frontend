@@ -15,10 +15,8 @@ class AllBrandsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final controller = Get.put(CategoryController());
-    if (controller.allCategories.isEmpty) {
-      debugPrint("🚨 Empty imgPath passed to CCircularImage!");
-    }
+
+
     final bool dark = CHelperFunctions.isDarkMode(context);
     return Scaffold(
       appBar: const CAppBar(title: Text('Brand'), showBackArrow: true),
@@ -33,7 +31,7 @@ class AllBrandsScreen extends StatelessWidget {
 
               /// Brands
               CGridLayout(
-                itemCount: controller.allCategories.length,
+                itemCount: CategoryController.instance.allCategories.length,
                 mainAxisExtent: 80,
                 padding: EdgeInsets.zero,
                 itemBuilder: (context, index) {
@@ -42,13 +40,13 @@ class AllBrandsScreen extends StatelessWidget {
                     onTap:
                         () => Get.to(
                           () => BrandProducts(
-                            imgPath: controller.allCategories[index].image,
-                            title: controller.allCategories[index].name,
-                            id: (controller.allCategories[index].id),
+                            imgPath: CategoryController.instance.allCategories[index].image,
+                            title: CategoryController.instance.allCategories[index].name,
+                            id: (CategoryController.instance.allCategories[index].id),
                           ),
                         ),
-                    imgPath: controller.allCategories[index].image,
-                    title: controller.allCategories[index].name,
+                    imgPath: CategoryController.instance.allCategories[index].image,
+                    title: CategoryController.instance.allCategories[index].name,
                   );
                 },
                 dark: dark,

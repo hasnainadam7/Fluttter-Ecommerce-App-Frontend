@@ -22,7 +22,7 @@ class ChangeName extends StatelessWidget {
       body: Padding(
         padding: const EdgeInsets.all(CSizes.defaultSpace),
         child: Column(
-          spacing: CSizes.spacesBtwSections,
+          spacing: CSizes.spaceBtwSections,
           children: [
             const Text(
               "Use real name for easy verification. This name will appear on several pages",

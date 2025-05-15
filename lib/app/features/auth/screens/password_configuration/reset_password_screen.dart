@@ -25,7 +25,7 @@ class ResetPasswordSuccuessScreen extends StatelessWidget {
       body: Padding(
         padding: CSpacingStyle.paddingWithAppBarHeight,
         child: Column(
-          spacing: CSizes.spacesBtwSections,
+          spacing: CSizes.spaceBtwSections,
           children: [
             Image.asset(image, width: CHelperFunctions.screenWidth() * 0.6),
             Column(

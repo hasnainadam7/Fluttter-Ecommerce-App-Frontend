@@ -101,7 +101,8 @@ class CCloudHelperFunctions {
   static Future<T> safeCall<T>(Future<T> Function() fn) async {
     try {
       return await fn();
-    } on FirebaseException catch (e) {
+    }
+    on FirebaseException catch (e) {
       throw (CFirebaseException(e.code).message);
     } on CFirebaseAuthException catch (e) {
       throw (CFirebaseAuthException(e.code).message);
@@ -113,8 +114,8 @@ class CCloudHelperFunctions {
       throw (const CFormatException());
     } on PlatformException catch (e) {
       throw (CPlatformException(e.code).message);
-    } catch (e) {
-
+    }
+    catch (e) {
       throw 'Something went wrong. Please try again $e';
     }
   }

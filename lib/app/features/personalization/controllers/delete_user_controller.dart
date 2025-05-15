@@ -29,7 +29,7 @@ class DeleteUserController extends GetxController {
 
       await userRepository.deleteUserRecord();
       CFullScreenLoader.stopLoading();
-      Get.offAll(LoginScreen());
+      Get.offAll(const LoginScreen());
       CLoaders.customToast(message: "We're sad to see you go. 😢 Your account has been deleted.");
     } catch (_) {}
   }

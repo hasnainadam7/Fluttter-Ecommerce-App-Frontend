@@ -1,7 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:ecommerceapp/app/features/shop/models/category_model.dart';
 import 'package:ecommerceapp/app/features/shop/models/product_model.dart';
-import 'package:ecommerceapp/app/features/shop/models/promo_banner_model.dart';
 import 'package:get/get.dart';
 
 import '../../../utils/helpers/cloud_helper_functions.dart';

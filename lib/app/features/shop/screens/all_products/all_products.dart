@@ -12,11 +12,11 @@ final String id;
   Widget build(BuildContext context) {
     return  Scaffold(
       appBar:
-          CAppBar(title: Text('Popular Products'), showBackArrow: true),
+          const CAppBar(title: Text('Popular Products'), showBackArrow: true),
       body: SingleChildScrollView(
         child: SingleChildScrollView(
           child: Padding(
-            padding: EdgeInsets.all(CSizes.defaultSpace),
+            padding: const EdgeInsets.all(CSizes.defaultSpace),
             child: CSortableProducts(id:id),
           ),
         ),

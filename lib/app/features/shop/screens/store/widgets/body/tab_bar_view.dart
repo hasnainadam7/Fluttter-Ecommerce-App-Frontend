@@ -7,7 +7,7 @@ import '../../../../../../common/widgets/cards/product_card/vertical/product_car
 import '../../../../../../utils/constants/images_string.dart';
 import '../../../../../../utils/constants/sizes.dart';
 
-import '../../../../controllers/product_controller.dart';
+import '../../../../controllers/product_controllers/product_controller.dart';
 import 'brand_show_case.dart';
 
 class CTabBarView extends StatelessWidget {
@@ -18,10 +18,18 @@ class CTabBarView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+// Inside the build method, just before TabBarView:
+    final allProducts = ProductController.instance.allProducts;
+
+// Inside the tab.map(...)
+
     return TabBarView(
       viewportFraction: 1,
       children:
           tabs.map((tab) {
+            final filteredProducts = allProducts
+                .where((product) => product.brand?.name == tab['name'])
+                .toList();
             return ListView(
               shrinkWrap: true,
               physics: const ClampingScrollPhysics(),
@@ -30,6 +38,7 @@ class CTabBarView extends StatelessWidget {
                   padding: const EdgeInsets.symmetric(horizontal: CSizes.defaultSpace),
 
                   child: Column(
+                    spacing: CSizes.defaultSpace,
                     children: [
                       BrandShowCase(
                         title: tab['name'] ?? '',
@@ -46,25 +55,22 @@ class CTabBarView extends StatelessWidget {
                         padding: EdgeInsets.zero,
                         title: "You might like",
                         dark: dark,
+                          showActionButton:false,
                       ),
                       CGridLayout(
                         mainAxisExtent: Get.height * 0.31,
                         padding: EdgeInsets.zero,
                         dark: dark,
-                        itemCount: 4,
+                        itemCount: filteredProducts.length,
                         itemBuilder: (_, index) {
+                          final product = filteredProducts[index];
                           return ProductCardVertical(
                             dark: dark,
-                            imgPath: ProductController.instance.allProducts[index].thumbnail,
-                            productTitle: ProductController.instance.allProducts[index].description,
-                            categoryTitle:
-                                ProductController.instance.allProducts[index].brand!.name,
-                            price: ProductController.instance.allProducts[index].price,
-                            discountedPrice:
-                                ProductController.instance.allProducts[index].salePrice,
+                            productModel: product,
                           );
                         },
                       ),
+
                     ],
                   ),
                 ),

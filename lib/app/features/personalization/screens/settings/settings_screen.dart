@@ -105,7 +105,7 @@ class SettingsScreen extends StatelessWidget {
                   ),
 
                   UserProfileTile(onPressed: () => Get.toNamed(Routes.profile)),
-                  const SizedBox(height: CSizes.spacesBtwSections),
+                  const SizedBox(height: CSizes.spaceBtwSections),
                   //body
                 ],
               ),

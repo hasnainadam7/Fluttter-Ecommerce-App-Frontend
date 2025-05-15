@@ -16,8 +16,8 @@ class ProductModel {
   final int stock;
   final String sku;
   final ProductType productType;
-  final List<ProductAttribute> productAttributes;
-  final List<ProductVariation> productVariations;
+  final List<ProductAttributeModel> productAttributes;
+  final List<ProductVariationModel> productVariations;
 
   ProductModel({
     required this.id,
@@ -50,8 +50,8 @@ class ProductModel {
     String? sku,
     ProductType? productType,
     CategoryModel? brand,
-    List<ProductAttribute>? productAttributes,
-    List<ProductVariation>? productVariations,
+    List<ProductAttributeModel>? productAttributes,
+    List<ProductVariationModel>? productVariations,
   }) {
     return ProductModel(
       id: id ?? this.id,
@@ -71,12 +71,35 @@ class ProductModel {
       productVariations: productVariations ?? this.productVariations,
     );
   }
-  factory ProductModel.fromSnapshot(DocumentSnapshot map) {
-    print(map.data()); // Make sure this has all fields
 
+  factory ProductModel.fromSnapshot(DocumentSnapshot map) {
     final data = map.data() as Map<String, dynamic>;
 
-    return ProductModel(
+    // More robust approach to handle the enum conversion
+    ProductType resolvedProductType;
+    if (data['productType'] != null) {
+      // Handle the case where data contains the full enum path "ProductType.single"
+      String productTypeString = data['productType'].toString();
+
+      // Extract just the enum value part after the dot if it contains "ProductType."
+      if (productTypeString.contains('ProductType.')) {
+        productTypeString = productTypeString.split('.').last.trim();
+      }
+
+      try {
+        resolvedProductType = ProductType.values.firstWhere(
+              (e) => e.name == productTypeString,
+          orElse: () => ProductType.single,
+        );
+      } catch (e) {
+        print("Error matching product type: $e");
+        resolvedProductType = ProductType.single; // Default
+      }
+    } else {
+      resolvedProductType = ProductType.single; // Default if null
+    }
+
+    ProductModel productModel = ProductModel(
       id: data['id'],
       title: data['title'],
       description: data['description'],
@@ -88,17 +111,23 @@ class ProductModel {
       isFeatured: data['isFeatured'],
       stock: data['stock'],
       sku: data['sku'],
-      productType: ProductType.values.firstWhere(
-            (e) => e.toString() == data['productType'], // or use `.name` if saved cleanly
-        orElse: () => ProductType.single,
-      ),
-      productAttributes: (data.containsKey('productAttributes') && data['productAttributes'] != null)
-          ? (data['productAttributes'] as List).map((e) => ProductAttribute.fromMap(Map<String, dynamic>.from(e))).toList()
+      productType: resolvedProductType,
+      productAttributes:
+      (data.containsKey('productAttributes') && data['productAttributes'] != null)
+          ? (data['productAttributes'] as List)
+          .map((e) => ProductAttributeModel.fromMap(Map<String, dynamic>.from(e)))
+          .toList()
           : [],
-      productVariations: (data.containsKey('productVariations') && data['productVariations'] != null)
-          ? (data['productVariations'] as List).map((e) => ProductVariation.fromMap(Map<String, dynamic>.from(e))).toList()
+      productVariations:
+      (data.containsKey('productVariations') && data['productVariations'] != null)
+          ? (data['productVariations'] as List)
+          .map((e) => ProductVariationModel.fromMap(Map<String, dynamic>.from(e)))
+          .toList()
           : [],
     );
+
+
+    return productModel;
   }
 
   Map<String, dynamic> toMap() {
@@ -121,14 +150,14 @@ class ProductModel {
   }
 }
 
-class ProductAttribute {
+class ProductAttributeModel {
   final String name;
   final List<String> values;
 
-  ProductAttribute({required this.name, required this.values});
+  ProductAttributeModel({required this.name, required this.values});
 
-  factory ProductAttribute.fromMap(Map<String, dynamic> map) {
-    return ProductAttribute(name: map['name'], values: List<String>.from(map['values']));
+  factory ProductAttributeModel.fromMap(Map<String, dynamic> map) {
+    return ProductAttributeModel(name: map['name'], values: List<String>.from(map['values']));
   }
 
   Map<String, dynamic> toMap() {
@@ -136,7 +165,7 @@ class ProductAttribute {
   }
 }
 
-class ProductVariation {
+class ProductVariationModel {
   final String id;
   final Map<String, String> attributeValues;
   final String description;
@@ -146,7 +175,7 @@ class ProductVariation {
   final int stock;
   final String sku;
 
-  ProductVariation({
+  ProductVariationModel({
     required this.id,
     required this.attributeValues,
     required this.description,
@@ -157,8 +186,8 @@ class ProductVariation {
     required this.sku,
   });
 
-  factory ProductVariation.fromMap(Map<String, dynamic> map) {
-    return ProductVariation(
+  factory ProductVariationModel.fromMap(Map<String, dynamic> map) {
+    return ProductVariationModel(
       id: map['id'],
       attributeValues: Map<String, String>.from(map['attributeValues']),
       description: map['description'],

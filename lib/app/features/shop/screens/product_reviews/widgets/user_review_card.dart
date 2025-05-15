@@ -93,7 +93,7 @@ class UserReviewCard extends StatelessWidget {
             ),
           )
         ),
-        const SizedBox(height: CSizes.spacesBtwSections),
+        const SizedBox(height: CSizes.spaceBtwSections),
       ],
     );
   }

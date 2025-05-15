@@ -1,40 +1,31 @@
 import 'package:ecommerceapp/app/common/styles/shadow_styles.dart';
 import 'package:ecommerceapp/app/common/widgets/custom_shapes/containers/rounded_container.dart';
-import 'package:ecommerceapp/app/features/shop/screens/cart/cart.dart';
 
 import 'package:ecommerceapp/app/utils/constants/colors.dart';
-import 'package:ecommerceapp/app/utils/constants/images_string.dart';
 import 'package:ecommerceapp/app/utils/constants/sizes.dart';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:iconsax/iconsax.dart';
 
+import '../../../../../features/shop/models/product_model.dart';
+import '../../../../../features/shop/screens/product_details/product_details.dart';
 import '../../../images/rounded_images.dart';
 import '../../../texts/brand_title_text_with_verified_icon.dart';
-import '../circular_icon.dart';
 import '../discounted_label.dart';
+import '../favourite_icon.dart';
 import '../product_price_and_counts.dart';
 import '../product_title.dart';
 
 class ProductCardVertical extends StatelessWidget {
-  const ProductCardVertical({
-    super.key,
-    required this.dark,
-    required this.imgPath,
-    required this.productTitle,
-    required this.categoryTitle,
-    required this.price,
-    required this.discountedPrice,
-  });
-  final String imgPath, productTitle, categoryTitle;
-  final double price, discountedPrice;
+  const ProductCardVertical({super.key, required this.productModel, required this.dark});
+
+  final ProductModel productModel;
   final bool dark;
   @override
   Widget build(BuildContext context) {
-    final double discountedPercentage = discountedPrice / price * 100;
+    final String discountedPercentage = "${(100- (productModel.salePrice / productModel.price) * 100).toInt()}%";
     return GestureDetector(
-      onTap: () => Get.to(() => const CartScreen()),
+      onTap: () => Get.to(() => ProductDetails(product: productModel)),
       child: Container(
         width: Get.width * 0.4,
         decoration: BoxDecoration(
@@ -47,7 +38,6 @@ class ProductCardVertical extends StatelessWidget {
           children: [
             //thumbnail wishlist and discountedTag
             CRoundedContainer(
-
               backgroundColor: dark ? CColors.darkerGrey : CColors.light,
               child: Stack(
                 children: [
@@ -56,28 +46,28 @@ class ProductCardVertical extends StatelessWidget {
                     height: 150,
                     width: double.infinity,
                     isNetworkImage: true,
-                    imgUrl: imgPath,
+                    imgUrl: productModel.thumbnail,
                   ),
                   DiscountedLabelWidget(discount: discountedPercentage),
-                  Positioned(
+                  const Positioned(
                     right: 2,
                     top: 2,
-                    child: CCircularIcon(color: Colors.blue, icon: Iconsax.heart5),
+                    child: CFavouriteIcon(),
                   ),
                 ],
               ),
             ),
             Padding(
-              padding: EdgeInsets.all(CSizes.sm),
+              padding: const EdgeInsets.all(CSizes.sm),
               child: Column(
                 // spacing: CSizes.spaceBtwItems / 2,
                 mainAxisAlignment: MainAxisAlignment.end,
                 crossAxisAlignment: CrossAxisAlignment.start,
 
                 children: [
-                  ProductTitle(title: productTitle),
-                  CBrandTitleWithVerifiedIcon(title: categoryTitle),
-                  ProductPriceAndCounts(price: discountedPrice.toString()),
+                  ProductTitle(title: productModel.title),
+                  CBrandTitleWithVerifiedIcon(title: productModel.brand!.name),
+                  ProductPriceAndCounts(price: productModel.salePrice.toString()),
                 ],
               ),
             ),

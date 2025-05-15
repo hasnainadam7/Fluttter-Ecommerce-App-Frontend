@@ -6,7 +6,6 @@ import '../../../../../../common/widgets/custom_shapes/containers/circular_conta
 import '../../../../../../utils/constants/colors.dart';
 import '../../../../../../utils/constants/sizes.dart';
 import '../../../../controllers/banner_controller.dart';
-import '../../../../controllers/home_controller.dart';
 
 class CCarouselSliderDots extends StatelessWidget {
   const CCarouselSliderDots({
@@ -22,7 +21,7 @@ class CCarouselSliderDots extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.center,
       mainAxisAlignment: MainAxisAlignment.center,
       spacing: CSizes.spaceBtwItems / 2,
-      children: List.generate(3, (r) {
+      children: List.generate( BannerController.instance.allPromoBanners.length, (r) {
         return Obx(
               () => CCircularContainer(
             width: 20,

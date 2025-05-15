@@ -3,7 +3,7 @@ import 'package:ecommerceapp/app/utils/helpers/helper_functions.dart';
 import 'package:flutter/material.dart';
 import 'package:iconsax/iconsax.dart';
 
-import '../../../../features/shop/controllers/product_controller.dart';
+import '../../../../features/shop/controllers/product_controllers/product_controller.dart';
 
 import '../../cards/product_card/vertical/product_card_vertical.dart';
 import '../../layout/grid_layout.dart';
@@ -14,7 +14,6 @@ class CSortableProducts extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final bool dark = CHelperFunctions.isDarkMode(context);
-
 
     final filteredProducts =
         ProductController.instance.allProducts.where((product) => product.brand?.id == id).toList();
@@ -43,14 +42,7 @@ class CSortableProducts extends StatelessWidget {
           itemCount: filteredProducts.length,
           itemBuilder: (_, index) {
             final product = filteredProducts[index];
-            return ProductCardVertical(
-              dark: dark,
-              imgPath: product.thumbnail,
-              productTitle: product.description,
-              categoryTitle: product.brand?.name ?? '',
-              price: product.price,
-              discountedPrice: product.salePrice,
-            );
+            return ProductCardVertical(dark: dark, productModel: product);
           },
           dark: dark,
         ),

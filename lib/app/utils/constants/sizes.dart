@@ -34,7 +34,7 @@ class CSizes {
   //default space between
   static const double defaultSpace = 24;
   static const double spaceBtwItems = 16;
-  static const double spacesBtwSections = 32;
+  static const double spaceBtwSections = 32;
 
   // borders radius sizes
   static const double bordersRadiusSm = 4;

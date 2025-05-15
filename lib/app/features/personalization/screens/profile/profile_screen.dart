@@ -23,7 +23,7 @@ class ProfileScreen extends StatelessWidget {
 
         "value": Obx(() => buildText(controller.user.value.fullName)),
         "onPressed": () {
-          Get.to(ChangeName());
+          Get.to(const ChangeName());
         },
       },
       {

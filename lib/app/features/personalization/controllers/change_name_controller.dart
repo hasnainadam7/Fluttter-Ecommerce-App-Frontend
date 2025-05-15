@@ -62,6 +62,7 @@ class ChangeNameController extends GetxController {
 
 
       } catch (e) {
+        CLoaders.errorSnackBar(title:"O Snap!",message:e);
       }
     }
   }

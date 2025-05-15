@@ -18,7 +18,7 @@ class SignupScreen extends StatelessWidget {
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(CSizes.defaultSpace),
         child: Column(
-          spacing: CSizes.spacesBtwSections,
+          spacing: CSizes.spaceBtwSections,
           children: [
             //title
             Text(CTexts.signupTitle, style: Theme.of(context).textTheme.headlineMedium),

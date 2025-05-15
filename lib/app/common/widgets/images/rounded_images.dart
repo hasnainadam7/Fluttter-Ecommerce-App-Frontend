@@ -51,14 +51,8 @@ class CRoundedImages extends StatelessWidget {
                   ? Image.asset(imgUrl, fit: fit)
                   : CachedNetworkImage(
                     progressIndicatorBuilder:
-                        (context, url, downloadProgress) => Container(
-                          padding: padding,
-                          child: CShimmerEffect(
-                            color: Colors.blue,
-                            width: double.infinity,
-                            height: 300,
-                          ),
-                        ),
+                        (context, url, downloadProgress) =>
+                            const CShimmerEffect(width: double.infinity, radius: 0),
                     imageUrl: imgUrl,
                     fit: fit,
                   ),

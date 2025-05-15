@@ -10,6 +10,7 @@ import '../../../../../../utils/constants/colors.dart';
 import '../../../../../../utils/constants/sizes.dart';
 import '../../../../../../utils/constants/texts.dart';
 import '../../../brands/all_brands.dart';
+import '../../../brands/brand_products.dart';
 
 class ShopFlexibleSpaceWidget extends StatelessWidget {
   const ShopFlexibleSpaceWidget({super.key, required this.dark});
@@ -18,7 +19,6 @@ class ShopFlexibleSpaceWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final controller = Get.put(CategoryController());
     return Padding(
       padding: const EdgeInsets.all(CSizes.defaultSpace),
 
@@ -48,19 +48,29 @@ class ShopFlexibleSpaceWidget extends StatelessWidget {
           ),
 
           Obx(() {
-            if (controller.isLoading.value) {
-              return CShimmerEffect(width: 120, height: 120);
+            if (CategoryController.instance.isLoading.value) {
+              return const CShimmerEffect(width: 120, height: 120);
             } else {
               return CGridLayout(
                 dark: dark,
-                itemCount: controller.featuredCategories.length,
+                itemCount: CategoryController.instance.featuredCategories.length,
                 padding: EdgeInsets.zero,
                 mainAxisExtent: 80,
                 itemBuilder: (_, index) {
-                  return CBrandedCard(
-                    showBorder: true,
-                    title: controller.featuredCategories[index].name,
-                    imgPath: controller.featuredCategories[index].image,
+                  return GestureDetector(
+                    onTap:
+                        () => Get.to(
+                          () => BrandProducts(
+                            imgPath: CategoryController.instance.featuredCategories[index].image,
+                            title: CategoryController.instance.featuredCategories[index].name,
+                            id: (CategoryController.instance.featuredCategories[index].id),
+                          ),
+                        ),
+                    child: CBrandedCard(
+                      showBorder: true,
+                      title: CategoryController.instance.featuredCategories[index].name,
+                      imgPath: CategoryController.instance.featuredCategories[index].image,
+                    ),
                   );
                 },
               );

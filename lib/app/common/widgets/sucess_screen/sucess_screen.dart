@@ -24,7 +24,7 @@ class SucessScreen extends StatelessWidget {
       body: Padding(
         padding: CSpacingStyle.paddingWithAppBarHeight,
         child: Column(
-          spacing: CSizes.spacesBtwSections,
+          spacing: CSizes.spaceBtwSections,
           children: [
             Image.asset(
 

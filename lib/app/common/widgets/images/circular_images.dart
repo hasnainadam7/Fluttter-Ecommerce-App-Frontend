@@ -39,12 +39,12 @@ class CCircularImage extends StatelessWidget {
       color: overlayColor,
       progressIndicatorBuilder: (context, url, downloadProgress) =>
           CShimmerEffect(height: height, width: width),
-      errorWidget: (context, url, error) => Icon(Iconsax.info_circle),
+      errorWidget: (context, url, error) => const Icon(Iconsax.info_circle),
       imageUrl: imgPath,
     )
         : (!isNetworkImage)
         ? Image.asset(imgPath, fit: fit, color: overlayColor)
-        : Icon(Iconsax.info_circle),
+        : const Icon(Iconsax.info_circle),
     );
   }
 }
