@@ -141,8 +141,9 @@ class SectionColors extends StatelessWidget {
           spacing: 8,
           children:
               list.map((r) {
-print(r);
-                return CChoiceChip(selected: false, text: r, onSelected: (v) {});
+                print(r); // optional for debugging
+                final color = r.split(": ").last.split("/").first; // ye magic line hai
+                return CChoiceChip(selected: false, text: color, onSelected: (v) {});
               }).toList(),
           // [
           //  ,
