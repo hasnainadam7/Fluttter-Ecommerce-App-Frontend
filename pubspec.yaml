@@ -45,7 +45,7 @@ dependencies:
   url_launcher: ^6.3.1               # Launch external URLs, mail, phone
   flutter_native_splash: ^2.4.6      # Auto-generate native splash screens
   capped_progress_indicator: ^0.0.2  # Custom circular progress indicators
-
+  uuid: ^4.5.1
 
 
 dev_dependencies:

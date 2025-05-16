@@ -1,5 +1,6 @@
 import 'package:ecommerceapp/app/common/styles/shadow_styles.dart';
 import 'package:ecommerceapp/app/common/widgets/custom_shapes/containers/rounded_container.dart';
+import 'package:ecommerceapp/app/features/shop/controllers/category_controller.dart';
 
 import 'package:ecommerceapp/app/utils/constants/colors.dart';
 import 'package:ecommerceapp/app/utils/constants/sizes.dart';
@@ -23,7 +24,9 @@ class ProductCardVertical extends StatelessWidget {
   final bool dark;
   @override
   Widget build(BuildContext context) {
-    final String discountedPercentage = "${(100- (productModel.salePrice / productModel.price) * 100).toInt()}%";
+    final String discountedPercentage =
+        "${(100 - (productModel.salePrice / productModel.price) * 100).toInt()}%";
+
     return GestureDetector(
       onTap: () => Get.to(() => ProductDetails(product: productModel)),
       child: Container(
@@ -49,11 +52,7 @@ class ProductCardVertical extends StatelessWidget {
                     imgUrl: productModel.thumbnail,
                   ),
                   DiscountedLabelWidget(discount: discountedPercentage),
-                  const Positioned(
-                    right: 2,
-                    top: 2,
-                    child: CFavouriteIcon(),
-                  ),
+                  Positioned(right: 2, top: 2, child: CFavouriteIcon(id: productModel.id)),
                 ],
               ),
             ),
@@ -66,7 +65,14 @@ class ProductCardVertical extends StatelessWidget {
 
                 children: [
                   ProductTitle(title: productModel.title),
-                  CBrandTitleWithVerifiedIcon(title: productModel.brand!.name),
+                  CBrandTitleWithVerifiedIcon(
+                    title:
+                        productModel.brand?.name ??
+                        CategoryController
+                            .instance
+                            .allCategories[int.parse(productModel.categoryId) - 1]
+                            .name,
+                  ),
                   ProductPriceAndCounts(price: productModel.salePrice.toString()),
                 ],
               ),

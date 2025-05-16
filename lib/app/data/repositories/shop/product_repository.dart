@@ -10,10 +10,18 @@ class ProductRepository extends GetxController {
   final FirebaseFirestore _db = FirebaseFirestore.instance;
 
   /// Function to save fetch data to FireStore.
-  Future<List<ProductModel>>    getAllProducts() async {
+  Future<List<ProductModel>> getAllProducts() async {
     return await CCloudHelperFunctions.safeCall(() async {
       final snapshot = await _db.collection("Products").get();
 
+      return snapshot.docs.map((r) => ProductModel.fromSnapshot(r)).toList();
+    });
+  }
+
+  Future<List<ProductModel>> getFavouriteProducts(List<String> productIds) async {
+    return await CCloudHelperFunctions.safeCall(() async {
+      final snapshot =
+          await _db.collection("Products").where(FieldPath.documentId, whereIn: productIds).get();
       return snapshot.docs.map((r) => ProductModel.fromSnapshot(r)).toList();
     });
   }

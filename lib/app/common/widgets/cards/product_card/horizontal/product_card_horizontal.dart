@@ -22,11 +22,12 @@ class CProductCardHorizontal extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final String discountedPercentage = "${(100-(productModel.salePrice / productModel.price) * 100).toInt()}%";
+    final String discountedPercentage =
+        "${(100 - (productModel.salePrice / productModel.price) * 100).toInt()}%";
 
     final dark = CHelperFunctions.isDarkMode(context);
 
-    return      GestureDetector(
+    return GestureDetector(
       onTap: () => Get.to(() => ProductDetails(product: productModel)),
       child: Container(
         padding: const EdgeInsets.all(1),
@@ -59,7 +60,10 @@ class CProductCardHorizontal extends StatelessWidget {
                     child: CRoundedContainer(
                       radius: CSizes.sm,
                       backgroundColor: CColors.secondaryColor.withValues(alpha: 0.8),
-                      padding: const EdgeInsets.symmetric(horizontal: CSizes.sm, vertical: CSizes.xs),
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: CSizes.sm,
+                        vertical: CSizes.xs,
+                      ),
                       child: Text(
                         discountedPercentage,
                         style: Theme.of(context).textTheme.labelLarge!.apply(color: CColors.black),
@@ -68,11 +72,7 @@ class CProductCardHorizontal extends StatelessWidget {
                   ),
 
                   /// -- Favorite Icon Button
-                  const Positioned(
-                    top: 0,
-                    right: 0,
-                    child:CFavouriteIcon(),
-                  ),
+                  Positioned(top: 0, right: 0, child: CFavouriteIcon(id: productModel.id)),
                 ],
               ),
             ),
@@ -89,7 +89,7 @@ class CProductCardHorizontal extends StatelessWidget {
                       children: [
                         CProductTitleText(title: productModel.title, smallSize: true),
                         const SizedBox(height: CSizes.spaceBtwItems / 2),
-                        CBrandTitleWithVerifiedIcon(title: productModel.brand!.name,),
+                        CBrandTitleWithVerifiedIcon(title: productModel.brand!.name),
                       ],
                     ),
 
@@ -99,7 +99,9 @@ class CProductCardHorizontal extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         /// Pricing
-                        Flexible(child: CProductPriceText(price: productModel.salePrice.toString())),
+                        Flexible(
+                          child: CProductPriceText(price: productModel.salePrice.toString()),
+                        ),
 
                         /// Add to Cart Button
                         Container(

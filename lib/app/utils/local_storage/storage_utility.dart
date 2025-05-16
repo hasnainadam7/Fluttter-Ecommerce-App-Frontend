@@ -1,19 +1,19 @@
 import 'package:get_storage/get_storage.dart';
 
 class CLocalStorage {
-  static  CLocalStorage _instance = CLocalStorage._internal();
+  static CLocalStorage instance = CLocalStorage._internal();
 
   factory CLocalStorage() {
     // _instance ??=CLocalStorage._internal();
-    return _instance;
+    return instance;
   }
 
-  static Future<void> init (String bucketName)async{
+  static Future<void> init(String bucketName) async {
     await GetStorage.init(bucketName);
-    _instance= CLocalStorage._internal();
-    _instance._storage=GetStorage(bucketName);
-
+    instance = CLocalStorage._internal();
+    instance._storage = GetStorage(bucketName);
   }
+
   CLocalStorage._internal();
 
   var _storage = GetStorage();
@@ -38,7 +38,6 @@ class CLocalStorage {
     await _storage.erase();
   }
 }
-
 
 /// *** *** *** *** *** Example *** *** *** *** *** ///
 

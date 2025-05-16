@@ -12,6 +12,7 @@ class CLoaders {
       ScaffoldMessenger.of(Get.context!).hideCurrentSnackBar();
 
   static void customToast({required message}) {
+    hideSnackBar();
     ScaffoldMessenger.of(Get.context!).showSnackBar(
       SnackBar(
         elevation: 0,

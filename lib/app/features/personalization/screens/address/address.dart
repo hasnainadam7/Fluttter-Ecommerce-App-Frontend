@@ -1,10 +1,15 @@
+import 'package:ecommerceapp/app/features/personalization/controllers/address_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
 
 import '../../../../common/widgets/appBar/app_bar.dart';
+import '../../../../common/widgets/loaders/animation_loader.dart';
+import '../../../../common/widgets/shimmer_effect/shimmer_effect.dart';
 import '../../../../utils/constants/colors.dart';
+import '../../../../utils/constants/images_string.dart';
 import '../../../../utils/constants/sizes.dart';
+import '../../../../utils/helpers/cloud_helper_functions.dart';
 import 'widgets/add_new_address.dart';
 import 'widgets/single_address.dart';
 
@@ -13,7 +18,8 @@ class UserAddressScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final int selectedIndex = 2;
+    final controller = Get.put(AddressController());
+
     return Scaffold(
       floatingActionButton: FloatingActionButton(
         onPressed: () => Get.to(() => const AddNewAddressScreen()),
@@ -27,14 +33,34 @@ class UserAddressScreen extends StatelessWidget {
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.all(CSizes.defaultSpace),
-          child: Column(
-            children: List.generate(4, (r) {
-              return CSingleAddress(selectedAddress: selectedIndex == r);
-            }),
-            // children: [
-            //   CSingleAddress(selectedAddress: true),
-            //   CSingleAddress(selectedAddress: false),
-            // ],
+          child: FutureBuilder(
+            future: controller.fetchUserAddress(),
+            builder: (context, snapshot) {
+              var loader = CShimmerEffect(width: Get.width / 2.3);
+              final nothingFound = CAnimationLoaderWidget(
+                text: "Whoops! Wishlist is Empty...",
+                animation: CImages.pencilAnimation,
+                showAction: true,
+                actionText: 'Let\'s add some',
+                onActionPressed: () => Get.to(() => const AddNewAddressScreen()),
+              );
+              var widget = CCloudHelperFunctions.checkMultiRecordState(
+                snapshot: snapshot,
+                loader: loader,
+                nothingFound: nothingFound,
+              );
+
+              if (widget != null) return widget;
+              final address = snapshot.data!;
+              return Column(
+                children: address.map((addr) {
+                  return CSingleAddress(
+                    onTap: () => controller.selectAddress(addr),
+                    address: addr,
+                  );
+                }).toList(),
+              );
+            },
           ),
         ),
       ),

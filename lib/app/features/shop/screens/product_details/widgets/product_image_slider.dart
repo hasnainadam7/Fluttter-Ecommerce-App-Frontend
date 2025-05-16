@@ -2,7 +2,6 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:ecommerceapp/app/features/shop/models/product_model.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 import 'package:iconsax/iconsax.dart';
 
 import '../../../../../common/widgets/appBar/app_bar.dart';
@@ -12,7 +11,6 @@ import '../../../../../common/widgets/custom_shapes/curved_edges/curved_edges_wi
 import '../../../../../common/widgets/images/rounded_images.dart';
 import '../../../../../common/widgets/shimmer_effect/shimmer_effect.dart';
 import '../../../../../utils/constants/colors.dart';
-import '../../../../../utils/constants/images_string.dart';
 import '../../../../../utils/constants/sizes.dart';
 import '../../../controllers/product_controllers/image_slider_controller.dart';
 

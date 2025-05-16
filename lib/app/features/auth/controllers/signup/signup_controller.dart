@@ -18,13 +18,13 @@ class SignupController extends GetxController {
   final hidePassword = true.obs; // Observable for hiding/showing password
   final privacyPolicy = true.obs; // Observable for privacy policy acceptance
 
-  final email = TextEditingController(); // controller for email input
-  final firstName = TextEditingController(); // controller for first name input
-  final lastName = TextEditingController(); // controller for last name input
-  final phoneNumber = TextEditingController(); // controller for phone number input
-  final username = TextEditingController(); // controller for username input
-  final password = TextEditingController(); // controller for password input
-  GlobalKey<FormState> signupFormKey = GlobalKey<FormState>(); // Form Key for form validation
+  final TextEditingController email = TextEditingController(); // controller for email input
+  final TextEditingController firstName = TextEditingController(); // controller for first name input
+  final TextEditingController lastName = TextEditingController(); // controller for last name input
+  final  TextEditingController phoneNumber = TextEditingController(); // controller for phone number input
+  final TextEditingController username = TextEditingController(); // controller for username input
+  final TextEditingController password = TextEditingController(); // controller for password input
+  final GlobalKey<FormState> signupFormKey = GlobalKey<FormState>(); // Form Key for form validation
 
   ///  -- SIGN UP
   Future<void> signup() async {

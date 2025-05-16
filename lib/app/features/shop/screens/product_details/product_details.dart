@@ -1,5 +1,4 @@
 import 'package:ecommerceapp/app/common/widgets/texts/section_heading.dart';
-import 'package:ecommerceapp/app/features/shop/controllers/product_controllers/image_slider_controller.dart';
 import 'package:ecommerceapp/app/features/shop/models/product_model.dart';
 import 'package:ecommerceapp/app/features/shop/screens/checkout/checkout.dart';
 import 'package:ecommerceapp/app/utils/constants/enums.dart';
@@ -43,7 +42,8 @@ class ProductDetails extends StatelessWidget {
                   const CRatingAndShare(),
                   ProductMetaData(product: product),
                   const SizedBox(height: CSizes.defaultSpace / 3),
-                  if (product.productType == ProductType.variable) ProductAttributes(product: product,),
+                  if (product.productType == ProductType.variable)
+                    ProductAttributes(product: product),
                   if (product.productType == ProductType.variable)
                     const SizedBox(height: CSizes.spaceBtwSections),
                   SizedBox(

@@ -88,7 +88,7 @@ class ProductModel {
 
       try {
         resolvedProductType = ProductType.values.firstWhere(
-              (e) => e.name == productTypeString,
+          (e) => e.name == productTypeString,
           orElse: () => ProductType.single,
         );
       } catch (e) {
@@ -113,19 +113,18 @@ class ProductModel {
       sku: data['sku'],
       productType: resolvedProductType,
       productAttributes:
-      (data.containsKey('productAttributes') && data['productAttributes'] != null)
-          ? (data['productAttributes'] as List)
-          .map((e) => ProductAttributeModel.fromMap(Map<String, dynamic>.from(e)))
-          .toList()
-          : [],
+          (data.containsKey('productAttributes') && data['productAttributes'] != null)
+              ? (data['productAttributes'] as List)
+                  .map((e) => ProductAttributeModel.fromMap(Map<String, dynamic>.from(e)))
+                  .toList()
+              : [],
       productVariations:
-      (data.containsKey('productVariations') && data['productVariations'] != null)
-          ? (data['productVariations'] as List)
-          .map((e) => ProductVariationModel.fromMap(Map<String, dynamic>.from(e)))
-          .toList()
-          : [],
+          (data.containsKey('productVariations') && data['productVariations'] != null)
+              ? (data['productVariations'] as List)
+                  .map((e) => ProductVariationModel.fromMap(Map<String, dynamic>.from(e)))
+                  .toList()
+              : [],
     );
-
 
     return productModel;
   }
@@ -185,7 +184,18 @@ class ProductVariationModel {
     required this.stock,
     required this.sku,
   });
-
+  factory ProductVariationModel.empty() {
+    return ProductVariationModel(
+      id: '',
+      attributeValues: {},
+      description: '',
+      image: '',
+      price: 0.0,
+      salePrice: 0.0,
+      stock: 0,
+      sku: '',
+    );
+  }
   factory ProductVariationModel.fromMap(Map<String, dynamic> map) {
     return ProductVariationModel(
       id: map['id'],
